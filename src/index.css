@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Orbitron", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+
+  --color-primary: #00f2ff; /* Neon Cyan */
+  --color-secondary: #0066ff; /* Neon Blue */
+  --color-ryzen: #ff4e00; /* AMD Ryzen Orange */
+  --color-surface: #050505;
+  --color-surface-container: #0a0a0a;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #a0a0a0;
+  --color-outline: #00f2ff;
+}
+
+@layer base {
+  body {
+    @apply font-body bg-surface text-on-surface selection:bg-primary/30;
+  }
+}
+
+.neon-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5), 0 0 20px rgba(0, 242, 255, 0.3);
+}
+
+.neon-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 102, 255, 0.5), 0 0 20px rgba(0, 102, 255, 0.3);
+}
+
+.neon-glow-ryzen {
+  text-shadow: 0 0 10px rgba(255, 78, 0, 0.5), 0 0 20px rgba(255, 78, 0, 0.3);
+}
+
+.neon-border-cyan {
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.3), inset 0 0 5px rgba(0, 242, 255, 0.2);
+  border: 1px solid rgba(0, 242, 255, 0.5);
+}
+
+.neon-border-blue {
+  box-shadow: 0 0 10px rgba(0, 102, 255, 0.3), inset 0 0 5px rgba(0, 102, 255, 0.2);
+  border: 1px solid rgba(0, 102, 255, 0.5);
+}
+
+.neon-border-ryzen {
+  box-shadow: 0 0 10px rgba(255, 78, 0, 0.3), inset 0 0 5px rgba(255, 78, 0, 0.2);
+  border: 1px solid rgba(255, 78, 0, 0.5);
+}
+
+.glass-nav {
+  @apply bg-surface/70 backdrop-blur-xl border-b border-primary/30;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 242, 255, 0.1);
+}
+
+.btn-neon-cyan {
+  @apply border border-primary/50 text-primary font-bold px-8 py-3 rounded-sm transition-all duration-300 uppercase tracking-widest text-xs;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.btn-neon-cyan:hover {
+  @apply bg-primary text-surface;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+}
+
+.btn-neon-blue {
+  @apply border border-secondary/50 text-secondary font-bold px-8 py-3 rounded-sm transition-all duration-300 uppercase tracking-widest text-xs;
+  box-shadow: 0 0 10px rgba(0, 102, 255, 0.2);
+}
+
+.btn-neon-blue:hover {
+  @apply bg-secondary text-surface;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.6);
+}
+
+/* Dark mode theme overrides for the hardware catalog */
+.dark-theme {
+  --color-surface: #131313;
+  --color-on-surface: #e5e2e1;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-primary: #adc6ff;
+  --color-primary-container: #4d8eff;
+  --color-on-primary-container: #00285d;
+  --color-secondary: #4edea3;
+  --color-on-secondary: #003824;
+  --color-secondary-container: #00a572;
+  --color-on-secondary-container: #00311f;
+  --color-outline: #8c909f;
+  --color-outline-variant: #424754;
+}
+
+.dark-theme body {
+  @apply bg-surface text-on-surface;
+}
