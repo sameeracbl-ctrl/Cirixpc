@@ -23,7 +23,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
   }, []);
 
   return (
-    <section className="relative w-full h-[90vh] min-h-[700px] overflow-hidden border-b border-primary/10">
+    <section className="relative w-full h-[70vh] md:h-[90vh] min-h-[500px] md:min-h-[700px] overflow-hidden border-b border-primary/10">
       {/* Slideshow Background */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -46,11 +46,11 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
         </motion.div>
       </AnimatePresence>
 
-      {/* Content Overlay - Positioned Middle-Left */}
-      <div className="relative z-10 h-full max-w-screen-2xl mx-auto px-8 md:px-16 flex flex-col justify-center items-start">
+      {/* Content Overlay - Centered on Mobile, Middle-Left on Desktop */}
+      <div className="relative z-10 h-full max-w-screen-2xl mx-auto px-4 md:px-12 flex flex-col justify-center items-center md:items-start text-center md:text-left">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
           className="max-w-3xl"
         >
@@ -58,21 +58,21 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
             <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase">Foundry Protocol v5.0</span>
           </div>
           
-          <h1 className="font-headline text-4xl md:text-5xl font-light text-white tracking-[0.1em] leading-[1.2] mb-8">
-            BUILD YOUR <br/>
+          <h1 className="font-headline text-3xl md:text-5xl font-light text-white tracking-[0.1em] leading-[1.2] mb-8">
+            BUILD YOUR <br className="hidden md:block" />
             <span className="font-black text-primary drop-shadow-[0_0_8px_rgba(0,242,255,0.4)] tracking-tighter">DREAM PC.</span>
           </h1>
           
-          <p className="text-sm md:text-base text-white/60 font-body font-medium tracking-widest uppercase mb-12 border-l-2 border-primary/30 pl-6 max-w-xl">
+          <p className="text-xs md:text-base text-white/60 font-body font-medium tracking-widest uppercase mb-12 border-l-0 md:border-l-2 border-primary/30 md:pl-6 max-w-xl">
             Precision engineered hardware for the elite. Home of Citrix Computer professional builds.
           </p>
           
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full md:w-auto">
             <motion.button 
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,242,255,0.4)" }}
               whileTap={{ scale: 0.98 }}
               onClick={onStartBuild}
-              className="px-10 py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
+              className="w-full md:w-auto px-10 py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
             >
               Start Your Build
             </motion.button>
@@ -80,7 +80,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
               href={techSupportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-4 border border-primary/30 text-primary font-black text-[10px] uppercase tracking-[0.3em] hover:bg-primary/10 transition-all flex items-center gap-2"
+              className="w-full md:w-auto px-10 py-4 border border-primary/30 text-primary font-black text-[10px] uppercase tracking-[0.3em] hover:bg-primary/10 transition-all flex items-center justify-center gap-2"
             >
               Technical Support
             </a>
@@ -92,7 +92,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface to-transparent z-10"></div>
       
       {/* Slide Indicators */}
-      <div className="absolute bottom-12 left-8 md:left-16 flex gap-3 z-20">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 flex gap-3 z-20">
         {heroImages.map((_, i) => (
           <button 
             key={i}

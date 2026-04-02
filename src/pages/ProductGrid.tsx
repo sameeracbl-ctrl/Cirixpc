@@ -363,7 +363,7 @@ export default function ProductGrid() {
                 return (
                   <div key={category}>
                     <h3 className={`font-headline text-2xl font-black text-${brandColor} mb-8 uppercase tracking-widest ${neonGlow}`}>{category}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {filteredItems.map((item: any, i: number) => (
                         <motion.div
                           key={item.model}
@@ -428,7 +428,7 @@ export default function ProductGrid() {
           >
             <div>
               <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Motherboards</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* Static Item */}
                 {(!searchQuery || "ASUS Z490 MOTHERBOARD".toLowerCase().includes(searchQuery.toLowerCase())) && (
                   <motion.div
@@ -574,7 +574,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-laptops" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Laptops</h3>}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredLaptops.map((gen, i) => (
                 <motion.div
                   key={gen.label}
@@ -773,7 +773,7 @@ export default function ProductGrid() {
           <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">
             {searchQuery ? `Search Results for "${searchQuery}"` : 'All Components'}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               ...Object.values(usedProcessors).flat(),
               ...Object.values(usedRAM).flat(),
@@ -841,7 +841,7 @@ export default function ProductGrid() {
   };
 
   return (
-    <div className="min-h-screen bg-surface py-20 px-8">
+    <div className="min-h-screen bg-surface py-20 px-4 md:px-12">
       <div className="max-w-screen-2xl mx-auto">
         <motion.button 
           initial={{ opacity: 0, x: -20 }}

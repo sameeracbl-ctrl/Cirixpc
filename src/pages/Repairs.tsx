@@ -39,7 +39,7 @@ export default function Repairs() {
       <div className="absolute inset-0 cyber-metal opacity-20 pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-surface to-transparent"></div>
 
-      <div className="max-w-screen-xl mx-auto px-8 pt-32 pb-20 relative z-10">
+      <div className="max-w-screen-xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
         {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

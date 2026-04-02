@@ -95,7 +95,7 @@ export default function Navbar() {
   return (
     <>
       <header className="glass-nav sticky top-0 z-[60]">
-        <nav className="flex justify-between items-center w-full px-4 md:px-8 py-4 max-w-screen-2xl mx-auto font-headline tracking-tight">
+        <nav className="flex justify-between items-center w-full px-4 md:px-12 py-4 max-w-screen-2xl mx-auto font-headline tracking-tight">
           <Link to="/" className="flex items-center gap-2 md:gap-3 group">
             <div className="relative w-8 h-8 md:w-10 md:h-10">
               <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">

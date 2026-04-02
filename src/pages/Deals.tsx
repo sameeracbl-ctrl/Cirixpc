@@ -53,7 +53,7 @@ export default function Deals() {
       {/* Background Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,242,255,0.05),transparent_70%)] pointer-events-none"></div>
       
-      <div className="max-w-screen-2xl mx-auto px-8 pt-32 pb-20 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function Deals() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {deals.map((deal, i) => (
             <motion.div
               key={deal.id}

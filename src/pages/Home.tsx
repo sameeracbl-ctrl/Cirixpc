@@ -670,7 +670,7 @@ Please confirm availability and final pricing.`;
         <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-surface to-transparent z-10"></div>
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-surface to-transparent z-10"></div>
 
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-20 w-full">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20 w-full">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -876,12 +876,12 @@ Please confirm availability and final pricing.`;
 
       {/* Featured Hardware */}
       <section className="py-24 bg-surface-container/30">
-        <div className="max-w-screen-2xl mx-auto px-8">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-12">
           <div className="flex items-center justify-between mb-16">
             <h2 className="font-headline text-2xl font-black text-primary tracking-widest uppercase neon-glow-cyan">Featured Inventory</h2>
             <Link className="text-[10px] font-bold text-primary border-b border-primary/30 pb-1 hover:border-primary transition-all uppercase tracking-widest" to="/hardware">Access Full Catalog</Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 tag: 'In Stock',
