@@ -151,27 +151,27 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(true)}
               className="lg:hidden text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-icons text-2xl">menu</span>
+              <span className="material-symbols-outlined text-[28px] icon-enhanced">menu</span>
             </button>
             <button 
               onClick={() => setIsSearchOpen(true)}
               className="text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-icons text-xl md:text-2xl">search</span>
+              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">search</span>
             </button>
             <button 
               onClick={() => setIsUserOpen(true)}
               className="text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-icons text-xl md:text-2xl">person</span>
+              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">person</span>
             </button>
             <button 
               onClick={() => setIsCartOpen(true)}
               className={`text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan relative ${cartPulse ? 'animate-bounce-neon' : ''}`}
             >
-              <span className="material-icons text-xl md:text-2xl">shopping_cart</span>
+              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">shopping_cart</span>
               {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-[0_0_10px_rgba(0,102,255,0.5)]">
                   {itemCount}
                 </span>
               )}
@@ -200,8 +200,8 @@ export default function Navbar() {
             >
               <div className="flex justify-between items-center mb-16">
                 <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase">Navigation Protocol</span>
-                <button onClick={() => setIsMobileMenuOpen(false)} className="text-primary/40 hover:text-primary transition-colors">
-                  <span className="material-icons text-3xl">close</span>
+                <button onClick={() => setIsMobileMenuOpen(false)} className="text-primary/40 hover:text-primary transition-all">
+                  <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
               </div>
 
@@ -227,9 +227,9 @@ export default function Navbar() {
               <div className="mt-auto pt-12 border-t border-primary/10">
                 <p className="text-[9px] font-bold text-primary/20 uppercase tracking-[0.4em] mb-4">Citrix Computer Hub</p>
                 <div className="flex gap-4">
-                  <a href="#" className="text-primary/40 hover:text-primary transition-colors"><span className="material-icons text-xl">facebook</span></a>
-                  <a href="#" className="text-primary/40 hover:text-primary transition-colors"><span className="material-icons text-xl">instagram</span></a>
-                  <a href="#" className="text-primary/40 hover:text-primary transition-colors"><span className="material-icons text-xl">chat</span></a>
+                  <a href="#" className="text-primary/40 hover:text-primary transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">facebook</span></a>
+                  <a href="#" className="text-primary/40 hover:text-primary transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">instagram</span></a>
+                  <a href="#" className="text-primary/40 hover:text-primary transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">chat</span></a>
                 </div>
               </div>
             </motion.div>
@@ -248,9 +248,9 @@ export default function Navbar() {
           >
             <button 
               onClick={() => setIsSearchOpen(false)}
-              className="absolute top-8 right-8 text-primary/40 hover:text-primary transition-colors"
+              className="absolute top-8 right-8 text-primary/40 hover:text-primary transition-all"
             >
-              <span className="material-icons text-4xl">close</span>
+              <span className="material-symbols-outlined text-[40px] icon-enhanced">close</span>
             </button>
             <div className="w-full max-w-3xl">
               <div className="mb-12 text-center">
@@ -266,7 +266,12 @@ export default function Navbar() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-surface-container/40 border-b-2 border-primary/20 p-4 md:p-8 text-lg md:text-2xl font-bold text-white placeholder:text-primary/20 focus:outline-none focus:border-primary transition-all group-hover:border-primary/50"
                 />
-                <button type="submit" className="material-icons absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-primary/40 text-2xl md:text-4xl group-hover:text-primary transition-colors">terminal</button>
+                <button 
+                  type="submit" 
+                  className="material-symbols-outlined absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-primary/40 text-[28px] md:text-[40px] group-hover:text-primary transition-all icon-enhanced"
+                >
+                  terminal
+                </button>
               </form>
               <div className="mt-12 flex flex-wrap gap-4 justify-center">
                 {['H81', 'RTX 4060', 'RYZEN 5', 'DDR4', 'SSD', 'PSU'].map(tag => (
@@ -322,9 +327,9 @@ export default function Navbar() {
                     setIsUserOpen(false);
                     if (userView !== 'profile') setUserView('initial');
                   }} 
-                  className="text-primary/40 hover:text-primary transition-colors"
+                  className="text-primary/40 hover:text-primary transition-all"
                 >
-                  <span className="material-icons text-3xl">close</span>
+                  <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
               </div>
 
@@ -386,9 +391,9 @@ export default function Navbar() {
                         <button 
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-primary/40 hover:text-primary"
+                          className="absolute right-4 top-[38px] text-primary/40 hover:text-primary transition-all"
                         >
-                          <span className="material-icons text-sm">{showPassword ? 'visibility_off' : 'visibility'}</span>
+                          <span className="material-symbols-outlined text-[20px] icon-enhanced">{showPassword ? 'visibility_off' : 'visibility'}</span>
                         </button>
                       </div>
                       <button type="submit" className="w-full py-4 bg-primary text-surface font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(0,242,255,0.4)]">
@@ -462,9 +467,9 @@ export default function Navbar() {
                         <button 
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-primary/40 hover:text-primary"
+                          className="absolute right-4 top-[38px] text-primary/40 hover:text-primary transition-all"
                         >
-                          <span className="material-icons text-sm">{showPassword ? 'visibility_off' : 'visibility'}</span>
+                          <span className="material-symbols-outlined text-[20px] icon-enhanced">{showPassword ? 'visibility_off' : 'visibility'}</span>
                         </button>
                       </div>
                       <button type="submit" className="w-full py-4 bg-primary text-surface font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(0,242,255,0.4)]">
@@ -492,7 +497,7 @@ export default function Navbar() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ type: 'spring', damping: 12 }}
-                          className="material-icons text-6xl text-green-500"
+                          className="material-symbols-outlined text-6xl text-green-500 icon-enhanced"
                         >
                           check
                         </motion.span>
@@ -517,7 +522,7 @@ export default function Navbar() {
                         <div className="space-y-6">
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                              <span className="material-icons text-primary text-xl">person</span>
+                              <span className="material-symbols-outlined text-primary text-xl icon-enhanced">person</span>
                             </div>
                             <div>
                               <span className="text-[8px] font-black text-primary/40 uppercase tracking-[0.3em] block mb-1">Full Identity</span>
@@ -527,7 +532,7 @@ export default function Navbar() {
                           
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                              <span className="material-icons text-primary text-xl">alternate_email</span>
+                              <span className="material-symbols-outlined text-primary text-xl icon-enhanced">alternate_email</span>
                             </div>
                             <div>
                               <span className="text-[8px] font-black text-primary/40 uppercase tracking-[0.3em] block mb-1">Email Protocol</span>
@@ -537,7 +542,7 @@ export default function Navbar() {
 
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center">
-                              <span className="material-icons text-[#25D366] text-xl">chat</span>
+                              <span className="material-symbols-outlined text-[#25D366] text-xl icon-enhanced">chat</span>
                             </div>
                             <div>
                               <span className="text-[8px] font-black text-primary/40 uppercase tracking-[0.3em] block mb-1">WhatsApp Link</span>
@@ -559,7 +564,7 @@ export default function Navbar() {
                             ))
                           ) : (
                             <div className="py-8 text-center border border-dashed border-primary/10 opacity-30">
-                              <span className="material-icons text-3xl mb-2">construction</span>
+                              <span className="material-symbols-outlined text-3xl mb-2 icon-enhanced">construction</span>
                               <p className="text-[9px] font-bold uppercase tracking-widest">No Saved Builds Found</p>
                             </div>
                           )}
@@ -568,7 +573,7 @@ export default function Navbar() {
 
                       <div className="space-y-4">
                         <button className="w-full py-4 border border-primary/30 text-primary font-black uppercase tracking-widest text-[10px] hover:bg-primary/10 transition-all flex items-center justify-center gap-3">
-                          <span className="material-icons text-sm">notifications</span>
+                          <span className="material-symbols-outlined text-sm icon-enhanced">notifications</span>
                           Receive Order Updates on WhatsApp
                         </button>
                         <button 
@@ -593,7 +598,7 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                     className="w-full py-4 bg-[#25D366] text-white font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:brightness-110 transition-all"
                   >
-                    <span className="material-icons">groups</span>
+                    <span className="material-symbols-outlined text-2xl icon-enhanced">groups</span>
                     Join WhatsApp Community
                   </a>
                 </div>
@@ -630,8 +635,8 @@ export default function Navbar() {
                   <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Inventory Manifest</span>
                   <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter neon-glow-cyan">Your Cart</h2>
                 </div>
-                <button onClick={() => setIsCartOpen(false)} className="text-primary/40 hover:text-primary transition-colors">
-                  <span className="material-icons text-3xl">close</span>
+                <button onClick={() => setIsCartOpen(false)} className="text-primary/40 hover:text-primary transition-all">
+                  <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
               </div>
 
@@ -656,14 +661,14 @@ export default function Navbar() {
                               onClick={() => updateQuantity(item.id, -1)}
                               className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-primary/20 text-primary hover:bg-primary/10 transition-all"
                             >
-                              <span className="material-icons text-xs">remove</span>
+                              <span className="material-symbols-outlined text-[16px] icon-enhanced">remove</span>
                             </button>
                             <span className="text-xs font-bold text-white">{item.quantity}</span>
                             <button 
                               onClick={() => updateQuantity(item.id, 1)}
                               className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-primary/20 text-primary hover:bg-primary/10 transition-all"
                             >
-                              <span className="material-icons text-xs">add</span>
+                              <span className="material-symbols-outlined text-[16px] icon-enhanced">add</span>
                             </button>
                           </div>
                           <div className="text-right">
@@ -689,11 +694,14 @@ export default function Navbar() {
                     <span className="text-xl md:text-2xl font-black text-primary neon-glow-cyan">LKR {total.toLocaleString()}</span>
                   </div>
                   <button 
-                    onClick={checkoutViaWhatsApp}
+                    onClick={() => {
+                      setIsCartOpen(false);
+                      navigate('/checkout');
+                    }}
                     className="w-full py-4 md:py-5 bg-primary text-surface font-black uppercase tracking-widest text-[10px] md:text-[11px] flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(0,242,255,0.4)] hover:brightness-110 transition-all group"
                   >
-                    <span className="material-icons group-hover:scale-110 transition-transform">chat</span>
-                    Checkout via WhatsApp
+                    <span className="material-symbols-outlined text-2xl icon-enhanced group-hover:scale-110 transition-transform">shopping_cart_checkout</span>
+                    Proceed to Checkout
                   </button>
                   <p className="text-center mt-6 text-[8px] font-bold text-primary/20 uppercase tracking-[0.2em]">Secure Order Protocol via Citrix WhatsApp</p>
                 </div>
@@ -713,7 +721,7 @@ export default function Navbar() {
         whileHover={{ scale: 1.1 }}
         className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-[50] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] group"
       >
-        <span className="material-icons text-2xl md:text-3xl group-hover:rotate-12 transition-transform">groups</span>
+        <span className="material-symbols-outlined text-2xl md:text-3xl group-hover:rotate-12 transition-transform icon-enhanced">groups</span>
         <div className="absolute left-full ml-4 px-4 py-2 bg-surface-container/80 backdrop-blur-md border border-[#25D366]/30 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap hidden md:block">
           <span className="text-[10px] font-black text-[#25D366] uppercase tracking-widest">Join PC Builders Group</span>
         </div>

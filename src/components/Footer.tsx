@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(circle_at_50%_100%,rgba(0,242,255,0.05),transparent_70%)] pointer-events-none"></div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-12 py-20 max-w-screen-2xl mx-auto relative z-10">
-        <div className="space-y-8">
+        <div className="space-y-8 flex flex-col items-center md:items-start text-center md:text-left">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8">
               <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">
@@ -23,21 +23,10 @@ export default function Footer() {
             </div>
             <span className="text-xl font-black tracking-tighter text-white uppercase">CITRIX COMPUTER</span>
           </div>
-          <p className="text-primary/40 text-xs font-body uppercase tracking-widest leading-relaxed border-l-2 border-primary/20 pl-6">
+          <p className="text-primary/40 text-[10px] font-body uppercase tracking-[0.2em] leading-relaxed border-l-2 border-primary/20 pl-6 max-w-xs md:text-left">
             The pinnacle of high-end computing solutions and professional technical services in Sri Lanka. 
             Established 2014.
           </p>
-          <div className="flex gap-4">
-            {['facebook', 'instagram', 'chat'].map((icon) => (
-              <a 
-                key={icon}
-                className="w-10 h-10 flex items-center justify-center border border-primary/20 text-primary/40 hover:border-primary hover:text-primary hover:neon-glow-cyan transition-all duration-300" 
-                href="#"
-              >
-                <span className="material-icons text-xl">{icon}</span>
-              </a>
-            ))}
-          </div>
         </div>
 
         <div>
@@ -54,8 +43,8 @@ export default function Footer() {
           <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-8">Store Protocol</h4>
           <ul className="space-y-4">
             <li className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Main Street, Galle</li>
-            <li className="text-[10px] font-bold text-white/40 uppercase tracking-widest">+94 91 222 3344</li>
-            <li className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Service: Ext 102</li>
+            <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">0789827123</a></li>
+            <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">HOTLINE: 0789827123</a></li>
             <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/warranty">Warranty Policy</Link></li>
           </ul>
         </div>
@@ -65,8 +54,8 @@ export default function Footer() {
           <ul className="space-y-4">
             <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/terms">Terms of Service</Link></li>
             <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/privacy">Privacy Policy</Link></li>
-            <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/contact">Contact Expert</Link></li>
-            <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/wholesale">Wholesale Inquiry</Link></li>
+            <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">Contact Expert</a></li>
+            <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">Wholesale Inquiry</a></li>
           </ul>
         </div>
       </div>

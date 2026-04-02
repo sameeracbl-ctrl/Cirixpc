@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SocialSidebar from './components/SocialSidebar';
 import Home from './pages/Home';
 import CategorySelection from './pages/CategorySelection';
 import ProductGrid from './pages/ProductGrid';
+import Checkout from './pages/Checkout';
 import HardwareCatalog from './pages/HardwareCatalog';
 import Repairs from './pages/Repairs';
 import Workstations from './pages/Workstations';
@@ -18,6 +20,7 @@ export default function App() {
         <Router>
           <div className="flex flex-col min-h-screen bg-surface text-on-surface">
             <Navbar />
+            <SocialSidebar />
             <div className="flex-grow">
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -27,6 +30,7 @@ export default function App() {
                 <Route path="/repairs" element={<Repairs />} />
                 <Route path="/workstations" element={<Workstations />} />
                 <Route path="/deals" element={<Deals />} />
+                <Route path="/checkout" element={<Checkout />} />
               </Routes>
             </div>
             <Footer />

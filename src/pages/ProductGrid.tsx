@@ -226,6 +226,106 @@ const usedStorage = {
   ]
 };
 
+const accessoryData: Record<string, Record<string, any[]>> = {
+  keyboards: {
+    gaming: [
+      { model: 'Razer BlackWidow V4 Pro', price: '45,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+      { model: 'Logitech G Pro X TKL', price: '38,000', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+      { model: 'Corsair K70 RGB MK.2', price: '34,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+    ],
+    standard: [
+      { model: 'Logitech K120 Wired', price: '2,850', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+      { model: 'Dell KB216 Multimedia', price: '3,200', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+    ],
+    wireless: [
+      { model: 'Logitech MX Keys S', price: '32,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+      { model: 'Apple Magic Keyboard', price: '28,000', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
+    ]
+  },
+  mouse: {
+    gaming: [
+      { model: 'Logitech G502 X Plus', price: '28,500', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
+      { model: 'Razer DeathAdder V3 Pro', price: '26,000', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
+    ],
+    standard: [
+      { model: 'Logitech M100 Wired', price: '1,850', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
+    ],
+    wireless: [
+      { model: 'Logitech MX Master 3S', price: '24,500', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
+    ]
+  },
+  speakers: {
+    standard: [
+      { model: 'Logitech Z120 2.0', price: '3,500', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
+    ],
+    rgb: [
+      { model: 'Logitech G560 RGB', price: '42,000', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
+    ],
+    subwoofers: [
+      { model: 'Logitech Z623 2.1', price: '38,500', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
+    ]
+  },
+  'laptop-accessories': {
+    chargers: [
+      { model: 'HP 65W Blue Pin Adapter', price: '4,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'power' },
+      { model: 'Dell 65W Type-C Adapter', price: '6,800', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'power' },
+    ],
+    batteries: [
+      { model: 'HP Pavilion Battery', price: '8,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'battery_full' },
+    ],
+    displays: [
+      { model: '15.6" Slim LED 30-Pin', price: '18,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'monitor' },
+    ]
+  },
+  'network-accessories': {
+    routers: [
+      { model: 'TP-Link Archer AX55 Wi-Fi 6', price: '18,500', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'router' },
+    ],
+    switches: [
+      { model: 'TP-Link 8-Port Gigabit Switch', price: '4,200', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'settings_ethernet' },
+    ],
+    dongles: [
+      { model: 'TP-Link Archer T3U Plus', price: '3,850', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'usb' },
+    ]
+  },
+  cables: {
+    hdmi: [
+      { model: 'Vention 4K HDMI 2.0 (3m)', price: '1,850', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'settings_input_hdmi' },
+    ],
+    vga: [
+      { model: 'Standard VGA Cable (1.5m)', price: '650', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'settings_input_component' },
+    ],
+    power: [
+      { model: 'Desktop Power Cable', price: '450', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'power' },
+    ],
+    sata: [
+      { model: 'SATA III Data Cable', price: '350', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'storage' },
+    ]
+  },
+  ups: {
+    '650va': [
+      { model: 'DCP 650VA UPS', price: '12,500', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_1_bar' },
+    ],
+    '1200va': [
+      { model: 'DCP 1200VA UPS', price: '24,500', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_5_bar' },
+    ],
+    pro: [
+      { model: 'APC Smart-UPS 2200VA', price: '145,000', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_full' },
+    ]
+  },
+  'party-boxes': {
+    standard: [
+      { model: 'JBL PartyBox Encore', price: '85,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
+    ],
+    'rgb-pro': [
+      { model: 'JBL PartyBox 310', price: '165,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'palette' },
+    ],
+    subwoofers: [
+      { model: 'Sony MHC-V43D', price: '125,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'surround_sound' },
+    ]
+  }
+};
+
 const verifiedIntelInventory = [
   { name: 'H61 Series', price: '5,500', img: 'https://drive.google.com/thumbnail?id=1DlL88Ebe26RQIeZ27OJ0f-wItwlewtqd&sz=w800', chip: 'LGA 1155' },
   { name: 'H81 Series', price: '6,000', img: 'https://drive.google.com/thumbnail?id=1j2oyxZhjZXPKr-xuqzFfbsOPjimyObii&sz=w800', chip: 'LGA 1150' },
@@ -235,15 +335,20 @@ const verifiedIntelInventory = [
   { name: 'H510 Series', price: '15,900', img: 'https://drive.google.com/thumbnail?id=15iRliIy1Kt0sn53cy96flDbvxABZQpMg&sz=w800', chip: 'LGA 1200' },
 ];
 
-const ConditionBadge = ({ condition }: { condition: 'new' | 'used' }) => (
-  <div className={`absolute top-4 right-4 px-2 py-1 rounded-sm text-[8px] font-bold uppercase tracking-widest shadow-lg z-20 ${
-    condition === 'new' 
-      ? 'bg-green-500 text-surface shadow-[0_0_10px_rgba(34,197,94,0.5)]' 
-      : 'bg-yellow-500 text-surface shadow-[0_0_10px_rgba(234,179,8,0.5)]'
-  }`}>
-    {condition === 'new' ? 'NEW' : 'CERTIFIED'}
-  </div>
-);
+const ConditionBadge = ({ condition }: { condition: string }) => {
+  const isNew = condition === 'new';
+  const isUsed = condition === 'used';
+  const label = isNew ? 'NEW' : (isUsed ? 'CERTIFIED' : condition.toUpperCase());
+  const colorClass = isNew ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : 
+                     (isUsed ? 'bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 
+                     'bg-primary shadow-[0_0_10px_rgba(0,242,255,0.5)]');
+
+  return (
+    <div className={`absolute top-4 right-4 px-2 py-1 rounded-sm text-[8px] font-bold uppercase tracking-widest shadow-lg z-20 text-surface ${colorClass}`}>
+      {label}
+    </div>
+  );
+};
 
 const OutOfStockOverlay = () => (
   <div className="absolute inset-0 bg-surface/80 backdrop-blur-[2px] z-30 flex items-center justify-center">
@@ -256,10 +361,12 @@ export default function ProductGrid() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { searchQuery } = useSearch();
-  const [filter, setFilter] = useState<'all' | 'new' | 'used'>(condition as any || 'all');
+  const [filter, setFilter] = useState<'all' | 'new' | 'used' | string>(condition || 'all');
   const [activeTab, setActiveTab] = useState('Intel Core i3 Series');
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+
+  const isAccessory = ['keyboards', 'mouse', 'speakers', 'laptop-accessories', 'network-accessories', 'cables', 'ups', 'party-boxes'].includes(slug || '');
   const isUsed = filter === 'used';
   const isNew = filter === 'new';
   const isAll = filter === 'all';
@@ -373,7 +480,7 @@ export default function ProductGrid() {
                           }}
                           className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
-                          <span className="material-icons text-lg">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                         </button>
                         <button 
                           onClick={(e) => {
@@ -382,7 +489,7 @@ export default function ProductGrid() {
                           }}
                           className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
                         >
-                          <span className="material-icons text-lg">chat</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                         </button>
                       </div>
                     </div>
@@ -484,19 +591,28 @@ export default function ProductGrid() {
                             )}
                             <div className="mt-auto flex gap-2">
                               <button 
-                                onClick={() => addToCart({
-                                  id: `new-proc-${item.model}`,
-                                  title: item.model,
-                                  price: `LKR ${item.price}`,
-                                  img: item.img || 'https://picsum.photos/seed/cpu-new/400/400',
-                                  category: 'Processors'
-                                })}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  addToCart({
+                                    id: `new-proc-${item.model}`,
+                                    title: item.model,
+                                    price: `LKR ${item.price}`,
+                                    img: item.img || 'https://picsum.photos/seed/cpu-new/400/400',
+                                    category: 'Processors'
+                                  });
+                                }}
                                 className={`flex items-center justify-center w-12 h-12 border border-${brandColor}/30 text-${brandColor} rounded-sm hover:bg-${brandColor} hover:text-surface transition-all`}
                               >
-                                <span className="material-icons text-lg">add_shopping_cart</span>
+                                <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                               </button>
-                              <button className={`flex-1 flex items-center justify-center gap-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest`}>
-                                <span className="material-icons text-lg">chat</span>
+                              <button 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                                }}
+                                className={`flex-1 flex items-center justify-center gap-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest`}
+                              >
+                                <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                               </button>
                             </div>
                           </div>
@@ -555,19 +671,28 @@ export default function ProductGrid() {
                         <div className="text-3xl font-black text-primary mb-8 neon-glow-cyan">LKR 35,000.00</div>
                         <div className="flex gap-3">
                           <button 
-                            onClick={() => addToCart({
-                              id: 'used-mobo-z490',
-                              title: 'ASUS Z490 MOTHERBOARD',
-                              price: 'LKR 35,000.00',
-                              img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
-                              category: 'Motherboards'
-                            })}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart({
+                                id: 'used-mobo-z490',
+                                title: 'ASUS Z490 MOTHERBOARD',
+                                price: 'LKR 35,000.00',
+                                img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
+                                category: 'Motherboards'
+                              });
+                            }}
                             className="flex-1 btn-neon-cyan flex items-center justify-center"
                           >
-                            <span className="material-icons">add_shopping_cart</span>
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                           </button>
-                          <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/50 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_10px_rgba(37,211,102,0.3)]">
-                            <span className="material-icons text-2xl">chat</span>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ASUS Z490 MOTHERBOARD. Is it available?`)}`, '_blank');
+                            }}
+                            className="w-12 h-12 flex items-center justify-center border border-[#25D366]/50 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_10px_rgba(37,211,102,0.3)]"
+                          >
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                           </button>
                         </div>
                       </div>
@@ -606,19 +731,28 @@ export default function ProductGrid() {
                         <div className="text-3xl font-black text-primary mb-8 neon-glow-cyan">LKR {item.price}.00</div>
                         <div className="flex gap-3">
                           <button 
-                            onClick={() => addToCart({
-                              id: `used-mobo-${item.name}`,
-                              title: item.name,
-                              price: `LKR ${item.price}.00`,
-                              img: item.img,
-                              category: 'Motherboards'
-                            })}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart({
+                                id: `used-mobo-${item.name}`,
+                                title: item.name,
+                                price: `LKR ${item.price}.00`,
+                                img: item.img,
+                                category: 'Motherboards'
+                              });
+                            }}
                             className="flex-1 btn-neon-cyan flex items-center justify-center"
                           >
-                            <span className="material-icons">add_shopping_cart</span>
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                           </button>
-                          <button className="flex-1 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_15px_rgba(37,211,102,0.4)] font-bold text-[10px] uppercase tracking-widest">
-                            <span className="material-icons text-xl">chat</span>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.name}. Is it available?`)}`, '_blank');
+                            }}
+                            className="flex-1 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_15px_rgba(37,211,102,0.4)] font-bold text-[10px] uppercase tracking-widest"
+                          >
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                           </button>
                         </div>
                       </div>
@@ -692,19 +826,28 @@ export default function ProductGrid() {
                     <p className="text-[10px] font-bold text-primary/40 uppercase tracking-widest mb-6">{gen.gens}</p>
                     <div className="mt-auto flex gap-2">
                       <button 
-                        onClick={() => addToCart({
-                          id: `used-laptop-${gen.label}`,
-                          title: `${gen.label} Laptop`,
-                          price: 'LKR 45,000.00',
-                          img: 'https://picsum.photos/seed/laptop/400/400',
-                          category: 'Laptops'
-                        })}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart({
+                            id: `used-laptop-${gen.label}`,
+                            title: `${gen.label} Laptop`,
+                            price: 'LKR 45,000.00',
+                            img: 'https://picsum.photos/seed/laptop/400/400',
+                            category: 'Laptops'
+                          });
+                        }}
                         className="flex-1 btn-neon-cyan !py-3 !text-[10px] flex items-center justify-center"
                       >
-                        <span className="material-icons text-lg">add_shopping_cart</span>
+                        <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                       </button>
-                      <button className="w-12 h-12 border border-[#25D366]/30 text-[#25D366] flex items-center justify-center hover:bg-[#25D366] hover:text-surface transition-all rounded-sm">
-                        <span className="material-icons">chat</span>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${gen.label} Laptop. Is it available?`)}`, '_blank');
+                        }}
+                        className="w-12 h-12 border border-[#25D366]/30 text-[#25D366] flex items-center justify-center hover:bg-[#25D366] hover:text-surface transition-all rounded-sm"
+                      >
+                        <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                       </button>
                     </div>
                   </div>
@@ -769,19 +912,28 @@ export default function ProductGrid() {
                       </div>
                       <div className="mt-auto flex gap-2">
                         <button 
-                          onClick={() => addToCart({
-                            id: `used-ram-${item.model}`,
-                            title: item.model,
-                            price: `LKR ${item.price}`,
-                            img: 'https://picsum.photos/seed/ram/400/400',
-                            category: 'RAM'
-                          })}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: `used-ram-${item.model}`,
+                              title: item.model,
+                              price: `LKR ${item.price}`,
+                              img: 'https://picsum.photos/seed/ram/400/400',
+                              category: 'RAM'
+                            });
+                          }}
                           className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
-                          <span className="material-icons text-lg">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                         </button>
-                        <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
-                          <span className="material-icons text-lg">chat</span>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                         </button>
                       </div>
                     </div>
@@ -847,19 +999,122 @@ export default function ProductGrid() {
                       </div>
                       <div className="mt-auto flex gap-2">
                         <button 
-                          onClick={() => addToCart({
-                            id: `used-storage-${item.model}`,
-                            title: item.model,
-                            price: `LKR ${item.price}`,
-                            img: 'https://picsum.photos/seed/storage/400/400',
-                            category: 'Storage'
-                          })}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: `used-storage-${item.model}`,
+                              title: item.model,
+                              price: `LKR ${item.price}`,
+                              img: 'https://picsum.photos/seed/storage/400/400',
+                              category: 'Storage'
+                            });
+                          }}
                           className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
-                          <span className="material-icons text-lg">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                         </button>
-                        <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
-                          <span className="material-icons text-lg">chat</span>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        );
+      }
+    }
+
+    const isAccessoryLocal = ['keyboards', 'mouse', 'speakers', 'laptop-accessories', 'network-accessories', 'cables', 'ups', 'party-boxes'].includes(slug || '');
+
+    if (isAccessoryLocal && slug) {
+      const categoryAccessories = accessoryData[slug];
+      if (categoryAccessories) {
+        const subSlug = filter === 'all' ? Object.keys(categoryAccessories)[0] : filter;
+        const filteredAccessories = filterItems(categoryAccessories[subSlug] || []);
+        
+        sections.push(
+          <div key={`accessory-${slug}`} className="space-y-12">
+            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+              {Object.keys(categoryAccessories).map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => setFilter(sub as any)}
+                  className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
+                    filter === sub
+                      ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                      : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                  }`}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={filter}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {filteredAccessories.map((item: any, i: number) => (
+                  <motion.div
+                    key={item.model}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setSelectedProduct({ ...item, condition: filter, category: slug.toUpperCase() })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                  >
+                    <ConditionBadge condition={filter} />
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      {item.img ? (
+                        <img src={item.img} alt={item.model} className="w-full h-full object-contain neon-bloom" referrerPolicy="no-referrer" />
+                      ) : (
+                        <span className="material-icons text-6xl text-primary neon-glow-cyan">{item.icon || 'inventory_2'}</span>
+                      )}
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
+                        <span className="text-xs font-bold mr-1">Rs.</span>
+                        {item.price}/=
+                      </div>
+                      <div className="mt-auto flex gap-2">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: `${slug}-${item.model}`,
+                              title: item.model,
+                              price: `LKR ${item.price}`,
+                              img: item.img || 'https://picsum.photos/seed/accessory/400/400',
+                              category: slug.toUpperCase()
+                            });
+                          }}
+                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                        </button>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                         </button>
                       </div>
                     </div>
@@ -911,19 +1166,28 @@ export default function ProductGrid() {
                   </div>
                   <div className="mt-auto flex gap-2">
                     <button 
-                      onClick={() => addToCart({
-                        id: `search-${item.model || item.name}`,
-                        title: item.model || item.name,
-                        price: `LKR ${item.price}`,
-                        img: 'https://picsum.photos/seed/search/400/400',
-                        category: 'Search Result'
-                      })}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart({
+                          id: `search-${item.model || item.name}`,
+                          title: item.model || item.name,
+                          price: `LKR ${item.price}`,
+                          img: 'https://picsum.photos/seed/search/400/400',
+                          category: 'Search Result'
+                        });
+                      }}
                       className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                     >
-                      <span className="material-icons text-lg">add_shopping_cart</span>
+                      <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                     </button>
-                    <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
-                      <span className="material-icons text-lg">chat</span>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model || item.name}. Is it available?`)}`, '_blank');
+                      }}
+                      className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                    >
+                      <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                     </button>
                   </div>
                 </div>
@@ -972,25 +1236,27 @@ export default function ProductGrid() {
         </motion.div>
 
         {/* Filter UI */}
-        <div className="flex flex-wrap gap-4 mb-16">
-          {[
-            { id: 'all', label: 'All Inventory' },
-            { id: 'new', label: 'Brand New (Factory Sealed)' },
-            { id: 'used', label: 'Used (Certified Value)' }
-          ].map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setFilter(f.id as any)}
-              className={`px-6 py-3 font-headline text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
-                filter === f.id
-                  ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
-                  : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
+        {!isAccessory && (
+          <div className="flex flex-wrap gap-4 mb-16">
+            {[
+              { id: 'all', label: 'All Inventory' },
+              { id: 'new', label: 'Brand New (Factory Sealed)' },
+              { id: 'used', label: 'Used (Certified Value)' }
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id as any)}
+                className={`px-6 py-3 font-headline text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
+                  filter === f.id
+                    ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                    : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {renderSpecializedGrid()}
       </div>
@@ -1014,9 +1280,9 @@ export default function ProductGrid() {
             >
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-50 text-primary/40 hover:text-primary transition-colors"
+                className="absolute top-4 right-4 z-50 text-primary/40 hover:text-primary transition-all"
               >
-                <span className="material-icons text-3xl">close</span>
+                <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
               </button>
 
               {/* Product Image */}
@@ -1029,7 +1295,7 @@ export default function ProductGrid() {
                     referrerPolicy="no-referrer"
                   />
                 ) : (
-                  <span className="material-icons text-9xl text-primary/20">inventory_2</span>
+                  <span className="material-symbols-outlined text-9xl text-primary/20 icon-enhanced">inventory_2</span>
                 )}
               </div>
 
@@ -1099,7 +1365,7 @@ export default function ProductGrid() {
                     }}
                     className="w-full py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_20px_rgba(0,242,255,0.3)] flex items-center justify-center gap-3"
                   >
-                    <span className="material-icons">add_shopping_cart</span>
+                    <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
                     Add to Cart
                   </button>
                   <a 
@@ -1108,7 +1374,7 @@ export default function ProductGrid() {
                     rel="noopener noreferrer"
                     className="w-full py-4 border border-[#25D366]/30 text-[#25D366] font-black text-[10px] uppercase tracking-[0.3em] hover:bg-[#25D366] hover:text-surface transition-all flex items-center justify-center gap-3"
                   >
-                    <span className="material-icons">chat</span>
+                    <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
                     Inquire on WhatsApp
                   </a>
                 </div>

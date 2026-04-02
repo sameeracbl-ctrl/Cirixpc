@@ -663,210 +663,69 @@ Please confirm availability and final pricing.`;
         )}
       </AnimatePresence>
 
-      {/* Immersive Category Showcase */}
-      <section className="min-h-screen py-32 bg-surface relative overflow-hidden flex flex-col justify-center">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-full cyber-metal opacity-40 pointer-events-none"></div>
-        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-surface to-transparent z-10"></div>
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-surface to-transparent z-10"></div>
-
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20 w-full">
+      {/* Premium Category Grid */}
+      <section className="py-20 bg-surface relative overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-24"
+            className="mb-12"
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-4 mb-4">
               <div className="h-[2px] w-12 bg-primary shadow-[0_0_10px_rgba(0,242,255,1)]"></div>
-              <span className="text-primary text-[11px] font-black tracking-[0.6em] uppercase block">Hardware Foundry Protocol</span>
+              <span className="text-primary text-[11px] font-black tracking-[0.6em] uppercase block">Hardware Foundry</span>
             </div>
-            <h2 className="font-headline text-5xl md:text-8xl font-black text-white tracking-tighter uppercase neon-glow-cyan leading-[0.9]">
-              CORE <span className="text-primary/20">FOUNDRY.</span>
+            <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase neon-glow-cyan">
+              Browse <span className="text-primary/20">Categories.</span>
             </h2>
           </motion.div>
 
-          <div className="flex gap-10 overflow-x-auto pb-24 no-scrollbar snap-x snap-mandatory">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { 
-                label: 'PROCESSORS', 
-                slug: 'processors', 
-                img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Hyper-threaded performance with exposed silicon precision.',
-                hasRGB: true
-              },
-              { 
-                label: 'MOTHERBOARDS', 
-                slug: 'motherboards', 
-                img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000',
-                desc: 'The industrial-grade foundation for your digital architecture.',
-                hasRGB: true
-              },
-              { 
-                label: 'VGA', 
-                slug: 'vga', 
-                img: 'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Triple-fan cooling with side-lit RGB illumination.',
-                hasFans: true,
-                hasRGB: true
-              },
-              { 
-                label: 'RAM', 
-                slug: 'ram', 
-                img: 'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=1000',
-                desc: 'High-speed performance modules with dynamic RGB cycling.',
-                hasRGB: true
-              },
-              { 
-                label: 'STORAGE', 
-                slug: 'storage', 
-                img: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?auto=format&fit=crop&q=80&w=1000',
-                desc: 'NVMe M.2 acceleration with integrated heatsink technology.'
-              },
-              { 
-                label: 'CASINGS', 
-                slug: 'casings', 
-                img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Panoramic views with visible internal airflow systems.',
-                hasFans: true,
-                hasRGB: true
-              },
-              { 
-                label: 'PSU', 
-                slug: 'psu', 
-                img: 'https://images.unsplash.com/photo-1616132422484-916940007802?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Modular power delivery for high-end hardware stability.'
-              },
-              { 
-                label: 'MONITORS', 
-                slug: 'monitors', 
-                img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Crystal-clear 4K displays with ultra-fast refresh rates.'
-              },
-              { 
-                label: 'LAPTOPS', 
-                slug: 'laptops', 
-                img: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=1000',
-                desc: 'Portable powerhouses for professionals and elite gamers.',
-                hasRGB: true
-              },
+              { label: 'Processors', slug: 'processors', img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Motherboards', slug: 'motherboards', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600' },
+              { label: 'RAM', slug: 'ram', img: 'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Storage', slug: 'storage', img: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?auto=format&fit=crop&q=80&w=600' },
+              { label: 'VGA', slug: 'vga', img: 'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&q=80&w=600' },
+              { label: 'PSU', slug: 'psu', img: 'https://images.unsplash.com/photo-1616132422484-916940007802?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Casing', slug: 'casings', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Laptops', slug: 'laptops', img: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Keyboards', slug: 'keyboards', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Mouse', slug: 'mouse', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Speakers', slug: 'speakers', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Laptop Acc', slug: 'laptop-accessories', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Network', slug: 'network-accessories', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Cables', slug: 'cables', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=600' },
+              { label: 'UPS', slug: 'ups', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600' },
+              { label: 'Party Boxes', slug: 'party-boxes', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?auto=format&fit=crop&q=80&w=600' },
             ].map((cat, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                key={cat.slug}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex-shrink-0 w-[350px] md:w-[550px] h-[550px] md:h-[750px] snap-center"
+                transition={{ delay: i * 0.05 }}
               >
                 <Link 
-                  to={`/category/${cat.slug}`} 
-                  className="group relative block w-full h-full perspective-1000"
+                  to={`/category/${cat.slug}`}
+                  className="group relative block aspect-[4/3] md:aspect-square bg-surface-container border border-primary/20 rounded-sm overflow-hidden transition-all duration-500 hover:neon-border-cyan hover:shadow-[0_0_30px_rgba(0,242,255,0.2)]"
                 >
-                  <motion.div 
-                    whileHover={{ rotateY: 15, rotateX: -10, scale: 1.05 }}
-                    className="w-full h-full cyber-metal rounded-sm border border-primary/30 overflow-hidden relative transition-all duration-700 group-hover:neon-border-cyan group-hover:shadow-[0_0_60px_rgba(0,242,255,0.3)]"
-                  >
-                    {/* Scanline Effect */}
-                    <div className="scanline"></div>
-
-                    {/* LED Strip Lights */}
-                    <div className="absolute top-12 left-0 led-strip opacity-20 group-hover:opacity-80 transition-opacity"></div>
-                    <div className="absolute bottom-12 left-0 led-strip opacity-20 group-hover:opacity-80 transition-opacity"></div>
-                    <div className="absolute top-0 left-16 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/40 to-transparent opacity-20"></div>
-                    <div className="absolute top-0 right-16 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/40 to-transparent opacity-20"></div>
-
-                    {/* Product Image with Bloom and RGB cycling */}
-                    <div className="absolute inset-0 flex items-center justify-center p-20">
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <motion.img 
-                          src={cat.img} 
-                          alt={cat.label} 
-                          className="w-full h-full object-contain neon-bloom brightness-75 group-hover:brightness-125 transition-all duration-700"
-                          animate={{ 
-                            y: [0, -20, 0],
-                            filter: cat.hasRGB ? [
-                              "drop-shadow(0 0 25px rgba(0, 242, 255, 0.5)) hue-rotate(0deg)",
-                              "drop-shadow(0 0 50px rgba(0, 242, 255, 0.8)) hue-rotate(180deg)",
-                              "drop-shadow(0 0 25px rgba(0, 242, 255, 0.5)) hue-rotate(360deg)"
-                            ] : [
-                              "drop-shadow(0 0 25px rgba(0, 242, 255, 0.5))",
-                              "drop-shadow(0 0 50px rgba(0, 242, 255, 0.8))",
-                              "drop-shadow(0 0 25px rgba(0, 242, 255, 0.5))"
-                            ]
-                          }}
-                          transition={{ 
-                            duration: 5, 
-                            repeat: Infinity, 
-                            ease: "easeInOut" 
-                          }}
-                          referrerPolicy="no-referrer"
-                        />
-
-                        {/* Simulated Spinning Fans for VGA/Casings */}
-                        {cat.hasFans && (
-                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                            <div className="relative w-full h-full">
-                              <motion.span 
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 0.4, repeat: Infinity, ease: "linear" }}
-                                className="material-icons absolute top-1/4 left-1/4 text-primary/30 text-7xl"
-                              >
-                                mode_fan
-                              </motion.span>
-                              <motion.span 
-                                animate={{ rotate: -360 }}
-                                transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
-                                className="material-icons absolute bottom-1/4 right-1/4 text-primary/30 text-7xl"
-                              >
-                                mode_fan
-                              </motion.span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Tech Badge Label */}
-                    <div className="absolute top-12 left-12">
-                      <div className="inline-block px-8 py-3 border border-primary/60 bg-surface/95 backdrop-blur-2xl rounded-sm shadow-[0_0_20px_rgba(0,242,255,0.4)]">
-                        <span className="font-mono text-[12px] font-black text-primary tracking-[0.6em] neon-glow-cyan">
-                          {cat.label}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Decorative Tech Elements */}
-                    <div className="absolute top-12 right-12 flex flex-col gap-2 opacity-50">
-                      <div className="w-12 h-[1px] bg-primary"></div>
-                      <div className="w-6 h-[1px] bg-primary ml-auto"></div>
-                      <div className="w-8 h-[1px] bg-primary ml-auto"></div>
-                    </div>
-
-                    {/* Description Overlay */}
-                    <div className="absolute bottom-0 left-0 w-full p-12 bg-gradient-to-t from-surface via-surface/98 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                      <div className="w-16 h-[2px] bg-primary mb-8 shadow-[0_0_15px_rgba(0,242,255,1)]"></div>
-                      <p className="text-[12px] font-bold text-primary/90 uppercase tracking-[0.3em] leading-relaxed mb-8 max-w-[85%]">
-                        {cat.desc}
-                      </p>
-                      <div className="flex items-center gap-4 text-primary font-black text-[12px] tracking-[0.5em] uppercase group/link">
-                        Initialize Protocol 
-                        <span className="material-icons text-lg group-hover/link:translate-x-3 transition-transform">terminal</span>
-                      </div>
-                    </div>
-
-                    {/* Pulse Bloom Effect */}
-                    <motion.div 
-                      className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"
-                      animate={{ 
-                        opacity: [0, 0.2, 0] 
-                      }}
-                      transition={{ 
-                        duration: 4, 
-                        repeat: Infinity 
-                      }}
-                    />
-                  </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent z-10 opacity-60"></div>
+                  <motion.img 
+                    src={cat.img} 
+                    alt={cat.label}
+                    className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 z-20">
+                    <h3 className="font-headline text-lg md:text-xl font-black text-white uppercase tracking-tighter group-hover:text-primary group-hover:neon-glow-cyan transition-all duration-300">
+                      {cat.label}
+                    </h3>
+                  </div>
+                  <div className="absolute top-0 right-0 p-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="material-symbols-outlined text-primary icon-enhanced">arrow_forward</span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
