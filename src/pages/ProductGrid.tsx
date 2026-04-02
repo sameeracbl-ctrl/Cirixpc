@@ -22,38 +22,38 @@ const laptopGenerations = [
 
 const usedProcessors = {
   'Intel Core i3 Series': [
-    { model: 'i3 3rd Gen (3220)', price: '1,700' },
-    { model: 'i3 4th Gen (4150)', price: '1,850' },
-    { model: 'i3 6th Gen (6100)', price: '3,500' },
-    { model: 'i3 7th Gen (7100)', price: '4,500' },
-    { model: 'i3 8th Gen (8100)', price: '7,900' },
-    { model: 'i3 9th Gen (9100)', price: '9,500' },
-    { model: 'i3 10th Gen (10100)', price: '23,500' },
+    { model: 'i3 3rd Gen (3220)', price: '1,700', img: 'https://lh3.googleusercontent.com/d/1x74hEtyTASVKrZLy5qn0vEPPBq0ndt6f' },
+    { model: 'i3 4th Gen (4150)', price: '1,850', img: 'https://lh3.googleusercontent.com/d/1GM9p0a5F85CWpuVY75GzdFYcM2R6xwlO' },
+    { model: 'i3 6th Gen (6100)', price: '3,500', img: 'https://lh3.googleusercontent.com/d/1RBXokaSPRNJVYKZRnMGjBZi025-zhP_G' },
+    { model: 'i3 7th Gen (7100)', price: '4,500', img: 'https://lh3.googleusercontent.com/d/1Enj3pbhPl2TGaz3VBQLrFjdVIHBqxUVd' },
+    { model: 'i3 8th Gen (8100)', price: '7,900', img: 'https://lh3.googleusercontent.com/d/1jOGvcojCIdYU_VQG_Mlw2niUjzCAdoat' },
+    { model: 'i3 9th Gen (9100)', price: '9,500', img: 'https://lh3.googleusercontent.com/d/1NoeYXaCQoLNo--YKH_zheh5spGS0nJn1' },
+    { model: 'i3 10th Gen (10100)', price: '23,500', img: 'https://lh3.googleusercontent.com/d/1XRUW810yL23IP5DhfmRpm_AoAaXc5zmB' },
   ],
   'Intel Core i5 Series': [
-    { model: 'i5 2nd Gen (2100)', price: '3,650' },
-    { model: 'i5 3rd Gen (3470)', price: '4,950' },
-    { model: 'i5 4th Gen (4430/70)', price: '6,950' },
-    { model: 'i5 4th Gen (4590)', price: '6,950' },
-    { model: 'i5 4th Gen (4670)', price: '7,250' },
-    { model: 'i5 6th Gen (6500)', price: '10,000' },
-    { model: 'i5 7th Gen (7500)', price: '11,750' },
-    { model: 'i5 8th Gen (8500)', price: '20,000' },
-    { model: 'i5 9th Gen (9500)', price: '23,500' },
-    { model: 'i5 10th Gen (10500)', price: '34,500' },
+    { model: 'i5 2nd Gen (2100)', price: '3,650', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 3rd Gen (3470)', price: '4,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 4th Gen (4430/70)', price: '6,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 4th Gen (4590)', price: '6,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 4th Gen (4670)', price: '7,250', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 6th Gen (6500)', price: '10,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 7th Gen (7500)', price: '11,750', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 8th Gen (8500)', price: '20,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 9th Gen (9500)', price: '23,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 10th Gen (10500)', price: '34,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
   ],
   'Intel Core i7 & i9 Series': [
-    { model: 'i7 2nd Gen (2600)', price: '9,000' },
-    { model: 'i7 3rd Gen (3770)', price: '10,000' },
-    { model: 'i7 4th Gen (4790)', price: '13,500' },
-    { model: 'i7 4th Gen (4790K)', price: '13,750' },
-    { model: 'i7 6th Gen (6700)', price: '18,900' },
-    { model: 'i7 6th Gen (6700K)', price: '19,500' },
-    { model: 'i7 7th Gen (7700)', price: '19,000' },
-    { model: 'i7 8th Gen (8700)', price: '36,000' },
-    { model: 'i7 9th Gen (9700)', price: '41,000' },
-    { model: 'i7 10th Gen (10700)', price: '65,000' },
-    { model: 'i9 9th Gen (9900K)', price: '55,500' },
+    { model: 'i7 2nd Gen (2600)', price: '9,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 3rd Gen (3770)', price: '10,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 4th Gen (4790)', price: '13,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 4th Gen (4790K)', price: '13,750', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 6th Gen (6700)', price: '18,900', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 6th Gen (6700K)', price: '19,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 7th Gen (7700)', price: '19,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 8th Gen (8700)', price: '36,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 9th Gen (9700)', price: '41,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 10th Gen (10700)', price: '65,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i9 9th Gen (9900K)', price: '55,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
   ]
 };
 
@@ -95,29 +95,101 @@ const ryzenBrandNew = {
 };
 
 const intelBrandNew = {
-  'Intel Core i3 Series': [
-    { model: 'Core i3 12100', price: '43,000', warranty: '03 Years Warranty' },
-    { model: 'Core i3 12100F', price: '29,750', warranty: '03 Years Warranty' },
-    { model: 'Core i3 14100', price: '48,500', warranty: '03 Years Warranty' },
+  'BRAND NEW INTEL PROCESSORS': [
+    { 
+      model: 'Intel Core i3-12100 (12th Gen)', 
+      price: '43,000', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1M3q6tTlUtegwP7v62W7zeGADNYyM2yWw',
+      specs: { cores: '4', threads: '8', base: '3.3 GHz', boost: '4.3 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Intel Core i3-12100F (12th Gen)', 
+      price: '29,750', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1sXTVR1IKUp4hDXFJHVwzhbEDjjDunir7',
+      specs: { cores: '4', threads: '8', base: '3.3 GHz', boost: '4.3 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Intel Core i3-14100 (14th Gen)', 
+      price: '48,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1DB81uuZiKO5E9kqpd8jhN7eCOICWVOmS',
+      specs: { cores: '4', threads: '8', base: '3.5 GHz', boost: '4.7 GHz', socket: 'LGA 1700' }
+    },
   ],
   'Intel Core i5 Series': [
     { model: 'Core i5 12400', price: '61,000', outOfStock: true },
-    { model: 'Core i5 12400F', price: '46,000', warranty: '03 Years Warranty' },
-    { model: 'Core i5 13400F', price: '54,000', warranty: '03 Years Warranty' },
-    { model: 'Core i5 14400', price: '79,500', warranty: '03 Years Warranty' },
+    { 
+      model: 'Core i5 12400F', 
+      price: '46,000', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/112fy-Jcc2PKHaqEjz-bB1w2v1rcR-Vm_',
+      specs: { cores: '6', threads: '12', base: '2.5 GHz', boost: '4.4 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Core i5 13400F', 
+      price: '54,000', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1SbCczyxqihIal8sEwL_0H34lR9WdiySl',
+      specs: { cores: '10 (6P+4E)', threads: '16', base: '2.5 GHz', boost: '4.6 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Core i5 14400', 
+      price: '79,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1fjjcQZMRahi22xXCJXJjnc6sQzgHH_WB',
+      specs: { cores: '10 (6P+4E)', threads: '16', base: '2.5 GHz', boost: '4.7 GHz', socket: 'LGA 1700' }
+    },
     { model: 'Core i5 14400F', price: '57,000', outOfStock: true },
-    { model: 'Core i5 14600K', price: '81,500', warranty: '03 Years Warranty' },
+    { 
+      model: 'Core i5 14600K', 
+      price: '81,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1cNtf1-WUNLFYa0XKQG7Kc-plWtHXB0v1',
+      specs: { cores: '14 (6P+8E)', threads: '20', base: '3.5 GHz', boost: '5.3 GHz', socket: 'LGA 1700' }
+    },
   ],
   'Intel Core i7 Series': [
-    { model: 'Core i7 12700', price: '98,000', warranty: '03 Years Warranty' },
+    { 
+      model: 'Core i7 12700', 
+      price: '98,000', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/18LuvlXqDQh6BQhNLTGAdmr8767p2FgvN',
+      specs: { cores: '12 (8P+4E)', threads: '20', base: '2.1 GHz', boost: '4.9 GHz', socket: 'LGA 1700' }
+    },
     { model: 'Core i7 12700K', price: '90,000', outOfStock: true },
-    { model: 'Core i7 14700', price: '136,500', warranty: '03 Years Warranty' },
-    { model: 'Core i7 14700K', price: '138,500', warranty: '03 Years Warranty' },
+    { 
+      model: 'Core i7 14700', 
+      price: '136,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1N80yA97WeqOtdubdLqm7izDJY4RnMs9N',
+      specs: { cores: '20 (8P+12E)', threads: '28', base: '2.1 GHz', boost: '5.4 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Core i7 14700K', 
+      price: '138,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1DdqK6RP6w_PONtBZQYCIlisRVP-1G44s',
+      specs: { cores: '20 (8P+12E)', threads: '28', base: '3.4 GHz', boost: '5.6 GHz', socket: 'LGA 1700' }
+    },
     { model: 'Core i7 14700F', price: '102,000', outOfStock: true },
   ],
   'Intel Core i9 Series': [
-    { model: 'Core i9 13900K', price: '155,500', warranty: '03 Years Warranty' },
-    { model: 'Core i9 14900K', price: '172,500', warranty: '03 Years Warranty' },
+    { 
+      model: 'Core i9 13900K', 
+      price: '155,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1Ai9kxsQTEPcq5Suy4CN_dol-HtzUfMh0',
+      specs: { cores: '24 (8P+16E)', threads: '32', base: '3.0 GHz', boost: '5.8 GHz', socket: 'LGA 1700' }
+    },
+    { 
+      model: 'Core i9 14900K', 
+      price: '172,500', 
+      warranty: '03 Years Warranty',
+      img: 'https://lh3.googleusercontent.com/d/1yUYhn4HMa85E590vTyyqYpMl3rvYXJ2w',
+      specs: { cores: '24 (8P+16E)', threads: '32', base: '3.2 GHz', boost: '6.0 GHz', socket: 'LGA 1700' }
+    },
   ]
 };
 
@@ -187,6 +259,7 @@ export default function ProductGrid() {
   const [filter, setFilter] = useState<'all' | 'new' | 'used'>(condition as any || 'all');
   const [activeTab, setActiveTab] = useState('Intel Core i3 Series');
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
   const isUsed = filter === 'used';
   const isNew = filter === 'new';
   const isAll = filter === 'all';
@@ -263,33 +336,52 @@ export default function ProductGrid() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all p-6 rounded-sm flex items-center gap-6 relative overflow-hidden"
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Processors' })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="w-20 h-20 flex-shrink-0 bg-surface rounded-sm border border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)]">
-                      <span className="material-icons text-5xl text-primary neon-glow-cyan">memory</span>
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      {item.img ? (
+                        <img 
+                          src={item.img} 
+                          alt={item.model} 
+                          className="w-full h-full object-contain neon-bloom"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <span className="material-icons text-6xl text-primary neon-glow-cyan">memory</span>
+                      )}
                     </div>
-                    <div className="flex-grow">
+                    <div className="p-6 flex flex-col flex-grow">
                       <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
-                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-4">
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
                         <span className="text-xs font-bold mr-1">Rs.</span>
                         {item.price}/=
                       </div>
-                      <div className="flex gap-2">
+                      <div className="mt-auto flex gap-2">
                         <button 
-                          onClick={() => addToCart({
-                            id: `used-proc-${item.model}`,
-                            title: item.model,
-                            price: `LKR ${item.price}`,
-                            img: 'https://picsum.photos/seed/cpu/400/400',
-                            category: 'Processors'
-                          })}
-                          className="flex-1 flex items-center justify-center gap-2 py-2 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: `used-proc-${item.model}`,
+                              title: item.model,
+                              price: `LKR ${item.price}`,
+                              img: item.img || 'https://picsum.photos/seed/cpu/400/400',
+                              category: 'Processors'
+                            });
+                          }}
+                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
                           <span className="material-icons text-lg">add_shopping_cart</span>
                         </button>
-                        <button className="flex-1 flex items-center justify-center gap-2 py-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
                           <span className="material-icons text-lg">chat</span>
                         </button>
                       </div>
@@ -370,35 +462,40 @@ export default function ProductGrid() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: (catIdx * 0.1) + (i * 0.05) }}
-                          className={`group bg-surface-container border border-${brandColor}/10 ${neonBorder} transition-all p-6 rounded-sm flex items-center gap-6 relative overflow-hidden`}
+                          onClick={() => setSelectedProduct({ ...item, condition: 'new', category: 'Processors' })}
+                          className={`group bg-surface-container border border-${brandColor}/10 ${neonBorder} transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer`}
                         >
                           <ConditionBadge condition="new" />
                           {(item as any).outOfStock && <OutOfStockOverlay />}
-                          <div className={`w-20 h-20 flex-shrink-0 bg-surface rounded-sm border border-${brandColor}/20 flex items-center justify-center ${neonBorder} transition-all`}>
-                            <span className={`material-icons text-5xl text-${brandColor} ${neonGlow}`}>memory</span>
+                          <div className={`w-full h-48 bg-surface rounded-t-sm border-b border-${brandColor}/20 flex items-center justify-center ${neonBorder} transition-all overflow-hidden p-4`}>
+                            {item.img ? (
+                              <img src={item.img} alt={item.model} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                            ) : (
+                              <span className={`material-icons text-6xl text-${brandColor} ${neonGlow}`}>memory</span>
+                            )}
                           </div>
-                          <div className="flex-grow">
+                          <div className="p-6 flex flex-col flex-grow">
                             <h4 className={`font-headline font-bold text-white group-hover:text-${brandColor} transition-colors uppercase tracking-tight mb-1 text-lg`}>{item.model}</h4>
                             {!item.outOfStock && (
                               <>
                                 <div className={`text-2xl font-black text-${brandColor} ${neonGlow} mb-1`}>LKR {item.price}</div>
-                                <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest mb-4">{item.warranty}</div>
+                                <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest mb-6">{item.warranty}</div>
                               </>
                             )}
-                            <div className="flex gap-2">
+                            <div className="mt-auto flex gap-2">
                               <button 
                                 onClick={() => addToCart({
                                   id: `new-proc-${item.model}`,
                                   title: item.model,
                                   price: `LKR ${item.price}`,
-                                  img: 'https://picsum.photos/seed/cpu-new/400/400',
+                                  img: item.img || 'https://picsum.photos/seed/cpu-new/400/400',
                                   category: 'Processors'
                                 })}
-                                className={`flex items-center justify-center w-10 h-10 border border-${brandColor}/30 text-${brandColor} rounded-sm hover:bg-${brandColor} hover:text-surface transition-all`}
+                                className={`flex items-center justify-center w-12 h-12 border border-${brandColor}/30 text-${brandColor} rounded-sm hover:bg-${brandColor} hover:text-surface transition-all`}
                               >
                                 <span className="material-icons text-lg">add_shopping_cart</span>
                               </button>
-                              <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#25D366] hover:text-white transition-colors group/btn">
+                              <button className={`flex-1 flex items-center justify-center gap-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest`}>
                                 <span className="material-icons text-lg">chat</span>
                               </button>
                             </div>
@@ -434,13 +531,14 @@ export default function ProductGrid() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative"
+                    onClick={() => setSelectedProduct({ name: 'ASUS Z490 MOTHERBOARD', price: '35,000.00', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop', condition: 'used', category: 'Motherboards' })}
+                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative cursor-pointer"
                   >
                     <ConditionBadge condition="used" />
-                    <div className="relative aspect-square overflow-hidden bg-surface">
+                    <div className="relative h-48 overflow-hidden bg-surface p-4">
                       <img 
                         alt="ASUS Z490 Motherboard" 
-                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
                         src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" 
                         referrerPolicy="no-referrer" 
                       />
@@ -483,14 +581,15 @@ export default function ProductGrid() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative"
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Motherboards' })}
+                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative cursor-pointer"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="relative aspect-square overflow-hidden bg-surface">
+                    <div className="relative h-48 overflow-hidden bg-surface p-4">
                       <img 
                         alt={item.name} 
-                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
                         src={item.img} 
                         referrerPolicy="no-referrer" 
                       />
@@ -581,29 +680,33 @@ export default function ProductGrid() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-8 bg-surface-container border border-primary/10 hover:neon-border-cyan transition-all group rounded-sm flex flex-col justify-between h-64 relative overflow-hidden"
+                  onClick={() => setSelectedProduct({ ...gen, condition: 'used', category: 'Laptops' })}
+                  className="group bg-surface-container border border-primary/10 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
                 >
                   <ConditionBadge condition="used" />
-                  <div>
-                    <h3 className="font-headline text-3xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-tighter mb-2">{gen.label}</h3>
-                    <p className="text-[10px] font-bold text-primary/40 uppercase tracking-widest">{gen.gens}</p>
+                  <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                    <span className="material-icons text-6xl text-primary neon-glow-cyan">laptop</span>
                   </div>
-                  <div className="flex gap-2">
-                    <button 
-                      onClick={() => addToCart({
-                        id: `used-laptop-${gen.label}`,
-                        title: `${gen.label} Laptop`,
-                        price: 'LKR 45,000.00', // Placeholder price
-                        img: 'https://picsum.photos/seed/laptop/400/400',
-                        category: 'Laptops'
-                      })}
-                      className="flex-1 btn-neon-cyan !py-2 !text-[10px] flex items-center justify-center"
-                    >
-                      <span className="material-icons text-lg">add_shopping_cart</span>
-                    </button>
-                    <button className="flex-1 border border-[#25D366]/30 text-[#25D366] !py-2 !text-[10px] flex items-center justify-center hover:bg-[#25D366] hover:text-surface transition-all">
-                      <span className="material-icons">chat</span>
-                    </button>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="font-headline text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-tighter mb-2">{gen.label}</h3>
+                    <p className="text-[10px] font-bold text-primary/40 uppercase tracking-widest mb-6">{gen.gens}</p>
+                    <div className="mt-auto flex gap-2">
+                      <button 
+                        onClick={() => addToCart({
+                          id: `used-laptop-${gen.label}`,
+                          title: `${gen.label} Laptop`,
+                          price: 'LKR 45,000.00',
+                          img: 'https://picsum.photos/seed/laptop/400/400',
+                          category: 'Laptops'
+                        })}
+                        className="flex-1 btn-neon-cyan !py-3 !text-[10px] flex items-center justify-center"
+                      >
+                        <span className="material-icons text-lg">add_shopping_cart</span>
+                      </button>
+                      <button className="w-12 h-12 border border-[#25D366]/30 text-[#25D366] flex items-center justify-center hover:bg-[#25D366] hover:text-surface transition-all rounded-sm">
+                        <span className="material-icons">chat</span>
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -650,20 +753,21 @@ export default function ProductGrid() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all p-6 rounded-sm flex items-center gap-6 relative overflow-hidden"
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'RAM' })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="w-20 h-20 flex-shrink-0 bg-surface rounded-sm border border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)]">
-                      <span className="material-icons text-5xl text-primary neon-glow-cyan">memory_alt</span>
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      <span className="material-icons text-6xl text-primary neon-glow-cyan">memory_alt</span>
                     </div>
-                    <div className="flex-grow">
+                    <div className="p-6 flex flex-col flex-grow">
                       <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
-                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-4">
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
                         <span className="text-xs font-bold mr-1">Rs.</span>
                         {item.price}/=
                       </div>
-                      <div className="flex gap-2">
+                      <div className="mt-auto flex gap-2">
                         <button 
                           onClick={() => addToCart({
                             id: `used-ram-${item.model}`,
@@ -672,11 +776,11 @@ export default function ProductGrid() {
                             img: 'https://picsum.photos/seed/ram/400/400',
                             category: 'RAM'
                           })}
-                          className="flex-1 flex items-center justify-center gap-2 py-2 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
                           <span className="material-icons text-lg">add_shopping_cart</span>
                         </button>
-                        <button className="flex-1 flex items-center justify-center gap-2 py-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest">
+                        <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
                           <span className="material-icons text-lg">chat</span>
                         </button>
                       </div>
@@ -727,20 +831,21 @@ export default function ProductGrid() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all p-6 rounded-sm flex items-center gap-6 relative overflow-hidden"
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Storage' })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="w-20 h-20 flex-shrink-0 bg-surface rounded-sm border border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)]">
-                      <span className="material-icons text-5xl text-primary neon-glow-cyan">{item.icon}</span>
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      <span className="material-icons text-6xl text-primary neon-glow-cyan">{item.icon}</span>
                     </div>
-                    <div className="flex-grow">
+                    <div className="p-6 flex flex-col flex-grow">
                       <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
-                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-4">
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
                         <span className="text-xs font-bold mr-1">Rs.</span>
                         {item.price}/=
                       </div>
-                      <div className="flex gap-2">
+                      <div className="mt-auto flex gap-2">
                         <button 
                           onClick={() => addToCart({
                             id: `used-storage-${item.model}`,
@@ -749,11 +854,11 @@ export default function ProductGrid() {
                             img: 'https://picsum.photos/seed/storage/400/400',
                             category: 'Storage'
                           })}
-                          className="flex-1 flex items-center justify-center gap-2 py-2 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                         >
                           <span className="material-icons text-lg">add_shopping_cart</span>
                         </button>
-                        <button className="flex-1 flex items-center justify-center gap-2 py-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest">
+                        <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
                           <span className="material-icons text-lg">chat</span>
                         </button>
                       </div>
@@ -790,20 +895,21 @@ export default function ProductGrid() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all p-6 rounded-sm flex items-center gap-6 relative overflow-hidden"
+                onClick={() => setSelectedProduct({ ...item, condition: item.warranty ? 'new' : 'used', category: 'Search Result' })}
+                className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
               >
                 <ConditionBadge condition={item.warranty ? 'new' : 'used'} />
                 {item.outOfStock && <OutOfStockOverlay />}
-                <div className="w-20 h-20 flex-shrink-0 bg-surface rounded-sm border border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)]">
-                  <span className="material-icons text-5xl text-primary neon-glow-cyan">inventory_2</span>
+                <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                  <span className="material-icons text-6xl text-primary neon-glow-cyan">inventory_2</span>
                 </div>
-                <div className="flex-grow">
+                <div className="p-6 flex flex-col flex-grow">
                   <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model || item.name}</h4>
-                  <div className="text-2xl font-black text-primary neon-glow-cyan mb-4">
+                  <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
                     <span className="text-xs font-bold mr-1">Rs.</span>
                     {item.price}/=
                   </div>
-                  <div className="flex gap-2">
+                  <div className="mt-auto flex gap-2">
                     <button 
                       onClick={() => addToCart({
                         id: `search-${item.model || item.name}`,
@@ -812,11 +918,11 @@ export default function ProductGrid() {
                         img: 'https://picsum.photos/seed/search/400/400',
                         category: 'Search Result'
                       })}
-                      className="flex-1 flex items-center justify-center gap-2 py-2 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                      className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
                     >
                       <span className="material-icons text-lg">add_shopping_cart</span>
                     </button>
-                    <button className="flex-1 flex items-center justify-center gap-2 py-2 border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest">
+                    <button className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
                       <span className="material-icons text-lg">chat</span>
                     </button>
                   </div>
@@ -888,6 +994,129 @@ export default function ProductGrid() {
 
         {renderSpecializedGrid()}
       </div>
+
+      {/* Product Details Modal */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProduct(null)}
+              className="absolute inset-0 bg-surface/90 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl bg-surface-container border border-primary/30 rounded-sm shadow-[0_0_50px_rgba(0,242,255,0.2)] overflow-hidden flex flex-col md:flex-row"
+            >
+              <button 
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-50 text-primary/40 hover:text-primary transition-colors"
+              >
+                <span className="material-icons text-3xl">close</span>
+              </button>
+
+              {/* Product Image */}
+              <div className="w-full md:w-1/2 bg-surface p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-primary/10">
+                {selectedProduct.img ? (
+                  <img 
+                    src={selectedProduct.img} 
+                    alt={selectedProduct.model || selectedProduct.name} 
+                    className="w-full h-full max-h-[400px] object-contain neon-bloom"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <span className="material-icons text-9xl text-primary/20">inventory_2</span>
+                )}
+              </div>
+
+              {/* Product Info */}
+              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col">
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-[1px] w-8 bg-primary"></div>
+                    <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase">
+                      {selectedProduct.condition === 'new' ? 'Brand New' : 'Certified Used'}
+                    </span>
+                  </div>
+                  <h2 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tighter uppercase mb-4 leading-none">
+                    {selectedProduct.model || selectedProduct.name || selectedProduct.label}
+                  </h2>
+                  <div className="text-3xl font-black text-primary neon-glow-cyan">
+                    <span className="text-sm font-bold mr-1">Rs.</span>
+                    {selectedProduct.price}/=
+                  </div>
+                </div>
+
+                {/* Technical Specifications */}
+                <div className="mb-10">
+                  <h3 className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-6 border-b border-white/10 pb-2">Technical Specifications</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {selectedProduct.specs ? (
+                      <>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Cores</span>
+                          <span className="text-xs font-bold text-white">{selectedProduct.specs.cores}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Threads</span>
+                          <span className="text-xs font-bold text-white">{selectedProduct.specs.threads}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Base Clock</span>
+                          <span className="text-xs font-bold text-white">{selectedProduct.specs.base}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Boost Clock</span>
+                          <span className="text-xs font-bold text-white">{selectedProduct.specs.boost}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Socket</span>
+                          <span className="text-xs font-bold text-white">{selectedProduct.specs.socket}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <p className="text-[10px] text-white/30 uppercase tracking-widest italic">Specifications available on request</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="mt-auto flex flex-col gap-4">
+                  <button 
+                    onClick={() => {
+                      addToCart({
+                        id: `modal-${selectedProduct.model || selectedProduct.name}`,
+                        title: selectedProduct.model || selectedProduct.name,
+                        price: `LKR ${selectedProduct.price}`,
+                        img: selectedProduct.img || 'https://picsum.photos/seed/pc/400/400',
+                        category: selectedProduct.category
+                      });
+                      setSelectedProduct(null);
+                    }}
+                    className="w-full py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_20px_rgba(0,242,255,0.3)] flex items-center justify-center gap-3"
+                  >
+                    <span className="material-icons">add_shopping_cart</span>
+                    Add to Cart
+                  </button>
+                  <a 
+                    href={`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${selectedProduct.model || selectedProduct.name}. Can I get more details?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 border border-[#25D366]/30 text-[#25D366] font-black text-[10px] uppercase tracking-[0.3em] hover:bg-[#25D366] hover:text-surface transition-all flex items-center justify-center gap-3"
+                  >
+                    <span className="material-icons">chat</span>
+                    Inquire on WhatsApp
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
