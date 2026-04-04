@@ -31,66 +31,61 @@ const usedProcessors = {
     { model: 'i3 10th Gen (10100)', price: '23,500', img: 'https://lh3.googleusercontent.com/d/1XRUW810yL23IP5DhfmRpm_AoAaXc5zmB' },
   ],
   'Intel Core i5 Series': [
-    { model: 'i5 2nd Gen (2100)', price: '3,650', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 3rd Gen (3470)', price: '4,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 4th Gen (4430/70)', price: '6,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 4th Gen (4590)', price: '6,950', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 4th Gen (4670)', price: '7,250', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 6th Gen (6500)', price: '10,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 7th Gen (7500)', price: '11,750', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 8th Gen (8500)', price: '20,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 9th Gen (9500)', price: '23,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i5 10th Gen (10500)', price: '34,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i5 2nd Gen (2100)', price: '3,650', img: 'https://lh3.googleusercontent.com/d/1EAy7sEoeRtmFxNn4yTo23URkd4zNEVnd' },
+    { model: 'i5 3rd Gen (3470)', price: '4,950', img: 'https://lh3.googleusercontent.com/d/16I8Hx9wppbPqjI_a_r2IrIdxcHfREMoy' },
+    { model: 'i5 4th Gen (4430)', price: '6,950', img: 'https://lh3.googleusercontent.com/d/1a5GRUyxirk9R9tcMB8YSl9n5FhuEs6Zd' },
+    { model: 'i5 4th Gen (4590)', price: '6,950', img: 'https://lh3.googleusercontent.com/d/1Kmm4bb0-mJIyS47WmNkzzxzXNrGap31m' },
+    { model: 'i5 4th Gen (4670)', price: '7,250', img: 'https://lh3.googleusercontent.com/d/1meTw4EeFEsssqw3mq-mdzeCrbrnrjnuR' },
+    { model: 'i5 6th Gen (6500)', price: '10,000', img: 'https://lh3.googleusercontent.com/d/1V48vHrmW2vvswIqUMPEck3a0s6_Ig0DP' },
+    { model: 'i5 7th Gen (7500)', price: '11,750', img: 'https://lh3.googleusercontent.com/d/1vdV0DlXH2PUyOJ1-8m-A_MCSO1VF_RlL' },
+    { model: 'i5 8th Gen (8500)', price: '20,000', img: 'https://lh3.googleusercontent.com/d/1qrV5Zn9emQ6wsWPiIkkObTa_5l7OcTu6' },
+    { model: 'i5 9th Gen (9500)', price: '23,500', img: 'https://lh3.googleusercontent.com/d/1UtKccKpzSfH6zEhWgJ6Jpijp-ALmkQ-r' },
+    { model: 'i5 10th Gen (10500)', price: '34,500', img: 'https://lh3.googleusercontent.com/d/1RPnTzMcCAZe3zST2PUi1PajMRUUH3GRo' },
   ],
   'Intel Core i7 & i9 Series': [
-    { model: 'i7 2nd Gen (2600)', price: '9,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 3rd Gen (3770)', price: '10,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 4th Gen (4790)', price: '13,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 4th Gen (4790K)', price: '13,750', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 6th Gen (6700)', price: '18,900', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 6th Gen (6700K)', price: '19,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 7th Gen (7700)', price: '19,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 8th Gen (8700)', price: '36,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 9th Gen (9700)', price: '41,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i7 10th Gen (10700)', price: '65,000', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
-    { model: 'i9 9th Gen (9900K)', price: '55,500', img: 'https://images.unsplash.com/photo-1555617766-c94804975da3?q=80&w=800&auto=format&fit=crop' },
+    { model: 'i7 2nd Gen (2600)', price: '9,000', img: 'https://lh3.googleusercontent.com/d/1dWOL48DNPjs9cia-3k6HrFcVIw5BtEcx' },
+    { model: 'i7 3rd Gen (3770)', price: '10,000', img: 'https://lh3.googleusercontent.com/d/1mFiJeXa7TpxaqTPt9cyLWnXCnMOclXJX' },
+    { model: 'i7 4th Gen (4790)', price: '13,500', img: 'https://lh3.googleusercontent.com/d/16iC8SvEXP-8MeO57djd9rHUx-2KiUIiL' },
+    { model: 'i7 4th Gen (4790K)', price: '13,750', img: 'https://lh3.googleusercontent.com/d/1VWKPdakCqk0txfXnumXXuobH2cjvdQ5q' },
+    { model: 'i7 6th Gen (6700)', price: '18,900', img: 'https://lh3.googleusercontent.com/d/1uNjvBdpXkEdnyRtOLEfWbqKzvNBM_xRK' },
+    { model: 'i7 6th Gen (6700K)', price: '19,500', img: 'https://lh3.googleusercontent.com/d/1Yy-tEe441BMhfnQkHlA6736DP7M9yWXc' },
+    { model: 'i7 7th Gen (7700)', price: '19,000', img: 'https://lh3.googleusercontent.com/d/1CDNzfuKUx5C5S2HEHJSIxzVReqn7IkTd' },
+    { model: 'i7 8th Gen (8700)', price: '36,000', img: 'https://lh3.googleusercontent.com/d/1F-MkKKn4QnlPYWpUqlnEs4skbdPaQSQi' },
+    { model: 'i7 9th Gen (9700)', price: '41,000', img: 'https://lh3.googleusercontent.com/d/136tcQhzmor0_DVwLfe1z5ooTawB12cUG' },
+    { model: 'i7 10th Gen (10700)', price: '65,000', img: 'https://lh3.googleusercontent.com/d/1MAKoMWK3_Qjg41lDO1FO_BL_HbwIDpea' },
+    { model: 'i9 9th Gen (9900K)', price: '55,500', img: 'https://lh3.googleusercontent.com/d/1pDlHf7tRzezwBKgW-PSo4DCJ4cz-TGHL' },
   ]
 };
 
 const ryzenBrandNew = {
-  'R5 SERIES': [
-    { model: 'Ryzen 3 3200G', price: '22,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 3400G', price: '27,000', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 4600G', price: '35,500', warranty: '01 Year Warranty' },
-    { model: 'Ryzen 5 5500X 3D', price: '61,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 5600X', price: '43,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 7500F', price: '44,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 7600X', price: '61,000', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 8400F', price: '42,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 8500G', price: '53,000', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 8600G', price: '63,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 9600X', price: '65,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 5 3600', price: '0', outOfStock: true },
-    { model: 'Ryzen 5 3600X', price: '0', outOfStock: true },
-    { model: 'Ryzen 5 5500', price: '0', outOfStock: true },
-    { model: 'Ryzen 5 5500GT', price: '0', outOfStock: true },
-    { model: 'Ryzen 5 5600', price: '0', outOfStock: true },
-    { model: 'Ryzen 5 5600GT', price: '0', outOfStock: true },
+  'RYZEN 3 SERIES': [
+    { model: 'Ryzen 3 3200G', price: '22,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/10Ov_6opRp0CdUnUn1lqxNwXL2FxU76Cn' },
   ],
-  'R7 SERIES': [
-    { model: 'Ryzen 7 5700G', price: '60,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 7700', price: '70,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 7800X 3D', price: '104,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 8700F', price: '54,250', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 8700G', price: '90,000', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 9700X', price: '85,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 9800X 3D', price: '151,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 7 5700X', price: '0', outOfStock: true },
+  'RYZEN 5 SERIES': [
+    { model: 'Ryzen 5 3400G', price: '27,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/148RerzjqgJtXlsTx7gJVSCwhhOFZtD4D' },
+    { model: 'Ryzen 5 4600G', price: '35,500', warranty: '01 Year Warranty', img: 'https://lh3.googleusercontent.com/d/1-rSzsdS3sv7LOH-mWGqfscwvXqts0rzT' },
+    { model: 'Ryzen 5 5500X 3D', price: '61,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/13LK5Fg2HLBAZBUIESK3EJnK1nYD__xul' },
+    { model: 'Ryzen 5 5600X', price: '43,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1-k1iFR9arEBGqXCxsUD-A0wK1z1DM743' },
+    { model: 'Ryzen 5 7500F', price: '44,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1xgqDP_2zmRNhFF93zdzCgffBU4gYXOi-' },
+    { model: 'Ryzen 5 7600X', price: '61,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1C_h76OQIqrL-zKMxc-Hpbi-VonIYGVGj' },
+    { model: 'Ryzen 5 8400F', price: '42,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1b0t_ERLlabl-IBKv6lW_1DTqgZNv66Qs' },
+    { model: 'Ryzen 5 8500G', price: '53,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/14KUAJC0rttl67VKOMbR5rKUwfPt_mrfD' },
+    { model: 'Ryzen 5 8600G', price: '63,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1EjSsf-7dUkcrwD8565JtA9oOC5a54yef' },
+    { model: 'Ryzen 5 9600X', price: '65,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1GYhhz7GNfMzA8uB07507_QKNPjbv-xBH' },
   ],
-  'R9 SERIES': [
-    { model: 'Ryzen 9 9900X', price: '133,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 9 9900X 3D', price: '177,500', warranty: '03 Years Warranty' },
-    { model: 'Ryzen 9 9950X 3D', price: '224,500', warranty: '03 Years Warranty' },
+  'RYZEN 7 SERIES': [
+    { model: 'Ryzen 7 5700G', price: '60,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1KvLsdDaA4ygzZE2ttxsROCrt9j4Um8WU' },
+    { model: 'Ryzen 7 7700', price: '70,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1-Gdunz9JdJIN8GZvkBZvBJon9FQZhEOj' },
+    { model: 'Ryzen 7 7800X 3D', price: '104,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1Dy9JndGgql0aA_H-huPSmKGtuca6CLHP' },
+    { model: 'Ryzen 7 8700F', price: '54,250', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1ISEcaWfQDPpDf1eC-OEL0SQM_PfK4_Rp' },
+    { model: 'Ryzen 7 8700G', price: '90,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1avh1ulmUYjXp5qjdT4nacy6_tuW5jCHz' },
+    { model: 'Ryzen 7 9700X', price: '85,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1XlWRkZ-fMs4bWdpxkJc3O9ZFz08FARSD' },
+    { model: 'Ryzen 7 9800X 3D', price: '151,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1JQ41MgLLd6KszNWeWzxrXffdhp47A9MU' },
+  ],
+  'RYZEN 9 SERIES': [
+    { model: 'Ryzen 9 9900X', price: '133,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1gI_z51GtSeH-1d8dD5nEDu2dzVuFktr6' },
+    { model: 'Ryzen 9 9900X 3D', price: '177,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1rc9e4upnw7oKQR7lwU_bKN65HCsuX5GH' },
+    { model: 'Ryzen 9 9950X 3D', price: '224,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/15IthoSxvTLRzPxKfHPyOeKz6U6Y2EnDG' },
   ]
 };
 
@@ -338,7 +333,7 @@ const verifiedIntelInventory = [
 const ConditionBadge = ({ condition }: { condition: string }) => {
   const isNew = condition === 'new';
   const isUsed = condition === 'used';
-  const label = isNew ? 'NEW' : (isUsed ? 'CERTIFIED' : condition.toUpperCase());
+  const label = isNew ? 'Brand New - Sealed Box' : (isUsed ? 'Used - Tested & Guaranteed' : condition.toUpperCase());
   const colorClass = isNew ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : 
                      (isUsed ? 'bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 
                      'bg-primary shadow-[0_0_10px_rgba(0,242,255,0.5)]');
@@ -460,39 +455,40 @@ export default function ProductGrid() {
                         <span className="material-icons text-6xl text-primary neon-glow-cyan">memory</span>
                       )}
                     </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
-                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
-                        <span className="text-xs font-bold mr-1">Rs.</span>
-                        {item.price}/=
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
+                        <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
+                          <span className="text-xs font-bold mr-1">Rs.</span>
+                          {item.price}/=
+                        </div>
+                        <div className="mt-auto flex gap-2">
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart({
+                                id: `used-proc-${item.model}`,
+                                title: item.model,
+                                price: `LKR ${item.price}`,
+                                img: item.img || 'https://picsum.photos/seed/cpu/400/400',
+                                category: 'Processors'
+                              });
+                            }}
+                            className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
+                          >
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                            BUY NOW
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                            }}
+                            className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                          >
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
+                          </button>
+                        </div>
                       </div>
-                      <div className="mt-auto flex gap-2">
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            addToCart({
-                              id: `used-proc-${item.model}`,
-                              title: item.model,
-                              price: `LKR ${item.price}`,
-                              img: item.img || 'https://picsum.photos/seed/cpu/400/400',
-                              category: 'Processors'
-                            });
-                          }}
-                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
-                        >
-                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
-                        </button>
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
-                          }}
-                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
-                        >
-                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
-                        </button>
-                      </div>
-                    </div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -573,6 +569,11 @@ export default function ProductGrid() {
                           className={`group bg-surface-container border border-${brandColor}/10 ${neonBorder} transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer`}
                         >
                           <ConditionBadge condition="new" />
+                          {item.warranty && (
+                            <div className="absolute top-12 right-4 px-2 py-1 rounded-sm text-[8px] font-bold uppercase tracking-widest shadow-lg z-20 text-surface bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                              Official Warranty
+                            </div>
+                          )}
                           {(item as any).outOfStock && <OutOfStockOverlay />}
                           <div className={`w-full h-48 bg-surface rounded-t-sm border-b border-${brandColor}/20 flex items-center justify-center ${neonBorder} transition-all overflow-hidden p-4`}>
                             {item.img ? (
@@ -601,9 +602,10 @@ export default function ProductGrid() {
                                     category: 'Processors'
                                   });
                                 }}
-                                className={`flex items-center justify-center w-12 h-12 border border-${brandColor}/30 text-${brandColor} rounded-sm hover:bg-${brandColor} hover:text-surface transition-all`}
+                                className={`flex-1 flex items-center justify-center gap-2 py-3 border border-${brandColor}/30 text-${brandColor} rounded-sm hover:bg-${brandColor} hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]`}
                               >
-                                <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                                <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                                BUY NOW
                               </button>
                               <button 
                                 onClick={(e) => {
@@ -681,9 +683,10 @@ export default function ProductGrid() {
                                 category: 'Motherboards'
                               });
                             }}
-                            className="flex-1 btn-neon-cyan flex items-center justify-center"
+                            className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
                           >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                            BUY NOW
                           </button>
                           <button 
                             onClick={(e) => {
@@ -741,9 +744,10 @@ export default function ProductGrid() {
                                 category: 'Motherboards'
                               });
                             }}
-                            className="flex-1 btn-neon-cyan flex items-center justify-center"
+                            className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
                           >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                            <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                            BUY NOW
                           </button>
                           <button 
                             onClick={(e) => {
@@ -836,9 +840,10 @@ export default function ProductGrid() {
                             category: 'Laptops'
                           });
                         }}
-                        className="flex-1 btn-neon-cyan !py-3 !text-[10px] flex items-center justify-center"
+                        className="flex-1 btn-neon-cyan !py-3 !text-[10px] flex items-center justify-center gap-2"
                       >
-                        <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                        <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                        BUY NOW
                       </button>
                       <button 
                         onClick={(e) => {
@@ -922,9 +927,10 @@ export default function ProductGrid() {
                               category: 'RAM'
                             });
                           }}
-                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
                         >
-                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                          BUY NOW
                         </button>
                         <button 
                           onClick={(e) => {
@@ -1009,9 +1015,10 @@ export default function ProductGrid() {
                               category: 'Storage'
                             });
                           }}
-                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
                         >
-                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                          BUY NOW
                         </button>
                         <button 
                           onClick={(e) => {
@@ -1103,9 +1110,10 @@ export default function ProductGrid() {
                               category: slug.toUpperCase()
                             });
                           }}
-                          className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
+                          className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
                         >
-                          <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                          BUY NOW
                         </button>
                         <button 
                           onClick={(e) => {
@@ -1164,22 +1172,23 @@ export default function ProductGrid() {
                     <span className="text-xs font-bold mr-1">Rs.</span>
                     {item.price}/=
                   </div>
-                  <div className="mt-auto flex gap-2">
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addToCart({
-                          id: `search-${item.model || item.name}`,
-                          title: item.model || item.name,
-                          price: `LKR ${item.price}`,
-                          img: 'https://picsum.photos/seed/search/400/400',
-                          category: 'Search Result'
-                        });
-                      }}
-                      className="flex-1 flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary hover:text-surface transition-all font-bold text-[10px] uppercase tracking-widest shadow-[0_0_10px_rgba(0,242,255,0.2)]"
-                    >
-                      <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
-                    </button>
+                    <div className="mt-auto flex gap-2">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart({
+                            id: `search-${item.model || item.name}`,
+                            title: item.model || item.name,
+                            price: `LKR ${item.price}`,
+                            img: 'https://picsum.photos/seed/search/400/400',
+                            category: 'Search Result'
+                          });
+                        }}
+                        className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
+                      >
+                        <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                        BUY NOW
+                      </button>
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();

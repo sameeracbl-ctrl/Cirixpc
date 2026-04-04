@@ -94,34 +94,47 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="glass-nav sticky top-0 z-[60]">
-        <nav className="flex justify-between items-center w-full px-4 md:px-12 py-4 max-w-screen-2xl mx-auto font-headline tracking-tight">
-          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
-            <div className="relative w-8 h-8 md:w-10 md:h-10">
-              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">
-                <path 
-                  d="M80 20 C60 5 30 5 15 30 C0 55 5 85 35 95 C55 100 80 90 90 70" 
-                  fill="none" 
-                  stroke="url(#neonGradient)" 
-                  strokeWidth="8" 
-                  strokeLinecap="round"
-                  className="animate-pulse"
-                />
-                <path d="M30 40 L50 40 M30 60 L60 60" stroke="#00f2ff" strokeWidth="4" strokeLinecap="round" opacity="0.6" />
-                <defs>
-                  <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#00f2ff" />
-                    <stop offset="100%" stopColor="#0066ff" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="text-sm md:text-xl font-black tracking-tighter text-primary neon-glow-cyan uppercase line-clamp-1">
-              CITRIX COMPUTER
-            </span>
-          </Link>
+      <header className="sticky top-0 z-[60] bg-surface/80 backdrop-blur-[15px] overflow-hidden">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] animate-scroll-slow" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10" />
+        </div>
+
+        <nav className="relative flex items-center w-full px-4 md:px-12 py-4 max-w-screen-2xl mx-auto font-headline">
+          <div className="flex-1 flex justify-start">
+            <Link to="/" className="flex items-center gap-3 md:gap-5 group whitespace-nowrap">
+              <div className="relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
+                <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,242,255,0.9)]">
+                  <path 
+                     d="M80 20 C60 5 30 5 15 30 C0 55 5 85 35 95 C55 100 80 90 90 70" 
+                     fill="none" 
+                     stroke="url(#neonGradientLogo)" 
+                     strokeWidth="10" 
+                     strokeLinecap="round"
+                     className="animate-pulse"
+                  />
+                  <path d="M35 40 L55 40 M35 60 L65 60" stroke="#00f2ff" strokeWidth="5" strokeLinecap="round" className="animate-pulse" />
+                  <defs>
+                    <linearGradient id="neonGradientLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00f2ff" />
+                      <stop offset="100%" stopColor="#0066ff" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div className="flex flex-col leading-none">
+                <span className="text-xl md:text-3xl font-black tracking-[-0.05em] text-primary neon-glow-cyan-intense uppercase">
+                  CITRIX
+                </span>
+                <span className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-secondary/80 neon-glow-blue uppercase mt-1">
+                  COMPUTER
+                </span>
+              </div>
+            </Link>
+          </div>
           
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center justify-center gap-10">
             {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS'].map((item) => {
               const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
               const isActive = location.pathname === path;
@@ -129,55 +142,60 @@ export default function Navbar() {
                 <Link 
                   key={item}
                   to={path} 
-                  className={`relative text-[10px] font-bold tracking-[0.2em] transition-all duration-300 py-2 ${
-                    isActive ? 'text-primary neon-glow-cyan' : 'text-primary/70 hover:text-primary hover:neon-glow-cyan'
+                  className={`group relative text-sm xl:text-base font-black tracking-[0.3em] transition-all duration-300 px-2 py-3 ${
+                    isActive ? 'text-white neon-glow-cyan-intense' : 'text-primary/40 hover:text-white hover:neon-glow-cyan-intense'
                   }`}
                 >
                   {item}
-                  {isActive && (
-                    <motion.div 
-                      layoutId="nav-glow"
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-primary shadow-[0_0_10px_rgba(0,242,255,0.8)]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
+                  {/* Expanding Underline Effect */}
+                  <span className={`absolute bottom-0 left-1/2 w-0 h-[2px] bg-primary shadow-[0_0_20px_rgba(0,242,255,1)] transition-all duration-300 group-hover:w-full group-hover:left-0 ${isActive ? 'w-full left-0' : ''}`} />
                 </Link>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-4 md:gap-6">
+          <div className="flex-1 flex items-center justify-end gap-4 md:gap-8">
             <button 
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
+              className="lg:hidden text-primary/60 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-symbols-outlined text-[28px] icon-enhanced">menu</span>
+              <span className="material-symbols-outlined text-[32px] icon-enhanced">menu</span>
             </button>
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
+              className="text-primary/60 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">search</span>
+              <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">search</span>
             </button>
             <button 
               onClick={() => setIsUserOpen(true)}
-              className="text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan"
+              className="text-primary/60 hover:text-primary transition-all hover:neon-glow-cyan"
             >
-              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">person</span>
+              <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">person</span>
             </button>
             <button 
               onClick={() => setIsCartOpen(true)}
-              className={`text-primary/70 hover:text-primary transition-all hover:neon-glow-cyan relative ${cartPulse ? 'animate-bounce-neon' : ''}`}
+              className={`text-primary/60 hover:text-primary transition-all hover:neon-glow-cyan relative ${cartPulse ? 'animate-bounce-neon' : ''}`}
             >
-              <span className="material-symbols-outlined text-[24px] md:text-[28px] icon-enhanced">shopping_cart</span>
+              <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">shopping_cart</span>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-[0_0_15px_rgba(0,102,255,0.8)]">
                   {itemCount}
                 </span>
               )}
             </button>
           </div>
         </nav>
+
+        {/* Dynamic Glowing Separation Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-primary/20 overflow-hidden">
+          <motion.div 
+            animate={{ x: ['-100%', '100%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="w-1/3 h-full bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_15px_rgba(0,242,255,0.8)]"
+          />
+          <div className="absolute inset-0 bg-primary/10 animate-pulse" />
+        </div>
       </header>
 
       {/* Mobile Menu Drawer */}
@@ -214,8 +232,8 @@ export default function Navbar() {
                       key={item}
                       to={path} 
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-xl font-black tracking-tighter uppercase transition-all duration-300 ${
-                        isActive ? 'text-primary neon-glow-cyan' : 'text-white/40 hover:text-primary'
+                      className={`text-2xl font-black tracking-[0.2em] font-headline uppercase transition-all duration-300 ${
+                        isActive ? 'text-primary neon-glow-cyan' : 'text-white/40 hover:text-primary hover:neon-glow-cyan'
                       }`}
                     >
                       {item}
