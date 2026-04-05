@@ -8,6 +8,7 @@
 
   --color-primary: #00f2ff; /* Neon Cyan */
   --color-secondary: #0066ff; /* Neon Blue */
+  --color-gold: #ffd700; /* Neon Gold */
   --color-ryzen: #ff4e00; /* AMD Ryzen Orange */
   --color-surface: #050505;
   --color-surface-container: #0a0a0a;
@@ -136,6 +137,17 @@
   100% { bottom: -100px; }
 }
 
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-border-flow {
+  background-size: 200% 200%;
+  animation: border-flow 4s linear infinite;
+}
+
 @keyframes bounce-neon {
   0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.4)); }
   50% { transform: translateY(-5px); filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.8)); }
@@ -143,6 +155,61 @@
 
 .animate-bounce-neon {
   animation: bounce-neon 0.5s ease-in-out 2;
+}
+
+.neon-glow-cyan-dual {
+  color: #ffffff;
+  text-shadow: 
+    0 0 7px rgba(255, 255, 255, 0.9),
+    0 0 10px rgba(0, 242, 255, 0.8),
+    0 0 21px rgba(0, 242, 255, 0.6),
+    0 0 42px rgba(0, 102, 255, 0.4),
+    0 0 82px rgba(0, 102, 255, 0.2);
+}
+
+.neon-glow-lightblue-dual {
+  color: #ffffff;
+  text-shadow: 
+    0 0 7px rgba(255, 255, 255, 0.9),
+    0 0 10px rgba(173, 216, 230, 0.8),
+    0 0 21px rgba(173, 216, 230, 0.6),
+    0 0 42px rgba(173, 216, 230, 0.4),
+    0 0 82px rgba(173, 216, 230, 0.2);
+}
+
+.bg-circuit {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2300f2ff' stroke-width='0.5' stroke-opacity='0.15'%3E%3Cpath d='M0 0h80v80H0z'/%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Cpath d='M40 0v38M40 42v38M0 40h38M42 40h38'/%3E%3Cpath d='M20 20l10 10M60 60l-10-10M20 60l10-10M60 20l-10 10'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes pan-circuit {
+  0% { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
+}
+
+.animate-pan-circuit {
+  animation: pan-circuit 20s linear infinite;
+}
+
+@keyframes border-slide {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-border-slide {
+  animation: border-slide 4s linear infinite;
+}
+
+@keyframes border-slide-fast {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-border-slide-fast {
+  animation: border-slide-fast 3s linear infinite;
+}
+
+.group:hover .animate-border-slide {
+  animation-duration: 1.5s;
 }
 
 .perspective-1000 {

@@ -52,21 +52,8 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="max-w-3xl"
+          className="max-w-3xl w-full"
         >
-          <div className="inline-block px-4 py-1 border border-primary/30 bg-surface/40 backdrop-blur-sm rounded-sm mb-6">
-            <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase">Foundry Protocol v5.0</span>
-          </div>
-          
-          <h1 className="font-headline text-3xl md:text-5xl font-light text-white tracking-[0.1em] leading-[1.2] mb-8">
-            BUILD YOUR <br className="hidden md:block" />
-            <span className="font-black text-primary drop-shadow-[0_0_8px_rgba(0,242,255,0.4)] tracking-tighter">DREAM PC.</span>
-          </h1>
-          
-          <p className="text-xs md:text-base text-white/60 font-body font-medium tracking-widest uppercase mb-12 border-l-0 md:border-l-2 border-primary/30 md:pl-6 max-w-xl">
-            Precision engineered hardware for the elite. Home of Citrix Computer professional builds.
-          </p>
-          
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full md:w-auto">
             <motion.button 
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,242,255,0.4)" }}

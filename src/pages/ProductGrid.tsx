@@ -1,8 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import ProductSpecsModal from '../components/ProductSpecsModal';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
+import PriceFilter from '../components/PriceFilter';
+import { 
+  usedProcessors, 
+  ryzenBrandNew, 
+  intelBrandNew, 
+  usedRAM, 
+  usedStorage, 
+  motherboardInventory, 
+  vgaInventory, 
+  accessoryData,
+  allProducts
+} from '../constants/inventory';
 
 const intelChipsets = [
 // ... (rest of the file remains the same, I'll just show the relevant parts)
@@ -18,316 +31,6 @@ const laptopGenerations = [
   { label: 'Core i5', gens: '2nd to 11th Gen' },
   { label: 'Core i7', gens: '2nd to 11th Gen' },
   { label: 'Ryzen Series', gens: '3000 to 5000 Series' }
-];
-
-const usedProcessors = {
-  'Intel Core i3 Series': [
-    { model: 'i3 3rd Gen (3220)', price: '1,700', img: 'https://lh3.googleusercontent.com/d/1x74hEtyTASVKrZLy5qn0vEPPBq0ndt6f' },
-    { model: 'i3 4th Gen (4150)', price: '1,850', img: 'https://lh3.googleusercontent.com/d/1GM9p0a5F85CWpuVY75GzdFYcM2R6xwlO' },
-    { model: 'i3 6th Gen (6100)', price: '3,500', img: 'https://lh3.googleusercontent.com/d/1RBXokaSPRNJVYKZRnMGjBZi025-zhP_G' },
-    { model: 'i3 7th Gen (7100)', price: '4,500', img: 'https://lh3.googleusercontent.com/d/1Enj3pbhPl2TGaz3VBQLrFjdVIHBqxUVd' },
-    { model: 'i3 8th Gen (8100)', price: '7,900', img: 'https://lh3.googleusercontent.com/d/1jOGvcojCIdYU_VQG_Mlw2niUjzCAdoat' },
-    { model: 'i3 9th Gen (9100)', price: '9,500', img: 'https://lh3.googleusercontent.com/d/1NoeYXaCQoLNo--YKH_zheh5spGS0nJn1' },
-    { model: 'i3 10th Gen (10100)', price: '23,500', img: 'https://lh3.googleusercontent.com/d/1XRUW810yL23IP5DhfmRpm_AoAaXc5zmB' },
-  ],
-  'Intel Core i5 Series': [
-    { model: 'i5 2nd Gen (2100)', price: '3,650', img: 'https://lh3.googleusercontent.com/d/1EAy7sEoeRtmFxNn4yTo23URkd4zNEVnd' },
-    { model: 'i5 3rd Gen (3470)', price: '4,950', img: 'https://lh3.googleusercontent.com/d/16I8Hx9wppbPqjI_a_r2IrIdxcHfREMoy' },
-    { model: 'i5 4th Gen (4430)', price: '6,950', img: 'https://lh3.googleusercontent.com/d/1a5GRUyxirk9R9tcMB8YSl9n5FhuEs6Zd' },
-    { model: 'i5 4th Gen (4590)', price: '6,950', img: 'https://lh3.googleusercontent.com/d/1Kmm4bb0-mJIyS47WmNkzzxzXNrGap31m' },
-    { model: 'i5 4th Gen (4670)', price: '7,250', img: 'https://lh3.googleusercontent.com/d/1meTw4EeFEsssqw3mq-mdzeCrbrnrjnuR' },
-    { model: 'i5 6th Gen (6500)', price: '10,000', img: 'https://lh3.googleusercontent.com/d/1V48vHrmW2vvswIqUMPEck3a0s6_Ig0DP' },
-    { model: 'i5 7th Gen (7500)', price: '11,750', img: 'https://lh3.googleusercontent.com/d/1vdV0DlXH2PUyOJ1-8m-A_MCSO1VF_RlL' },
-    { model: 'i5 8th Gen (8500)', price: '20,000', img: 'https://lh3.googleusercontent.com/d/1qrV5Zn9emQ6wsWPiIkkObTa_5l7OcTu6' },
-    { model: 'i5 9th Gen (9500)', price: '23,500', img: 'https://lh3.googleusercontent.com/d/1UtKccKpzSfH6zEhWgJ6Jpijp-ALmkQ-r' },
-    { model: 'i5 10th Gen (10500)', price: '34,500', img: 'https://lh3.googleusercontent.com/d/1RPnTzMcCAZe3zST2PUi1PajMRUUH3GRo' },
-  ],
-  'Intel Core i7 & i9 Series': [
-    { model: 'i7 2nd Gen (2600)', price: '9,000', img: 'https://lh3.googleusercontent.com/d/1dWOL48DNPjs9cia-3k6HrFcVIw5BtEcx' },
-    { model: 'i7 3rd Gen (3770)', price: '10,000', img: 'https://lh3.googleusercontent.com/d/1mFiJeXa7TpxaqTPt9cyLWnXCnMOclXJX' },
-    { model: 'i7 4th Gen (4790)', price: '13,500', img: 'https://lh3.googleusercontent.com/d/16iC8SvEXP-8MeO57djd9rHUx-2KiUIiL' },
-    { model: 'i7 4th Gen (4790K)', price: '13,750', img: 'https://lh3.googleusercontent.com/d/1VWKPdakCqk0txfXnumXXuobH2cjvdQ5q' },
-    { model: 'i7 6th Gen (6700)', price: '18,900', img: 'https://lh3.googleusercontent.com/d/1uNjvBdpXkEdnyRtOLEfWbqKzvNBM_xRK' },
-    { model: 'i7 6th Gen (6700K)', price: '19,500', img: 'https://lh3.googleusercontent.com/d/1Yy-tEe441BMhfnQkHlA6736DP7M9yWXc' },
-    { model: 'i7 7th Gen (7700)', price: '19,000', img: 'https://lh3.googleusercontent.com/d/1CDNzfuKUx5C5S2HEHJSIxzVReqn7IkTd' },
-    { model: 'i7 8th Gen (8700)', price: '36,000', img: 'https://lh3.googleusercontent.com/d/1F-MkKKn4QnlPYWpUqlnEs4skbdPaQSQi' },
-    { model: 'i7 9th Gen (9700)', price: '41,000', img: 'https://lh3.googleusercontent.com/d/136tcQhzmor0_DVwLfe1z5ooTawB12cUG' },
-    { model: 'i7 10th Gen (10700)', price: '65,000', img: 'https://lh3.googleusercontent.com/d/1MAKoMWK3_Qjg41lDO1FO_BL_HbwIDpea' },
-    { model: 'i9 9th Gen (9900K)', price: '55,500', img: 'https://lh3.googleusercontent.com/d/1pDlHf7tRzezwBKgW-PSo4DCJ4cz-TGHL' },
-  ]
-};
-
-const ryzenBrandNew = {
-  'RYZEN 3 SERIES': [
-    { model: 'Ryzen 3 3200G', price: '22,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/10Ov_6opRp0CdUnUn1lqxNwXL2FxU76Cn' },
-  ],
-  'RYZEN 5 SERIES': [
-    { model: 'Ryzen 5 3400G', price: '27,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/148RerzjqgJtXlsTx7gJVSCwhhOFZtD4D' },
-    { model: 'Ryzen 5 4600G', price: '35,500', warranty: '01 Year Warranty', img: 'https://lh3.googleusercontent.com/d/1-rSzsdS3sv7LOH-mWGqfscwvXqts0rzT' },
-    { model: 'Ryzen 5 5500X 3D', price: '61,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/13LK5Fg2HLBAZBUIESK3EJnK1nYD__xul' },
-    { model: 'Ryzen 5 5600X', price: '43,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1-k1iFR9arEBGqXCxsUD-A0wK1z1DM743' },
-    { model: 'Ryzen 5 7500F', price: '44,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1xgqDP_2zmRNhFF93zdzCgffBU4gYXOi-' },
-    { model: 'Ryzen 5 7600X', price: '61,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1C_h76OQIqrL-zKMxc-Hpbi-VonIYGVGj' },
-    { model: 'Ryzen 5 8400F', price: '42,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1b0t_ERLlabl-IBKv6lW_1DTqgZNv66Qs' },
-    { model: 'Ryzen 5 8500G', price: '53,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/14KUAJC0rttl67VKOMbR5rKUwfPt_mrfD' },
-    { model: 'Ryzen 5 8600G', price: '63,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1EjSsf-7dUkcrwD8565JtA9oOC5a54yef' },
-    { model: 'Ryzen 5 9600X', price: '65,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1GYhhz7GNfMzA8uB07507_QKNPjbv-xBH' },
-  ],
-  'RYZEN 7 SERIES': [
-    { model: 'Ryzen 7 5700G', price: '60,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1KvLsdDaA4ygzZE2ttxsROCrt9j4Um8WU' },
-    { model: 'Ryzen 7 7700', price: '70,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1-Gdunz9JdJIN8GZvkBZvBJon9FQZhEOj' },
-    { model: 'Ryzen 7 7800X 3D', price: '104,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1Dy9JndGgql0aA_H-huPSmKGtuca6CLHP' },
-    { model: 'Ryzen 7 8700F', price: '54,250', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1ISEcaWfQDPpDf1eC-OEL0SQM_PfK4_Rp' },
-    { model: 'Ryzen 7 8700G', price: '90,000', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1avh1ulmUYjXp5qjdT4nacy6_tuW5jCHz' },
-    { model: 'Ryzen 7 9700X', price: '85,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1XlWRkZ-fMs4bWdpxkJc3O9ZFz08FARSD' },
-    { model: 'Ryzen 7 9800X 3D', price: '151,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1JQ41MgLLd6KszNWeWzxrXffdhp47A9MU' },
-  ],
-  'RYZEN 9 SERIES': [
-    { model: 'Ryzen 9 9900X', price: '133,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1gI_z51GtSeH-1d8dD5nEDu2dzVuFktr6' },
-    { model: 'Ryzen 9 9900X 3D', price: '177,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/1rc9e4upnw7oKQR7lwU_bKN65HCsuX5GH' },
-    { model: 'Ryzen 9 9950X 3D', price: '224,500', warranty: '03 Years Warranty', img: 'https://lh3.googleusercontent.com/d/15IthoSxvTLRzPxKfHPyOeKz6U6Y2EnDG' },
-  ]
-};
-
-const intelBrandNew = {
-  'BRAND NEW INTEL PROCESSORS': [
-    { 
-      model: 'Intel Core i3-12100 (12th Gen)', 
-      price: '43,000', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1M3q6tTlUtegwP7v62W7zeGADNYyM2yWw',
-      specs: { cores: '4', threads: '8', base: '3.3 GHz', boost: '4.3 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Intel Core i3-12100F (12th Gen)', 
-      price: '29,750', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1sXTVR1IKUp4hDXFJHVwzhbEDjjDunir7',
-      specs: { cores: '4', threads: '8', base: '3.3 GHz', boost: '4.3 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Intel Core i3-14100 (14th Gen)', 
-      price: '48,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1DB81uuZiKO5E9kqpd8jhN7eCOICWVOmS',
-      specs: { cores: '4', threads: '8', base: '3.5 GHz', boost: '4.7 GHz', socket: 'LGA 1700' }
-    },
-  ],
-  'Intel Core i5 Series': [
-    { model: 'Core i5 12400', price: '61,000', outOfStock: true },
-    { 
-      model: 'Core i5 12400F', 
-      price: '46,000', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/112fy-Jcc2PKHaqEjz-bB1w2v1rcR-Vm_',
-      specs: { cores: '6', threads: '12', base: '2.5 GHz', boost: '4.4 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Core i5 13400F', 
-      price: '54,000', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1SbCczyxqihIal8sEwL_0H34lR9WdiySl',
-      specs: { cores: '10 (6P+4E)', threads: '16', base: '2.5 GHz', boost: '4.6 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Core i5 14400', 
-      price: '79,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1fjjcQZMRahi22xXCJXJjnc6sQzgHH_WB',
-      specs: { cores: '10 (6P+4E)', threads: '16', base: '2.5 GHz', boost: '4.7 GHz', socket: 'LGA 1700' }
-    },
-    { model: 'Core i5 14400F', price: '57,000', outOfStock: true },
-    { 
-      model: 'Core i5 14600K', 
-      price: '81,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1cNtf1-WUNLFYa0XKQG7Kc-plWtHXB0v1',
-      specs: { cores: '14 (6P+8E)', threads: '20', base: '3.5 GHz', boost: '5.3 GHz', socket: 'LGA 1700' }
-    },
-  ],
-  'Intel Core i7 Series': [
-    { 
-      model: 'Core i7 12700', 
-      price: '98,000', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/18LuvlXqDQh6BQhNLTGAdmr8767p2FgvN',
-      specs: { cores: '12 (8P+4E)', threads: '20', base: '2.1 GHz', boost: '4.9 GHz', socket: 'LGA 1700' }
-    },
-    { model: 'Core i7 12700K', price: '90,000', outOfStock: true },
-    { 
-      model: 'Core i7 14700', 
-      price: '136,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1N80yA97WeqOtdubdLqm7izDJY4RnMs9N',
-      specs: { cores: '20 (8P+12E)', threads: '28', base: '2.1 GHz', boost: '5.4 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Core i7 14700K', 
-      price: '138,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1DdqK6RP6w_PONtBZQYCIlisRVP-1G44s',
-      specs: { cores: '20 (8P+12E)', threads: '28', base: '3.4 GHz', boost: '5.6 GHz', socket: 'LGA 1700' }
-    },
-    { model: 'Core i7 14700F', price: '102,000', outOfStock: true },
-  ],
-  'Intel Core i9 Series': [
-    { 
-      model: 'Core i9 13900K', 
-      price: '155,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1Ai9kxsQTEPcq5Suy4CN_dol-HtzUfMh0',
-      specs: { cores: '24 (8P+16E)', threads: '32', base: '3.0 GHz', boost: '5.8 GHz', socket: 'LGA 1700' }
-    },
-    { 
-      model: 'Core i9 14900K', 
-      price: '172,500', 
-      warranty: '03 Years Warranty',
-      img: 'https://lh3.googleusercontent.com/d/1yUYhn4HMa85E590vTyyqYpMl3rvYXJ2w',
-      specs: { cores: '24 (8P+16E)', threads: '32', base: '3.2 GHz', boost: '6.0 GHz', socket: 'LGA 1700' }
-    },
-  ]
-};
-
-const usedRAM = {
-  'DDR3 Series': [
-    { model: '4GB DDR3', price: '2,500' },
-    { model: '8GB DDR3', price: '5,850' },
-    { model: '8GB DDR3 Heat Sink', price: '5,900' },
-  ],
-  'DDR4 Series': [
-    { model: '4GB DDR4', price: '6,900' },
-    { model: '8GB DDR4', price: '13,900' },
-    { model: '8GB DDR4 Heat Sink', price: '14,900' },
-    { model: '16GB DDR4', price: '29,500' },
-    { model: '16GB DDR4 Heat Sink', price: '31,000' },
-  ]
-};
-
-const usedStorage = {
-  'SSD': [
-    { model: '128GB SSD (Branded)', price: '5,900', icon: 'hard_drive' },
-    { model: '256GB SSD', price: '10,900', icon: 'hard_drive' },
-  ],
-  'M.2 (SATA)': [
-    { model: '128GB M.2', price: '5,550', icon: 'memory' },
-    { model: '256GB M.2', price: '8,900', icon: 'memory' },
-    { model: '512GB M.2', price: '15,900', icon: 'memory' },
-    { model: '1TB M.2', price: '21,000', icon: 'memory' },
-  ],
-  'NVMe': [
-    { model: '128GB NVMe', price: '6,650', icon: 'memory_alt' },
-    { model: '256GB NVMe', price: '11,500', icon: 'memory_alt' },
-    { model: '512GB NVMe', price: '18,000', icon: 'memory_alt' },
-  ]
-};
-
-const accessoryData: Record<string, Record<string, any[]>> = {
-  keyboards: {
-    gaming: [
-      { model: 'Razer BlackWidow V4 Pro', price: '45,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-      { model: 'Logitech G Pro X TKL', price: '38,000', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-      { model: 'Corsair K70 RGB MK.2', price: '34,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-    ],
-    standard: [
-      { model: 'Logitech K120 Wired', price: '2,850', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-      { model: 'Dell KB216 Multimedia', price: '3,200', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-    ],
-    wireless: [
-      { model: 'Logitech MX Keys S', price: '32,500', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-      { model: 'Apple Magic Keyboard', price: '28,000', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop', icon: 'keyboard' },
-    ]
-  },
-  mouse: {
-    gaming: [
-      { model: 'Logitech G502 X Plus', price: '28,500', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
-      { model: 'Razer DeathAdder V3 Pro', price: '26,000', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
-    ],
-    standard: [
-      { model: 'Logitech M100 Wired', price: '1,850', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
-    ],
-    wireless: [
-      { model: 'Logitech MX Master 3S', price: '24,500', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop', icon: 'mouse' },
-    ]
-  },
-  speakers: {
-    standard: [
-      { model: 'Logitech Z120 2.0', price: '3,500', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
-    ],
-    rgb: [
-      { model: 'Logitech G560 RGB', price: '42,000', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
-    ],
-    subwoofers: [
-      { model: 'Logitech Z623 2.1', price: '38,500', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
-    ]
-  },
-  'laptop-accessories': {
-    chargers: [
-      { model: 'HP 65W Blue Pin Adapter', price: '4,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'power' },
-      { model: 'Dell 65W Type-C Adapter', price: '6,800', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'power' },
-    ],
-    batteries: [
-      { model: 'HP Pavilion Battery', price: '8,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'battery_full' },
-    ],
-    displays: [
-      { model: '15.6" Slim LED 30-Pin', price: '18,500', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop', icon: 'monitor' },
-    ]
-  },
-  'network-accessories': {
-    routers: [
-      { model: 'TP-Link Archer AX55 Wi-Fi 6', price: '18,500', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'router' },
-    ],
-    switches: [
-      { model: 'TP-Link 8-Port Gigabit Switch', price: '4,200', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'settings_ethernet' },
-    ],
-    dongles: [
-      { model: 'TP-Link Archer T3U Plus', price: '3,850', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop', icon: 'usb' },
-    ]
-  },
-  cables: {
-    hdmi: [
-      { model: 'Vention 4K HDMI 2.0 (3m)', price: '1,850', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'settings_input_hdmi' },
-    ],
-    vga: [
-      { model: 'Standard VGA Cable (1.5m)', price: '650', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'settings_input_component' },
-    ],
-    power: [
-      { model: 'Desktop Power Cable', price: '450', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'power' },
-    ],
-    sata: [
-      { model: 'SATA III Data Cable', price: '350', img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=800&auto=format&fit=crop', icon: 'storage' },
-    ]
-  },
-  ups: {
-    '650va': [
-      { model: 'DCP 650VA UPS', price: '12,500', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_1_bar' },
-    ],
-    '1200va': [
-      { model: 'DCP 1200VA UPS', price: '24,500', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_5_bar' },
-    ],
-    pro: [
-      { model: 'APC Smart-UPS 2200VA', price: '145,000', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop', icon: 'battery_full' },
-    ]
-  },
-  'party-boxes': {
-    standard: [
-      { model: 'JBL PartyBox Encore', price: '85,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'speaker' },
-    ],
-    'rgb-pro': [
-      { model: 'JBL PartyBox 310', price: '165,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'palette' },
-    ],
-    subwoofers: [
-      { model: 'Sony MHC-V43D', price: '125,000', img: 'https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop', icon: 'surround_sound' },
-    ]
-  }
-};
-
-const verifiedIntelInventory = [
-  { name: 'H61 Series', price: '5,500', img: 'https://drive.google.com/thumbnail?id=1DlL88Ebe26RQIeZ27OJ0f-wItwlewtqd&sz=w800', chip: 'LGA 1155' },
-  { name: 'H81 Series', price: '6,000', img: 'https://drive.google.com/thumbnail?id=1j2oyxZhjZXPKr-xuqzFfbsOPjimyObii&sz=w800', chip: 'LGA 1150' },
-  { name: 'H110 Series', price: '7,500', img: 'https://drive.google.com/thumbnail?id=1FJCzaAaEcPGyfBmGXiOhxRCVUDHs1XXR&sz=w800', chip: 'LGA 1151' },
-  { name: 'H310 Series', price: '11,500', img: 'https://drive.google.com/thumbnail?id=1dBkbWN0dfQxadZINBlQTBexhNNV3znCN&sz=w800', chip: 'LGA 1151v2' },
-  { name: 'H410 Series', price: '14,500', img: 'https://drive.google.com/thumbnail?id=19uKYtB6NVBjTAxGsgPgAh2LHaX5_f6Ll&sz=w800', chip: 'LGA 1200' },
-  { name: 'H510 Series', price: '15,900', img: 'https://drive.google.com/thumbnail?id=15iRliIy1Kt0sn53cy96flDbvxABZQpMg&sz=w800', chip: 'LGA 1200' },
 ];
 
 const ConditionBadge = ({ condition }: { condition: string }) => {
@@ -360,6 +63,13 @@ export default function ProductGrid() {
   const [activeTab, setActiveTab] = useState('Intel Core i3 Series');
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 500000 });
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+
+  const parsePrice = (priceStr: string) => {
+    if (!priceStr) return 0;
+    return parseInt(priceStr.replace(/,/g, ''), 10);
+  };
 
   const isAccessory = ['keyboards', 'mouse', 'speakers', 'laptop-accessories', 'network-accessories', 'cables', 'ups', 'party-boxes'].includes(slug || '');
   const isUsed = filter === 'used';
@@ -370,6 +80,49 @@ export default function ProductGrid() {
   const isProcessor = slug === 'processors';
   const isRAM = slug === 'ram';
   const isStorage = slug === 'storage';
+  const isVGA = slug === 'vga';
+
+  const currentCategoryMinMax = useMemo(() => {
+    let allItems: any[] = [];
+    
+    if (isProcessor) {
+      Object.values(usedProcessors).forEach(cat => allItems.push(...cat));
+      Object.values(ryzenBrandNew).forEach(cat => allItems.push(...cat));
+      Object.values(intelBrandNew).forEach(cat => allItems.push(...cat));
+    }
+    if (isRAM) {
+      Object.values(usedRAM).forEach(cat => allItems.push(...cat));
+    }
+    if (isStorage) {
+      Object.values(usedStorage).forEach(cat => allItems.push(...cat));
+    }
+    if (isVGA) {
+      Object.values(vgaInventory).forEach(cat => allItems.push(...cat));
+    }
+    if (isMotherboard) {
+      Object.values(motherboardInventory).forEach(cat => allItems.push(...cat));
+    }
+    if (isAccessory && slug && accessoryData[slug]) {
+      Object.values(accessoryData[slug]).forEach(cat => allItems.push(...cat));
+    }
+
+    if (allItems.length === 0) return { min: 0, max: 500000 };
+
+    const prices = allItems.map(item => parsePrice(item.price || '0')).filter(p => p > 0);
+    if (prices.length === 0) return { min: 0, max: 500000 };
+
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+    
+    return { 
+      min: Math.max(0, Math.floor(min / 1000) * 1000 - 1000), 
+      max: Math.ceil(max / 1000) * 1000 + 1000 
+    };
+  }, [slug, isProcessor, isRAM, isStorage, isMotherboard, isAccessory]);
+
+  useEffect(() => {
+    setPriceRange({ min: currentCategoryMinMax.min, max: currentCategoryMinMax.max });
+  }, [currentCategoryMinMax]);
 
   const brandColor = selectedBrand === 'ryzen' ? 'ryzen' : (selectedBrand === 'intel' ? 'secondary' : 'primary');
   const neonGlow = selectedBrand === 'ryzen' ? 'neon-glow-ryzen' : (selectedBrand === 'intel' ? 'neon-glow-blue' : 'neon-glow-cyan');
@@ -383,8 +136,12 @@ export default function ProductGrid() {
       setActiveTab('DDR3 Series');
     } else if (isStorage && showUsed) {
       setActiveTab('SSD');
+    } else if (isVGA && showUsed) {
+      setActiveTab('NVIDIA Series');
+    } else if (isMotherboard && showUsed) {
+      setActiveTab('H-Series (Budget Boards)');
     }
-  }, [isProcessor, isRAM, isStorage, filter]);
+  }, [isProcessor, isRAM, isStorage, isVGA, isMotherboard, filter]);
 
   const renderSpecializedGrid = () => {
     const showUsed = filter === 'all' || filter === 'used';
@@ -392,13 +149,24 @@ export default function ProductGrid() {
     const sections: React.ReactNode[] = [];
 
     const filterItems = (items: any[]) => {
-      if (!searchQuery) return items;
-      const query = searchQuery.toLowerCase();
-      return items.filter(item => 
-        (item.model?.toLowerCase().includes(query)) || 
-        (item.name?.toLowerCase().includes(query)) ||
-        (item.label?.toLowerCase().includes(query))
-      );
+      if (!items) return [];
+      let filtered = items;
+      
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const keywords = query.split(' ').filter(k => k.length > 0);
+        filtered = filtered.filter(item => {
+          const searchString = `${item.model || ''} ${item.name || ''} ${item.label || ''} ${item.category || ''} ${item.condition || ''}`.toLowerCase();
+          return keywords.every(keyword => searchString.includes(keyword));
+        });
+      }
+
+      filtered = filtered.filter(item => {
+        const price = parsePrice(item.price || '0');
+        return price >= priceRange.min && price <= priceRange.max;
+      });
+
+      return filtered;
     };
 
     if (isProcessor) {
@@ -632,175 +400,101 @@ export default function ProductGrid() {
 
     if (isMotherboard) {
       if (showUsed) {
-        const filteredUsed = filterItems(verifiedIntelInventory || []);
+        const filteredUsed = filterItems(motherboardInventory[activeTab as keyof typeof motherboardInventory] || []);
         sections.push(
-          <motion.div 
-            key="used-motherboards"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-24"
-          >
-            <div>
-              <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Motherboards</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Static Item */}
-                {(!searchQuery || "ASUS Z490 MOTHERBOARD".toLowerCase().includes(searchQuery.toLowerCase())) && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    onClick={() => setSelectedProduct({ name: 'ASUS Z490 MOTHERBOARD', price: '35,000.00', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop', condition: 'used', category: 'Motherboards' })}
-                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative cursor-pointer"
-                  >
-                    <ConditionBadge condition="used" />
-                    <div className="relative h-48 overflow-hidden bg-surface p-4">
-                      <img 
-                        alt="ASUS Z490 Motherboard" 
-                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
-                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" 
-                        referrerPolicy="no-referrer" 
-                      />
-                    </div>
-                    <div className="p-8 flex flex-col flex-grow">
-                      <span className="text-[8px] font-bold text-primary/50 uppercase tracking-[0.3em] mb-2">Intel Z490 Series</span>
-                      <h3 className="font-headline font-bold text-lg text-white mb-4 uppercase tracking-tight group-hover:text-primary transition-colors">
-                        ASUS Z490 MOTHERBOARD
-                      </h3>
-                      <p className="text-[10px] text-primary/40 uppercase tracking-widest mb-6 leading-relaxed">
-                        Professional-grade performance. Rigorously tested for stability and overclocking potential.
-                      </p>
-                      <div className="mt-auto">
-                        <div className="text-3xl font-black text-primary mb-8 neon-glow-cyan">LKR 35,000.00</div>
-                        <div className="flex gap-3">
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart({
-                                id: 'used-mobo-z490',
-                                title: 'ASUS Z490 MOTHERBOARD',
-                                price: 'LKR 35,000.00',
-                                img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
-                                category: 'Motherboards'
-                              });
-                            }}
-                            className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
-                          >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
-                            BUY NOW
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ASUS Z490 MOTHERBOARD. Is it available?`)}`, '_blank');
-                            }}
-                            className="w-12 h-12 flex items-center justify-center border border-[#25D366]/50 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_10px_rgba(37,211,102,0.3)]"
-                          >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {filteredUsed.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Motherboards' })}
-                    className="group flex flex-col bg-surface-container rounded-sm overflow-hidden border border-primary/30 neon-border-cyan transition-all duration-500 relative cursor-pointer"
-                  >
-                    <ConditionBadge condition="used" />
-                    {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="relative h-48 overflow-hidden bg-surface p-4">
-                      <img 
-                        alt={item.name} 
-                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
-                        src={item.img} 
-                        referrerPolicy="no-referrer" 
-                      />
-                    </div>
-                    <div className="p-8 flex flex-col flex-grow">
-                      <span className="text-[8px] font-bold text-primary/50 uppercase tracking-[0.3em] mb-2">{item.chip}</span>
-                      <h3 className="font-headline font-bold text-lg text-white mb-4 uppercase tracking-tight group-hover:text-primary transition-colors">
-                        {item.name}
-                      </h3>
-                      <p className="text-[10px] text-primary/40 uppercase tracking-widest mb-6 leading-relaxed">
-                        Tested for stability and performance. Guaranteed quality.
-                      </p>
-                      <div className="mt-auto">
-                        <div className="text-3xl font-black text-primary mb-8 neon-glow-cyan">LKR {item.price}.00</div>
-                        <div className="flex gap-3">
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart({
-                                id: `used-mobo-${item.name}`,
-                                title: item.name,
-                                price: `LKR ${item.price}.00`,
-                                img: item.img,
-                                category: 'Motherboards'
-                              });
-                            }}
-                            className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
-                          >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
-                            BUY NOW
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.name}. Is it available?`)}`, '_blank');
-                            }}
-                            className="flex-1 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all shadow-[0_0_15px_rgba(37,211,102,0.4)] font-bold text-[10px] uppercase tracking-widest"
-                          >
-                            <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+          <div key="used-motherboards" className="space-y-12">
+            {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Motherboards</h3>}
+            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+              {Object.keys(motherboardInventory).map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveTab(category)}
+                  className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
+                    activeTab === category
+                      ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                      : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
 
-            <div>
-              <h3 className="font-headline text-xl font-black text-primary/40 mb-8 uppercase tracking-widest">Browse by Chipset</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {intelChipsets.map((chip, i) => (
-                  <motion.button
-                    key={chip}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.02 }}
-                    className="p-6 bg-surface-container border border-primary/10 hover:neon-border-cyan transition-all group flex flex-col items-center justify-center rounded-sm"
-                  >
-                    <span className="text-xs font-bold text-primary/40 group-hover:text-primary transition-colors uppercase tracking-widest mb-2">Intel</span>
-                    <span className="text-lg font-black text-white group-hover:text-primary transition-colors">{chip}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="font-headline text-xl font-black text-secondary/40 mb-8 uppercase tracking-widest">Ryzen Series</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {ryzenSeries.map((chip, i) => (
-                  <motion.button
-                    key={chip}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {filteredUsed.map((item: any, i: number) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="p-6 bg-surface-container border border-secondary/10 hover:neon-border-blue transition-all group flex flex-col items-center justify-center rounded-sm"
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Motherboards' })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
                   >
-                    <span className="text-xs font-bold text-secondary/40 group-hover:text-secondary transition-colors uppercase tracking-widest mb-2">AMD</span>
-                    <span className="text-lg font-black text-white group-hover:text-secondary transition-colors">{chip}</span>
-                  </motion.button>
+                    <ConditionBadge condition="used" />
+                    {item.outOfStock && <OutOfStockOverlay />}
+                    <div className="w-full h-48 bg-transparent rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      <img 
+                        src={item.img} 
+                        alt={item.name} 
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                        style={{ 
+                          mixBlendMode: 'screen', 
+                          filter: 'contrast(120%) brightness(110%) drop-shadow(0 0 15px rgba(0, 242, 255, 0.4))' 
+                        }}
+                        referrerPolicy="no-referrer" 
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[10px] font-bold text-primary/50 uppercase tracking-[0.2em]">{item.chip}</span>
+                        <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] neon-glow-lightblue-dual">{item.warranty}</span>
+                      </div>
+                      <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.name}</h4>
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
+                        <span className="text-xs font-bold mr-1">Rs.</span>
+                        {item.price}/=
+                      </div>
+                      <div className="mt-auto flex gap-2">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: item.id,
+                              title: item.name,
+                              price: `LKR ${item.price}`,
+                              img: item.img,
+                              category: 'Motherboards'
+                            });
+                          }}
+                          className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                          BUY NOW
+                        </button>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.name}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         );
       }
     }
@@ -925,6 +619,98 @@ export default function ProductGrid() {
                               price: `LKR ${item.price}`,
                               img: 'https://picsum.photos/seed/ram/400/400',
                               category: 'RAM'
+                            });
+                          }}
+                          className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">shopping_cart</span>
+                          BUY NOW
+                        </button>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${item.model}. Is it available?`)}`, '_blank');
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-[#25D366]/30 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all"
+                        >
+                          <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        );
+      }
+    }
+
+    if (isVGA) {
+      if (showUsed) {
+        const filteredVGA = filterItems(vgaInventory[activeTab as keyof typeof vgaInventory] || []);
+        sections.push(
+          <div key="used-vga" className="space-y-12">
+            {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used VGA</h3>}
+            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+              {Object.keys(vgaInventory).map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveTab(category)}
+                  className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
+                    activeTab === category
+                      ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                      : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {filteredVGA.map((item: any, i: number) => (
+                  <motion.div
+                    key={item.model}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'VGA' })}
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                  >
+                    <ConditionBadge condition="used" />
+                    {(item as any).outOfStock && <OutOfStockOverlay />}
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                      {item.img ? (
+                        <img src={item.img} alt={item.model} className="w-full h-full object-contain neon-bloom" referrerPolicy="no-referrer" />
+                      ) : (
+                        <span className="material-icons text-6xl text-primary neon-glow-cyan">videogame_asset</span>
+                      )}
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h4 className="font-headline font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight mb-2 text-lg">{item.model}</h4>
+                      <div className="text-2xl font-black text-primary neon-glow-cyan mb-6">
+                        <span className="text-xs font-bold mr-1">Rs.</span>
+                        {item.price}/=
+                      </div>
+                      <div className="mt-auto flex gap-2">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart({
+                              id: `used-vga-${item.model}`,
+                              title: item.model,
+                              price: `LKR ${item.price}`,
+                              img: item.img || 'https://picsum.photos/seed/vga/400/400',
+                              category: 'VGA'
                             });
                           }}
                           className="flex-1 btn-neon-cyan flex items-center justify-center gap-2 !py-3 !text-[10px]"
@@ -1136,23 +922,24 @@ export default function ProductGrid() {
     }
 
     if (slug === 'all') {
+      const results = allProducts.filter((item: any) => {
+        const query = searchQuery.toLowerCase();
+        const keywords = query.split(' ').filter(k => k.length > 0);
+        const searchString = `${item.model || ''} ${item.name || ''} ${item.category || ''} ${item.condition || ''}`.toLowerCase();
+        const matchesSearch = keywords.every(keyword => searchString.includes(keyword));
+        
+        const price = parsePrice(item.price || '0');
+        const matchesPrice = price >= priceRange.min && price <= priceRange.max;
+        return matchesSearch && matchesPrice;
+      });
+
       sections.push(
         <div key="search-results" className="space-y-12">
           <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">
             {searchQuery ? `Search Results for "${searchQuery}"` : 'All Components'}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              ...Object.values(usedProcessors).flat(),
-              ...Object.values(usedRAM).flat(),
-              ...Object.values(usedStorage).flat(),
-              ...verifiedIntelInventory,
-              ...Object.values(intelBrandNew).flat(),
-              ...Object.values(ryzenBrandNew).flat()
-            ].filter((item: any) => 
-              (item.model?.toLowerCase().includes(searchQuery.toLowerCase())) || 
-              (item.name?.toLowerCase().includes(searchQuery.toLowerCase()))
-            ).map((item: any, i: number) => (
+            {results.map((item: any, i: number) => (
               <motion.div
                 key={item.model || item.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -1210,9 +997,22 @@ export default function ProductGrid() {
     return (
       <div className="space-y-24">
         {sections.length > 0 ? sections : (
-          <div className="text-center py-20 border border-dashed border-primary/20 rounded-sm">
-            <span className="material-icons text-6xl text-primary/20 mb-4">inventory_2</span>
-            <p className="text-primary/40 font-headline uppercase tracking-widest">No matching inventory found for this selection</p>
+          <div className="text-center py-32 border border-dashed border-primary/20 rounded-sm bg-surface-container/20 backdrop-blur-sm">
+            <div className="relative inline-block mb-8">
+              <span className="material-icons text-8xl text-primary/10">inventory_2</span>
+              <span className="material-symbols-outlined absolute inset-0 flex items-center justify-center text-primary/40 text-4xl neon-glow-cyan">search_off</span>
+            </div>
+            <h3 className="text-white font-headline text-2xl font-black uppercase tracking-tighter mb-4">No matching hardware found</h3>
+            <p className="text-primary/40 font-bold uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed">
+              Our foundry is currently out of this specific component. <br/>
+              <span className="text-primary/60">Contact Citrix Support for special orders or custom sourcing.</span>
+            </p>
+            <button 
+              onClick={() => window.open('https://wa.me/94789827123', '_blank')}
+              className="mt-12 px-8 py-4 border border-primary/30 text-primary font-black text-[10px] uppercase tracking-[0.3em] hover:bg-primary hover:text-surface transition-all shadow-[0_0_20px_rgba(0,242,255,0.1)]"
+            >
+              Contact Support Protocol
+            </button>
           </div>
         )}
       </div>
@@ -1235,163 +1035,185 @@ export default function ProductGrid() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
-          <h1 className={`font-headline text-5xl md:text-7xl font-black text-${brandColor} tracking-tighter uppercase mb-6 ${neonGlow}`}>
-            {filter === 'all' ? 'Complete' : (filter === 'used' ? 'Certified' : 'Brand New')} <br/>
-            <span className="text-white opacity-20">{slug}</span>
-          </h1>
-          <div className={`h-[1px] w-24 bg-${brandColor} mt-4 shadow-[0_0_10px_rgba(0,242,255,0.8)]`}></div>
+          <div>
+            <h1 className={`font-headline text-5xl md:text-7xl font-black text-${brandColor} tracking-tighter uppercase mb-6 ${neonGlow}`}>
+              {filter === 'all' ? 'Complete' : (filter === 'used' ? 'Certified' : 'Brand New')} <br/>
+              <span className="text-white opacity-20">{slug}</span>
+            </h1>
+            <div className={`h-[1px] w-24 bg-${brandColor} mt-4 shadow-[0_0_10px_rgba(0,242,255,0.8)]`}></div>
+          </div>
+
+          {/* Mobile Filter Trigger */}
+          <button 
+            onClick={() => setShowMobileFilter(true)}
+            className="md:hidden flex items-center justify-center gap-3 px-6 py-4 bg-surface-container border border-primary/20 rounded-sm text-primary font-headline text-xs font-black uppercase tracking-widest hover:neon-border-cyan transition-all"
+          >
+            <span className="material-icons text-sm">filter_list</span>
+            Budget & Filters
+          </button>
         </motion.div>
 
-        {/* Filter UI */}
-        {!isAccessory && (
-          <div className="flex flex-wrap gap-4 mb-16">
-            {[
-              { id: 'all', label: 'All Inventory' },
-              { id: 'new', label: 'Brand New (Factory Sealed)' },
-              { id: 'used', label: 'Used (Certified Value)' }
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setFilter(f.id as any)}
-                className={`px-6 py-3 font-headline text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
-                  filter === f.id
-                    ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
-                    : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Desktop Sidebar Filter */}
+          <aside className="hidden lg:block w-80 flex-shrink-0 space-y-8">
+            <PriceFilter 
+              min={currentCategoryMinMax.min}
+              max={currentCategoryMinMax.max}
+              currentMin={priceRange.min}
+              currentMax={priceRange.max}
+              onChange={(min, max) => setPriceRange({ min, max })}
+            />
 
-        {renderSpecializedGrid()}
+            {!isAccessory && (
+              <div className="bg-surface-container/40 backdrop-blur-xl border border-primary/20 p-6 rounded-sm">
+                <h3 className="font-headline text-[10px] font-black text-white/40 uppercase tracking-[0.3em] mb-6">Condition Protocol</h3>
+                <div className="flex flex-col gap-2">
+                  {[
+                    { id: 'all', label: 'All Inventory' },
+                    { id: 'new', label: 'Brand New' },
+                    { id: 'used', label: 'Used' }
+                  ].map((f) => (
+                    <button
+                      key={f.id}
+                      onClick={() => setFilter(f.id as any)}
+                      className={`text-left px-4 py-3 font-headline text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
+                        filter === f.id
+                          ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                          : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                      }`}
+                    >
+                      {f.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
+
+          {/* Main Grid Content */}
+          <div className="flex-grow">
+            {/* Mobile/Tablet Condition Filter (Horizontal) */}
+            {!isAccessory && (
+              <div className="lg:hidden flex flex-wrap gap-4 mb-12">
+                {[
+                  { id: 'all', label: 'All Inventory' },
+                  { id: 'new', label: 'Brand New' },
+                  { id: 'used', label: 'Used' }
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    onClick={() => setFilter(f.id as any)}
+                    className={`px-6 py-3 font-headline text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
+                      filter === f.id
+                        ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                        : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {renderSpecializedGrid()}
+          </div>
+        </div>
       </div>
 
-      {/* Product Details Modal */}
+      {/* Mobile Filter Overlay */}
       <AnimatePresence>
-        {selectedProduct && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+        {showMobileFilter && (
+          <div className="fixed inset-0 z-[110] lg:hidden">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedProduct(null)}
+              onClick={() => setShowMobileFilter(false)}
               className="absolute inset-0 bg-surface/90 backdrop-blur-md"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-surface-container border border-primary/30 rounded-sm shadow-[0_0_50px_rgba(0,242,255,0.2)] overflow-hidden flex flex-col md:flex-row"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute right-0 top-0 bottom-0 w-full max-w-xs bg-surface-container border-l border-primary/20 p-8 overflow-y-auto"
             >
-              <button 
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-50 text-primary/40 hover:text-primary transition-all"
-              >
-                <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
-              </button>
-
-              {/* Product Image */}
-              <div className="w-full md:w-1/2 bg-surface p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-primary/10">
-                {selectedProduct.img ? (
-                  <img 
-                    src={selectedProduct.img} 
-                    alt={selectedProduct.model || selectedProduct.name} 
-                    className="w-full h-full max-h-[400px] object-contain neon-bloom"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <span className="material-symbols-outlined text-9xl text-primary/20 icon-enhanced">inventory_2</span>
-                )}
+              <div className="flex justify-between items-center mb-12">
+                <h2 className="font-headline text-xl font-black text-white uppercase tracking-tighter">Filters</h2>
+                <button 
+                  onClick={() => setShowMobileFilter(false)}
+                  className="text-primary/40 hover:text-primary transition-all"
+                >
+                  <span className="material-symbols-outlined text-3xl">close</span>
+                </button>
               </div>
 
-              {/* Product Info */}
-              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col">
-                <div className="mb-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="h-[1px] w-8 bg-primary"></div>
-                    <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase">
-                      {selectedProduct.condition === 'new' ? 'Brand New' : 'Certified Used'}
-                    </span>
-                  </div>
-                  <h2 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tighter uppercase mb-4 leading-none">
-                    {selectedProduct.model || selectedProduct.name || selectedProduct.label}
-                  </h2>
-                  <div className="text-3xl font-black text-primary neon-glow-cyan">
-                    <span className="text-sm font-bold mr-1">Rs.</span>
-                    {selectedProduct.price}/=
-                  </div>
-                </div>
+              <div className="space-y-12">
+                <PriceFilter 
+                  min={currentCategoryMinMax.min}
+                  max={currentCategoryMinMax.max}
+                  currentMin={priceRange.min}
+                  currentMax={priceRange.max}
+                  onChange={(min, max) => setPriceRange({ min, max })}
+                />
 
-                {/* Technical Specifications */}
-                <div className="mb-10">
-                  <h3 className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-6 border-b border-white/10 pb-2">Technical Specifications</h3>
-                  <div className="grid grid-cols-1 gap-4">
-                    {selectedProduct.specs ? (
-                      <>
-                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Cores</span>
-                          <span className="text-xs font-bold text-white">{selectedProduct.specs.cores}</span>
-                        </div>
-                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Threads</span>
-                          <span className="text-xs font-bold text-white">{selectedProduct.specs.threads}</span>
-                        </div>
-                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Base Clock</span>
-                          <span className="text-xs font-bold text-white">{selectedProduct.specs.base}</span>
-                        </div>
-                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Boost Clock</span>
-                          <span className="text-xs font-bold text-white">{selectedProduct.specs.boost}</span>
-                        </div>
-                        <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                          <span className="text-[10px] font-bold text-primary/60 uppercase tracking-widest">Socket</span>
-                          <span className="text-xs font-bold text-white">{selectedProduct.specs.socket}</span>
-                        </div>
-                      </>
-                    ) : (
-                      <p className="text-[10px] text-white/30 uppercase tracking-widest italic">Specifications available on request</p>
-                    )}
+                {!isAccessory && (
+                  <div className="space-y-6">
+                    <h3 className="font-headline text-[10px] font-black text-white/40 uppercase tracking-[0.3em] border-b border-white/10 pb-2">Condition Protocol</h3>
+                    <div className="flex flex-col gap-3">
+                      {[
+                        { id: 'all', label: 'All Inventory' },
+                        { id: 'new', label: 'Brand New' },
+                        { id: 'used', label: 'Used' }
+                      ].map((f) => (
+                        <button
+                          key={f.id}
+                          onClick={() => {
+                            setFilter(f.id as any);
+                            setShowMobileFilter(false);
+                          }}
+                          className={`text-left px-6 py-4 font-headline text-xs font-bold uppercase tracking-[0.2em] transition-all rounded-sm border ${
+                            filter === f.id
+                              ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
+                              : 'bg-surface-container text-primary/40 border-primary/10 hover:border-primary/40 hover:text-primary'
+                          }`}
+                        >
+                          {f.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Actions */}
-                <div className="mt-auto flex flex-col gap-4">
-                  <button 
-                    onClick={() => {
-                      addToCart({
-                        id: `modal-${selectedProduct.model || selectedProduct.name}`,
-                        title: selectedProduct.model || selectedProduct.name,
-                        price: `LKR ${selectedProduct.price}`,
-                        img: selectedProduct.img || 'https://picsum.photos/seed/pc/400/400',
-                        category: selectedProduct.category
-                      });
-                      setSelectedProduct(null);
-                    }}
-                    className="w-full py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_20px_rgba(0,242,255,0.3)] flex items-center justify-center gap-3"
-                  >
-                    <span className="material-symbols-outlined text-2xl icon-enhanced">add_shopping_cart</span>
-                    Add to Cart
-                  </button>
-                  <a 
-                    href={`https://wa.me/94789827123?text=${encodeURIComponent(`Hi Citrix Computer, I am interested in the ${selectedProduct.model || selectedProduct.name}. Can I get more details?`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 border border-[#25D366]/30 text-[#25D366] font-black text-[10px] uppercase tracking-[0.3em] hover:bg-[#25D366] hover:text-surface transition-all flex items-center justify-center gap-3"
-                  >
-                    <span className="material-symbols-outlined text-2xl icon-enhanced">chat</span>
-                    Inquire on WhatsApp
-                  </a>
-                </div>
+                <button 
+                  onClick={() => setShowMobileFilter(false)}
+                  className="w-full py-4 bg-primary text-surface font-black text-xs uppercase tracking-[0.3em] shadow-[0_0_20px_rgba(0,242,255,0.3)] mt-12"
+                >
+                  Apply Filters
+                </button>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
+
+      {/* Product Details Modal */}
+      <ProductSpecsModal 
+        product={selectedProduct}
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        onAddToCart={(p) => {
+          addToCart({
+            id: `modal-${p.model || p.name}`,
+            title: p.model || p.name,
+            price: `LKR ${p.price}`,
+            img: p.img || 'https://picsum.photos/seed/pc/400/400',
+            category: p.category
+          });
+        }}
+      />
     </div>
   );
 }

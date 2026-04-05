@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import HeroSection from '../components/HeroSection';
+import WelcomePanel from '../components/WelcomePanel';
+import Testimonials from '../components/Testimonials';
+import PromotionalModal from '../components/PromotionalModal';
 
 const MB_INTEL_USED = ['H61 (3rd)', 'H81', 'H110', 'H110 M.2', 'H310', 'H310 M.2', 'H410 M.2', 'H510 M.2', 'B75', 'B85', 'B150', 'B250', 'B360', 'B460', 'Z97', 'Z170', 'Z270', 'Z370', 'Z390', 'Z490'];
 const MB_RYZEN_USED = ['A320', 'A520', 'B450'];
@@ -162,7 +165,16 @@ Please confirm availability and final pricing.`;
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-surface">
+    <div className="flex flex-col min-h-screen bg-surface relative">
+      {/* New Welcome Panel Placement - Top Left below Header */}
+      <div className="absolute top-0 left-0 right-0 z-40 pointer-events-none">
+        <div className="max-w-7xl mx-auto px-4 md:px-12">
+          <div className="pointer-events-auto inline-block">
+            <WelcomePanel />
+          </div>
+        </div>
+      </div>
+
       <HeroSection 
         onStartBuild={() => setIsBuilderModalOpen(true)} 
         techSupportUrl={techSupportUrl} 
@@ -796,6 +808,9 @@ Please confirm availability and final pricing.`;
           </div>
         </div>
       </section>
+
+      <Testimonials />
+      <PromotionalModal />
     </div>
   );
 }

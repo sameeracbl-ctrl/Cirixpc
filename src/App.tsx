@@ -10,6 +10,7 @@ import HardwareCatalog from './pages/HardwareCatalog';
 import Repairs from './pages/Repairs';
 import Workstations from './pages/Workstations';
 import Deals from './pages/Deals';
+import Warranty from './pages/Warranty';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 
@@ -30,6 +31,7 @@ export default function App() {
                 <Route path="/repairs" element={<Repairs />} />
                 <Route path="/workstations" element={<Workstations />} />
                 <Route path="/deals" element={<Deals />} />
+                <Route path="/warranty" element={<Warranty />} />
                 <Route path="/checkout" element={<Checkout />} />
               </Routes>
             </div>

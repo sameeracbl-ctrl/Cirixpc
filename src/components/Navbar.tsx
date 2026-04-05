@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
+import SearchSuggestions from './SearchSuggestions';
+import { searchProducts, Product } from '../constants/inventory';
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -26,6 +28,26 @@ export default function Navbar() {
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  useEffect(() => {
+    if (searchQuery.trim().length > 1) {
+      const results = searchProducts(searchQuery);
+      setSuggestions(results.slice(0, 8));
+      setShowSuggestions(true);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [searchQuery]);
+
+  const handleSuggestionSelect = (product: Product) => {
+    setSearchQuery(product.model || product.name || '');
+    setShowSuggestions(false);
+    setIsSearchOpen(false);
+    navigate(`/category/all/new`);
+  };
 
   useEffect(() => {
     const savedUser = localStorage.getItem('citrix_user');
@@ -275,22 +297,36 @@ export default function Navbar() {
                 <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-4 block">Foundry Search Protocol</span>
                 <h2 className="font-headline text-3xl md:text-5xl font-black text-white uppercase tracking-tighter neon-glow-cyan">Find Your Hardware</h2>
               </div>
-              <form onSubmit={handleSearchSubmit} className="relative group">
-                <input 
-                  autoFocus
-                  type="text"
-                  placeholder="SEARCH INVENTORY (e.g. H81, RTX 4060, RYZEN 5)..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-surface-container/40 border-b-2 border-primary/20 p-4 md:p-8 text-lg md:text-2xl font-bold text-white placeholder:text-primary/20 focus:outline-none focus:border-primary transition-all group-hover:border-primary/50"
+              <div className="relative">
+                <form onSubmit={handleSearchSubmit} className="relative group">
+                  <div className="absolute inset-0 bg-primary/5 blur-xl group-hover:bg-primary/10 transition-all rounded-sm" />
+                  <div className="relative flex items-center bg-surface-container/40 backdrop-blur-3xl border border-primary/20 p-2 md:p-4 rounded-sm group-hover:border-primary/50 transition-all shadow-[0_0_30px_rgba(0,242,255,0.05)]">
+                    <span className="material-symbols-outlined ml-4 md:ml-6 text-primary neon-glow-cyan text-[28px] md:text-[32px] icon-enhanced">search</span>
+                    <input 
+                      autoFocus
+                      type="text"
+                      placeholder="SEARCH INVENTORY (e.g. H81, RTX 4060, RYZEN 5)..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => searchQuery.length > 1 && setShowSuggestions(true)}
+                      className="w-full bg-transparent p-4 md:p-6 text-lg md:text-2xl font-bold text-white placeholder:text-primary/20 focus:outline-none transition-all"
+                    />
+                    <button 
+                      type="submit" 
+                      className="material-symbols-outlined mr-4 md:mr-6 text-primary/40 text-[28px] md:text-[32px] hover:text-primary transition-all icon-enhanced"
+                    >
+                      terminal
+                    </button>
+                  </div>
+                </form>
+                
+                <SearchSuggestions 
+                  suggestions={suggestions} 
+                  onSelect={handleSuggestionSelect}
+                  isVisible={showSuggestions}
                 />
-                <button 
-                  type="submit" 
-                  className="material-symbols-outlined absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-primary/40 text-[28px] md:text-[40px] group-hover:text-primary transition-all icon-enhanced"
-                >
-                  terminal
-                </button>
-              </form>
+              </div>
+              
               <div className="mt-12 flex flex-wrap gap-4 justify-center">
                 {['H81', 'RTX 4060', 'RYZEN 5', 'DDR4', 'SSD', 'PSU'].map(tag => (
                   <button 
