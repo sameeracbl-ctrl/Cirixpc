@@ -45,8 +45,21 @@ export default function Footer() {
             <li className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Main Street, Galle</li>
             <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">0789827123</a></li>
             <li><a className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">HOTLINE: 0789827123</a></li>
+            <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/contact">View on Map</Link></li>
             <li><Link className="text-[10px] font-bold text-white/40 hover:text-primary uppercase tracking-widest transition-colors" to="/warranty">Warranty Policy</Link></li>
           </ul>
+          {/* Small Footer Map */}
+          <div className="mt-8 w-full aspect-video rounded-sm overflow-hidden border border-primary/10 grayscale brightness-50 hover:grayscale-0 hover:brightness-100 transition-all duration-500">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.579461141723!2d80.21440787413662!3d6.052296493933481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17300456185bb%3A0xc07a2761899148d!2sCitrix%20Computer!5e0!3m2!1sen!2slk!4v1712404700000!5m2!1sen!2slk" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
 
         <div>

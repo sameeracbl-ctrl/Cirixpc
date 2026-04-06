@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://citrixpc.com.lk/sitemap.xml

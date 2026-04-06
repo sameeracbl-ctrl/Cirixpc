@@ -157,7 +157,7 @@ export default function Navbar() {
           </div>
           
           <div className="hidden lg:flex items-center justify-center gap-10">
-            {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS'].map((item) => {
+            {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS', 'CONTACT'].map((item) => {
               const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
               const isActive = location.pathname === path;
               return (
@@ -246,7 +246,7 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-8">
-                {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS'].map((item) => {
+                {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS', 'CONTACT'].map((item) => {
                   const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
                   const isActive = location.pathname === path;
                   return (

@@ -798,7 +798,7 @@ Please confirm availability and final pricing.`;
                         <span className="material-icons">add_shopping_cart</span>
                       </button>
                       <button className="w-10 h-10 flex items-center justify-center border border-[#25D366]/50 text-[#25D366] rounded-sm hover:bg-[#25D366] hover:text-surface transition-all">
-                        <span className="material-icons text-lg">chat</span>
+                        <span className="material-icons text-xl">chat</span>
                       </button>
                     </div>
                   </div>
@@ -809,10 +809,7 @@ Please confirm availability and final pricing.`;
         </div>
       </section>
 
-      {/* Testimonials */}
       <Testimonials />
-
-      {/* Promotional Modal */}
       <PromotionalModal />
     </div>
   );
