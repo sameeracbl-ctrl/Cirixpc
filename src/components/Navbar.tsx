@@ -116,82 +116,82 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-[60] bg-white/90 backdrop-blur-[15px] overflow-hidden">
+      <header className="sticky top-0 z-[60] bg-black/90 backdrop-blur-[15px] overflow-hidden">
         {/* Dynamic Separation Line */}
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gray-100" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/5" />
 
-        <nav className="relative flex items-center w-full px-4 md:px-12 py-4 max-w-screen-2xl mx-auto font-headline">
-          <div className="flex-1 flex justify-start">
+        <nav className="relative flex items-center w-full px-4 md:px-12 py-6 max-w-screen-2xl mx-auto font-headline">
+          <div className="flex items-center gap-12 md:gap-20">
             <Link to="/" className="flex items-center gap-3 md:gap-5 group whitespace-nowrap">
               <div className="relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
                   <path 
                      d="M80 20 C60 5 30 5 15 30 C0 55 5 85 35 95 C55 100 80 90 90 70" 
                      fill="none" 
-                     stroke="#000000" 
+                     stroke="#ffffff" 
                      strokeWidth="10" 
                      strokeLinecap="round"
                   />
-                  <path d="M35 40 L55 40 M35 60 L65 60" stroke="#000000" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M35 40 L55 40 M35 60 L65 60" stroke="#ffffff" strokeWidth="5" strokeLinecap="round" />
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-xl md:text-3xl font-black tracking-[-0.05em] text-black uppercase">
+                <span className="text-xl md:text-3xl font-black tracking-[-0.05em] text-white uppercase">
                   CITRIX
                 </span>
-                <span className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-gray-400 uppercase mt-1">
+                <span className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-gray-500 uppercase mt-1">
                   COMPUTER
                 </span>
               </div>
             </Link>
-          </div>
-          
-          <div className="hidden lg:flex items-center justify-center gap-10">
-            {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS', 'CONTACT'].map((item) => {
-              const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
-              const isActive = location.pathname === path;
-              return (
-                <Link 
-                  key={item}
-                  to={path} 
-                  className={`group relative text-sm xl:text-base font-black tracking-[0.3em] transition-all duration-300 px-2 py-3 ${
-                    isActive ? 'text-black' : 'text-gray-400 hover:text-black'
-                  }`}
-                >
-                  {item}
-                  {/* Expanding Underline Effect */}
-                  <span className={`absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full group-hover:left-0 ${isActive ? 'w-full left-0' : ''}`} />
-                </Link>
-              );
-            })}
+            
+            <div className="hidden lg:flex items-center gap-8 xl:gap-12">
+              {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS', 'CONTACT'].map((item) => {
+                const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
+                const isActive = location.pathname === path;
+                return (
+                  <Link 
+                     key={item}
+                     to={path} 
+                     className={`group relative text-[10px] xl:text-[12px] font-black tracking-[0.3em] transition-all duration-300 py-2 ${
+                       isActive ? 'text-white' : 'text-gray-500 hover:text-white'
+                     }`}
+                  >
+                    {item}
+                    {/* Expanding Underline Effect */}
+                    <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full ${isActive ? 'w-full' : ''}`} />
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
           <div className="flex-1 flex items-center justify-end gap-4 md:gap-8">
             <button 
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden text-gray-400 hover:text-black transition-all"
+              className="lg:hidden text-gray-500 hover:text-white transition-all"
             >
               <span className="material-symbols-outlined text-[32px] icon-enhanced">menu</span>
             </button>
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-gray-400 hover:text-black transition-all"
+              className="text-gray-500 hover:text-white transition-all"
             >
               <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">search</span>
             </button>
             <button 
               onClick={() => setIsUserOpen(true)}
-              className="text-gray-400 hover:text-black transition-all"
+              className="text-gray-500 hover:text-white transition-all"
             >
               <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">person</span>
             </button>
             <button 
               onClick={() => setIsCartOpen(true)}
-              className={`text-gray-400 hover:text-black transition-all relative`}
+              className={`text-gray-500 hover:text-white transition-all relative`}
             >
               <span className="material-symbols-outlined text-[28px] md:text-[32px] icon-enhanced">shopping_cart</span>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {itemCount}
                 </span>
               )}
@@ -200,7 +200,7 @@ export default function Navbar() {
         </nav>
 
         {/* Dynamic Separation Line */}
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gray-100" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/5" />
       </header>
 
       {/* Mobile Menu Drawer */}
@@ -219,11 +219,11 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-full w-full max-w-xs z-[110] bg-white p-8 flex flex-col shadow-2xl"
+              className="fixed top-0 left-0 h-full w-full max-w-xs z-[110] bg-black p-8 flex flex-col shadow-2xl border-r border-white/5"
             >
               <div className="flex justify-between items-center mb-16">
-                <span className="text-gray-400 text-[10px] font-black tracking-[0.4em] uppercase">Navigation</span>
-                <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-400 hover:text-black transition-all">
+                <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase">Navigation</span>
+                <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-white transition-all">
                   <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
               </div>
@@ -238,7 +238,7 @@ export default function Navbar() {
                       to={path} 
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-2xl font-black tracking-[0.2em] font-headline uppercase transition-all duration-300 ${
-                        isActive ? 'text-black' : 'text-gray-300 hover:text-black'
+                        isActive ? 'text-white' : 'text-gray-600 hover:text-white'
                       }`}
                     >
                       {item}
@@ -247,12 +247,12 @@ export default function Navbar() {
                 })}
               </div>
 
-              <div className="mt-auto pt-12 border-t border-gray-100">
-                <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.4em] mb-4">Citrix Computer Hub</p>
+              <div className="mt-auto pt-12 border-t border-white/5">
+                <p className="text-[9px] font-bold text-gray-600 uppercase tracking-[0.4em] mb-4">Citrix Computer Hub</p>
                 <div className="flex gap-4">
-                  <a href="#" className="text-gray-400 hover:text-black transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">facebook</span></a>
-                  <a href="#" className="text-gray-400 hover:text-black transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">instagram</span></a>
-                  <a href="#" className="text-gray-400 hover:text-black transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">chat</span></a>
+                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">facebook</span></a>
+                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">instagram</span></a>
+                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><span className="material-symbols-outlined text-[24px] icon-enhanced">chat</span></a>
                 </div>
               </div>
             </motion.div>
@@ -267,23 +267,23 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
           >
             <button 
               onClick={() => setIsSearchOpen(false)}
-              className="absolute top-8 right-8 text-gray-400 hover:text-black transition-all"
+              className="absolute top-8 right-8 text-gray-500 hover:text-white transition-all"
             >
               <span className="material-symbols-outlined text-[40px] icon-enhanced">close</span>
             </button>
             <div className="w-full max-w-3xl">
               <div className="mb-12 text-center">
-                <span className="text-gray-400 text-[10px] font-black tracking-[0.5em] uppercase mb-4 block">Search Inventory</span>
-                <h2 className="font-headline text-3xl md:text-5xl font-black text-black uppercase tracking-tighter">Find Your Hardware</h2>
+                <span className="text-gray-500 text-[10px] font-black tracking-[0.5em] uppercase mb-4 block">Search Inventory</span>
+                <h2 className="font-headline text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">Find Your Hardware</h2>
               </div>
               <div className="relative">
                 <form onSubmit={handleSearchSubmit} className="relative group">
-                  <div className="relative flex items-center bg-gray-50 border border-gray-100 p-2 md:p-4 rounded-sm focus-within:border-black transition-all">
-                    <span className="material-symbols-outlined ml-4 md:ml-6 text-black text-[28px] md:text-[32px] icon-enhanced">search</span>
+                  <div className="relative flex items-center bg-white/5 border border-white/10 p-2 md:p-4 rounded-sm focus-within:border-white transition-all">
+                    <span className="material-symbols-outlined ml-4 md:ml-6 text-white text-[28px] md:text-[32px] icon-enhanced">search</span>
                     <input 
                       autoFocus
                       type="text"
@@ -291,7 +291,7 @@ export default function Navbar() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onFocus={() => searchQuery.length > 1 && setShowSuggestions(true)}
-                      className="w-full bg-transparent p-4 md:p-6 text-lg md:text-2xl font-bold text-black placeholder:text-gray-300 focus:outline-none transition-all"
+                      className="w-full bg-transparent p-4 md:p-6 text-lg md:text-2xl font-bold text-white placeholder:text-gray-600 focus:outline-none transition-all"
                     />
                   </div>
                 </form>
@@ -314,7 +314,7 @@ export default function Navbar() {
                         navigate('/category/processors/all');
                       }
                     }}
-                    className="px-4 md:px-6 py-2 border border-primary/10 text-[9px] md:text-[10px] font-bold text-primary/40 uppercase tracking-widest hover:border-primary hover:text-primary transition-all"
+                    className="px-4 md:px-6 py-2 border border-white/10 text-[9px] md:text-[10px] font-bold text-white/40 uppercase tracking-widest hover:border-white hover:text-white transition-all"
                   >
                     {tag}
                   </button>
@@ -341,14 +341,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-white p-6 md:p-12 flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
             >
               <div className="flex justify-between items-center mb-12 md:mb-16">
                 <div>
-                  <span className="text-gray-400 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">
+                  <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">
                     {userView === 'profile' ? 'Profile' : 'User Access'}
                   </span>
-                  <h2 className="font-headline text-2xl md:text-4xl font-black text-black uppercase tracking-tighter">
+                  <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
                     {userView === 'profile' ? currentUser?.name : 'Login'}
                   </h2>
                 </div>
@@ -357,7 +357,7 @@ export default function Navbar() {
                     setIsUserOpen(false);
                     if (userView !== 'profile') setUserView('initial');
                   }} 
-                  className="text-gray-400 hover:text-black transition-all"
+                  className="text-gray-500 hover:text-white transition-all"
                 >
                   <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
@@ -375,13 +375,13 @@ export default function Navbar() {
                     >
                       <button 
                         onClick={() => setUserView('login')}
-                        className="w-full py-4 bg-black text-white font-black uppercase tracking-widest text-[10px] hover:bg-black/90 transition-all"
+                        className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all"
                       >
                         Login to Foundry
                       </button>
                       <button 
                         onClick={() => setUserView('signup')}
-                        className="w-full py-4 border border-gray-100 text-gray-400 font-black uppercase tracking-widest text-[10px] hover:bg-gray-50 transition-all"
+                        className="w-full py-4 border border-white/10 text-gray-500 font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all"
                       >
                         Create New Account
                       </button>
@@ -398,41 +398,41 @@ export default function Navbar() {
                       className="space-y-6"
                     >
                       <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
                         <input 
                           required
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                           placeholder="ENTER EMAIL"
                         />
                       </div>
                       <div className="space-y-2 relative">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Password</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Password</label>
                         <input 
                           required
                           type={showPassword ? 'text' : 'password'}
                           value={formData.password}
                           onChange={(e) => setFormData({...formData, password: e.target.value})}
-                          className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                           placeholder="ENTER PASSWORD"
                         />
                         <button 
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-gray-400 hover:text-black transition-all"
+                          className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-all"
                         >
                           <span className="material-symbols-outlined text-[20px] icon-enhanced">{showPassword ? 'visibility_off' : 'visibility'}</span>
                         </button>
                       </div>
-                      <button type="submit" className="w-full py-4 bg-black text-white font-black uppercase tracking-widest text-[10px] hover:bg-black/90 transition-all">
+                      <button type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all">
                         Initialize Login
                       </button>
                       <button 
                         type="button"
                         onClick={() => setUserView('initial')}
-                        className="w-full text-[9px] font-black text-gray-400 uppercase tracking-widest hover:text-black transition-colors"
+                        className="w-full text-[9px] font-black text-gray-500 uppercase tracking-widest hover:text-white transition-colors"
                       >
                         Back to Selection
                       </button>
@@ -449,66 +449,66 @@ export default function Navbar() {
                       className="space-y-6"
                     >
                       <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
                         <input 
                           required
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                           placeholder="ENTER FULL NAME"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
                         <input 
                           required
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                           placeholder="ENTER EMAIL"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">WhatsApp Number</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">WhatsApp Number</label>
                         <div className="relative">
                           <input 
                             required
                             type="tel"
                             value={formData.whatsapp}
                             onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-                            className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                            className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                             placeholder="+94 7X XXX XXXX"
                           />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[8px] font-black text-gray-400 uppercase tracking-widest">Verify via WA</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[8px] font-black text-gray-500 uppercase tracking-widest">Verify via WA</span>
                         </div>
                       </div>
                       <div className="space-y-2 relative">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Password</label>
+                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Password</label>
                         <input 
                           required
                           type={showPassword ? 'text' : 'password'}
                           value={formData.password}
                           onChange={(e) => setFormData({...formData, password: e.target.value})}
-                          className="w-full bg-gray-50 border border-gray-100 p-4 text-xs font-bold text-black focus:outline-none focus:border-black transition-all rounded-sm"
+                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
                           placeholder="CREATE PASSWORD"
                         />
                         <button 
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-gray-400 hover:text-black transition-all"
+                          className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-all"
                         >
                           <span className="material-symbols-outlined text-[20px] icon-enhanced">{showPassword ? 'visibility_off' : 'visibility'}</span>
                         </button>
                       </div>
-                      <button type="submit" className="w-full py-4 bg-black text-white font-black uppercase tracking-widest text-[10px] hover:bg-black/90 transition-all">
+                      <button type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all">
                         Create Account
                       </button>
                       <button 
                         type="button"
                         onClick={() => setUserView('initial')}
-                        className="w-full text-[9px] font-black text-gray-400 uppercase tracking-widest hover:text-black transition-colors"
+                        className="w-full text-[9px] font-black text-gray-500 uppercase tracking-widest hover:text-white transition-colors"
                       >
                         Back to Selection
                       </button>
@@ -533,7 +533,7 @@ export default function Navbar() {
                         </motion.span>
                       </div>
                       <h3 className="text-xl font-black text-white uppercase tracking-tighter mb-4 neon-glow-cyan">Account Verified</h3>
-                      <p className="text-[10px] text-primary/60 uppercase tracking-widest leading-relaxed">
+                      <p className="text-[10px] text-accent/60 uppercase tracking-widest leading-relaxed">
                         Welcome to the Citrix Foundry. <br/>
                         Initializing your personalized hub...
                       </p>
@@ -548,25 +548,25 @@ export default function Navbar() {
                       className="space-y-8"
                     >
                       {/* User Info Card */}
-                      <div className="p-6 bg-gray-50 border border-gray-100 rounded-sm">
+                      <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
                         <div className="space-y-6">
                           <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-black/5 border border-black/10 flex items-center justify-center">
-                              <span className="material-symbols-outlined text-black text-xl icon-enhanced">person</span>
+                            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                              <span className="material-symbols-outlined text-white text-xl icon-enhanced">person</span>
                             </div>
                             <div>
-                              <span className="text-[8px] font-black text-gray-400 uppercase tracking-[0.3em] block mb-1">Full Identity</span>
-                              <p className="text-sm font-bold text-black uppercase tracking-tight">{currentUser?.name}</p>
+                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">Full Identity</span>
+                              <p className="text-sm font-bold text-white uppercase tracking-tight">{currentUser?.name}</p>
                             </div>
                           </div>
                           
                           <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-black/5 border border-black/10 flex items-center justify-center">
-                              <span className="material-symbols-outlined text-black text-xl icon-enhanced">alternate_email</span>
+                            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                              <span className="material-symbols-outlined text-white text-xl icon-enhanced">alternate_email</span>
                             </div>
                             <div>
-                              <span className="text-[8px] font-black text-gray-400 uppercase tracking-[0.3em] block mb-1">Email Protocol</span>
-                              <p className="text-xs font-bold text-black/80">{currentUser?.email}</p>
+                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">Email Protocol</span>
+                              <p className="text-xs font-bold text-white/80">{currentUser?.email}</p>
                             </div>
                           </div>
 
@@ -575,25 +575,25 @@ export default function Navbar() {
                               <span className="material-symbols-outlined text-[#25D366] text-xl icon-enhanced">chat</span>
                             </div>
                             <div>
-                              <span className="text-[8px] font-black text-gray-400 uppercase tracking-[0.3em] block mb-1">WhatsApp Link</span>
-                              <p className="text-xs font-bold text-black/80">{currentUser?.whatsapp}</p>
+                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">WhatsApp Link</span>
+                              <p className="text-xs font-bold text-white/80">{currentUser?.whatsapp}</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="p-6 bg-gray-50 border border-gray-100 rounded-sm">
-                        <h3 className="text-xs font-black text-black uppercase tracking-[0.3em] mb-6">My Saved Builds</h3>
+                      <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
+                        <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6">My Saved Builds</h3>
                         <div className="space-y-4">
                           {currentUser?.builds?.length > 0 ? (
                             currentUser.builds.map((build: any, idx: number) => (
-                              <div key={idx} className="p-4 border border-gray-100 bg-white flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-black uppercase tracking-widest">{build.name}</span>
-                                <span className="text-[9px] font-black text-black">{build.price}</span>
+                              <div key={idx} className="p-4 border border-white/10 bg-black flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">{build.name}</span>
+                                <span className="text-[9px] font-black text-white">{build.price}</span>
                               </div>
                             ))
                           ) : (
-                            <div className="py-8 text-center border border-dashed border-gray-200 opacity-30">
+                            <div className="py-8 text-center border border-dashed border-white/10 opacity-30">
                               <span className="material-symbols-outlined text-3xl mb-2 icon-enhanced">construction</span>
                               <p className="text-[9px] font-bold uppercase tracking-widest">No Saved Builds Found</p>
                             </div>
@@ -602,13 +602,13 @@ export default function Navbar() {
                       </div>
 
                       <div className="space-y-4">
-                        <button className="w-full py-4 border border-gray-100 text-gray-400 font-black uppercase tracking-widest text-[10px] hover:bg-gray-50 transition-all flex items-center justify-center gap-3">
+                        <button className="w-full py-4 border border-white/10 text-gray-500 font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all flex items-center justify-center gap-3">
                           <span className="material-symbols-outlined text-sm icon-enhanced">notifications</span>
                           Receive Order Updates on WhatsApp
                         </button>
                         <button 
                           onClick={handleLogout}
-                          className="w-full py-4 border border-red-100 text-red-500 font-black uppercase tracking-widest text-[10px] hover:bg-red-50/50 transition-all"
+                          className="w-full py-4 border border-red-900/30 text-red-500 font-black uppercase tracking-widest text-[10px] hover:bg-red-900/10 transition-all"
                         >
                           Logout from Foundry
                         </button>
@@ -617,9 +617,9 @@ export default function Navbar() {
                   )}
                 </AnimatePresence>
 
-                <div className="pt-12 border-t border-gray-100">
-                  <h3 className="text-xs font-black text-black uppercase tracking-[0.3em] mb-6">Official Community</h3>
-                  <p className="text-[11px] text-gray-400 uppercase tracking-widest leading-relaxed mb-8">
+                <div className="pt-12 border-t border-white/10">
+                  <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6">Official Community</h3>
+                  <p className="text-[11px] text-gray-500 uppercase tracking-widest leading-relaxed mb-8">
                     Join our verified PC builders community for exclusive stock updates and technical support.
                   </p>
                   <a 
@@ -634,8 +634,8 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="mt-auto pt-12 border-t border-gray-100 text-center">
-                <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.4em]">Home of Citrix PC | Established 2014</p>
+              <div className="mt-auto pt-12 border-t border-white/10 text-center">
+                <p className="text-[9px] font-bold text-gray-600 uppercase tracking-[0.4em]">Home of Citrix PC | Established 2014</p>
               </div>
             </motion.div>
           </>
@@ -658,14 +658,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-white p-6 md:p-12 flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
             >
               <div className="flex justify-between items-center mb-12 md:mb-16">
                 <div>
-                  <span className="text-gray-400 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Inventory</span>
-                  <h2 className="font-headline text-2xl md:text-4xl font-black text-black uppercase tracking-tighter">Your Cart</h2>
+                  <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Inventory</span>
+                  <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">Your Cart</h2>
                 </div>
-                <button onClick={() => setIsCartOpen(false)} className="text-gray-400 hover:text-black transition-all">
+                <button onClick={() => setIsCartOpen(false)} className="text-gray-500 hover:text-white transition-all">
                   <span className="material-symbols-outlined text-[32px] icon-enhanced">close</span>
                 </button>
               </div>
@@ -673,36 +673,36 @@ export default function Navbar() {
               <div className="flex-grow overflow-y-auto no-scrollbar pr-2 space-y-6">
                 {cart.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center opacity-30">
-                    <span className="material-icons text-8xl mb-6">shopping_basket</span>
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em]">Cart is Empty</p>
+                    <span className="material-icons text-8xl mb-6 text-white">shopping_basket</span>
+                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white">Cart is Empty</p>
                   </div>
                 ) : (
                   cart.map((item) => (
-                    <div key={item.id} className="flex gap-4 md:gap-6 p-4 bg-gray-50 border border-gray-100 rounded-sm group hover:border-black/30 transition-all">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-sm overflow-hidden border border-gray-100">
+                    <div key={item.id} className="flex gap-4 md:gap-6 p-4 bg-white/5 border border-white/10 rounded-sm group hover:border-white/30 transition-all">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-black rounded-sm overflow-hidden border border-white/10">
                         <img src={item.img} alt={item.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" referrerPolicy="no-referrer" />
                       </div>
                       <div className="flex-grow">
-                        <span className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1 block">{item.category}</span>
-                        <h4 className="text-[10px] md:text-[11px] font-black text-black uppercase tracking-tight mb-3 line-clamp-1">{item.title}</h4>
+                        <span className="text-[8px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-1 block">{item.category}</span>
+                        <h4 className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-tight mb-3 line-clamp-1">{item.title}</h4>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 md:gap-3">
                             <button 
                               onClick={() => updateQuantity(item.id, -1)}
-                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-gray-200 text-black hover:bg-gray-100 transition-all"
+                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-all"
                             >
                               <span className="material-symbols-outlined text-[16px] icon-enhanced">remove</span>
                             </button>
-                            <span className="text-xs font-bold text-black">{item.quantity}</span>
+                            <span className="text-xs font-bold text-white">{item.quantity}</span>
                             <button 
                               onClick={() => updateQuantity(item.id, 1)}
-                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-gray-200 text-black hover:bg-gray-100 transition-all"
+                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-all"
                             >
                               <span className="material-symbols-outlined text-[16px] icon-enhanced">add</span>
                             </button>
                           </div>
                           <div className="text-right">
-                            <div className="text-[10px] md:text-xs font-black text-black">{item.price}</div>
+                            <div className="text-[10px] md:text-xs font-black text-white">{item.price}</div>
                             <button 
                               onClick={() => removeFromCart(item.id)}
                               className="text-[8px] font-bold text-red-500/50 hover:text-red-500 uppercase tracking-widest mt-1"
@@ -718,22 +718,22 @@ export default function Navbar() {
               </div>
 
               {cart.length > 0 && (
-                <div className="mt-auto pt-12 border-t border-gray-100">
+                <div className="mt-auto pt-12 border-t border-white/10">
                   <div className="flex justify-between items-center mb-8">
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Subtotal Manifest</span>
-                    <span className="text-xl md:text-2xl font-black text-black">LKR {total.toLocaleString()}</span>
+                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Subtotal Manifest</span>
+                    <span className="text-xl md:text-2xl font-black text-white">LKR {total.toLocaleString()}</span>
                   </div>
                   <button 
                     onClick={() => {
                       setIsCartOpen(false);
                       navigate('/checkout');
                     }}
-                    className="w-full py-4 md:py-5 bg-black text-white font-black uppercase tracking-widest text-[10px] md:text-[11px] flex items-center justify-center gap-3 hover:bg-black/90 transition-all group"
+                    className="w-full py-4 md:py-5 bg-white text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] flex items-center justify-center gap-3 hover:bg-white/90 transition-all group"
                   >
                     <span className="material-symbols-outlined text-2xl icon-enhanced group-hover:scale-110 transition-transform">shopping_cart_checkout</span>
                     Proceed to Checkout
                   </button>
-                  <p className="text-center mt-6 text-[8px] font-bold text-gray-300 uppercase tracking-[0.2em]">Secure Order Protocol via Citrix WhatsApp</p>
+                  <p className="text-center mt-6 text-[8px] font-bold text-gray-600 uppercase tracking-[0.2em]">Secure Order Protocol via Citrix WhatsApp</p>
                 </div>
               )}
             </motion.div>

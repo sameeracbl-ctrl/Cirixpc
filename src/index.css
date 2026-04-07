@@ -9,16 +9,18 @@
   --color-primary: #000000; /* Minimalist Black */
   --color-secondary: #2563eb; /* Clean Blue */
   --color-accent: #00f2ff; /* Keep a hint of cyan for brand identity */
-  --color-surface: #ffffff;
-  --color-surface-container: #f9fafb;
-  --color-on-surface: #111827;
-  --color-on-surface-variant: #4b5563;
-  --color-outline: #e5e7eb;
+  --color-surface: #000000;
+  --color-surface-container: #0a0a0a;
+  --color-surface-container-high: #111111;
+  --color-surface-container-low: #050505;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #9ca3af;
+  --color-outline: #374151;
 }
 
 @layer base {
   body {
-    @apply font-body bg-surface text-on-surface selection:bg-secondary/20;
+    @apply font-body bg-surface text-on-surface selection:bg-accent/20;
   }
 }
 

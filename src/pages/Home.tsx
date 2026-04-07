@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import HeroSection from '../components/HeroSection';
-import WelcomePanel from '../components/WelcomePanel';
 import Testimonials from '../components/Testimonials';
 import PromotionalModal from '../components/PromotionalModal';
 
@@ -136,16 +135,7 @@ Please confirm availability and final pricing.`;
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white relative">
-      {/* New Welcome Panel Placement - Top Left below Header */}
-      <div className="absolute top-0 left-0 right-0 z-40 pointer-events-none">
-        <div className="max-w-7xl mx-auto px-4 md:px-12">
-          <div className="pointer-events-auto inline-block">
-            <WelcomePanel />
-          </div>
-        </div>
-      </div>
-
+    <div className="flex flex-col min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black relative">
       <HeroSection 
         onStartBuild={() => setIsBuilderModalOpen(true)} 
         techSupportUrl={techSupportUrl} 
