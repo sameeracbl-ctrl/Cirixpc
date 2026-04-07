@@ -106,13 +106,13 @@ export default function Testimonials() {
 
   return (
     <section 
-      className="py-24 bg-surface relative overflow-hidden border-t border-primary/10 group/section"
+      className="py-24 bg-white relative overflow-hidden border-t border-gray-100 group/section"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-50 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-screen-2xl mx-auto px-4 md:px-12 mb-16 relative z-10">
         <motion.div 
@@ -122,14 +122,14 @@ export default function Testimonials() {
           className="text-center"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-[1px] w-12 bg-primary/30"></div>
-            <span className="text-primary text-[11px] font-black tracking-[0.6em] uppercase block">Client Feedback</span>
-            <div className="h-[1px] w-12 bg-primary/30"></div>
+            <div className="h-[1px] w-12 bg-gray-200"></div>
+            <span className="text-gray-400 text-[11px] font-black tracking-[0.6em] uppercase block">Client Feedback</span>
+            <div className="h-[1px] w-12 bg-gray-200"></div>
           </div>
-          <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-4">
-            Trusted by <span className="text-primary neon-glow-cyan">Professionals.</span>
+          <h2 className="font-headline text-4xl md:text-6xl font-black text-black tracking-tighter uppercase mb-4">
+            Trusted by <span className="text-gray-200">Professionals.</span>
           </h2>
-          <p className="text-primary/40 text-xs md:text-sm font-bold tracking-[0.2em] uppercase max-w-2xl mx-auto">
+          <p className="text-gray-400 text-xs md:text-sm font-bold tracking-[0.2em] uppercase max-w-2xl mx-auto">
             Experience the Citrix standard through the eyes of our valued customers.
           </p>
         </motion.div>
@@ -137,11 +137,11 @@ export default function Testimonials() {
 
       {/* Slider Container */}
       <div className="relative max-w-screen-2xl mx-auto px-4 md:px-12">
-        {/* Navigation Arrows - Appear/Glow on Hover */}
+        {/* Navigation Arrows - Appear on Hover */}
         <div className={`absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
           <button 
             onClick={prev}
-            className="w-12 h-12 flex items-center justify-center bg-surface-container/80 backdrop-blur-md border border-primary/30 rounded-full text-primary hover:bg-primary hover:text-surface hover:shadow-[0_0_25px_rgba(0,242,255,0.8)] transition-all group/btn"
+            className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-md border border-gray-100 rounded-full text-black hover:bg-black hover:text-white transition-all group/btn"
           >
             <ChevronLeft className="w-6 h-6 group-hover/btn:scale-110 transition-transform" />
           </button>
@@ -149,7 +149,7 @@ export default function Testimonials() {
         <div className={`absolute -right-2 md:right-2 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
           <button 
             onClick={next}
-            className="w-12 h-12 flex items-center justify-center bg-surface-container/80 backdrop-blur-md border border-primary/30 rounded-full text-primary hover:bg-primary hover:text-surface hover:shadow-[0_0_25px_rgba(0,242,255,0.8)] transition-all group/btn"
+            className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-md border border-gray-100 rounded-full text-black hover:bg-black hover:text-white transition-all group/btn"
           >
             <ChevronRight className="w-6 h-6 group-hover/btn:scale-110 transition-transform" />
           </button>
@@ -176,37 +176,27 @@ export default function Testimonials() {
                 className="flex-shrink-0"
                 style={{ width: cardWidth }}
               >
-                <div className="h-full p-8 bg-surface-container/60 backdrop-blur-xl border border-primary/10 rounded-2xl transition-all duration-500 hover:border-primary/40 hover:neon-border-cyan hover:shadow-[0_0_30px_rgba(0,242,255,0.15)] relative overflow-hidden group">
-                  {/* Subtle Grid Pattern Overlay */}
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-                  
+                <div className="h-full p-8 bg-gray-50 border border-gray-100 rounded-sm transition-all duration-500 hover:border-black hover:shadow-xl relative overflow-hidden group">
                   <div className="relative z-10">
                     <div className="flex gap-1 mb-6">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-primary text-primary shadow-[0_0_10px_rgba(0,242,255,0.5)]" />
+                        <Star key={i} className="w-4 h-4 fill-black text-black" />
                       ))}
                     </div>
                     
-                    <p className="text-white text-sm md:text-base font-medium leading-relaxed mb-8 italic min-h-[100px]">
+                    <p className="text-black text-sm md:text-base font-medium leading-relaxed mb-8 italic min-h-[100px]">
                       "{review.comment}"
                     </p>
                     
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-black text-sm shadow-[0_0_15px_rgba(0,242,255,0.3)]">
+                      <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-black text-sm">
                         {review.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="text-white font-black text-sm uppercase tracking-widest">{review.name}</h4>
-                        <span className="text-primary/40 text-[10px] font-bold uppercase tracking-tighter">Verified Customer</span>
+                        <h4 className="text-black font-black text-sm uppercase tracking-widest">{review.name}</h4>
+                        <span className="text-gray-400 text-[10px] font-bold uppercase tracking-tighter">Verified Customer</span>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Cybernetic Accent */}
-                  <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
-                    <svg viewBox="0 0 100 100" className="w-full h-full fill-primary">
-                      <path d="M100 0 L100 100 L0 0 Z" />
-                    </svg>
                   </div>
                 </div>
               </div>
@@ -223,7 +213,7 @@ export default function Testimonials() {
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(actualIndex)}
-                className={`h-1 transition-all duration-500 ${isActive ? 'w-8 bg-primary shadow-[0_0_10px_rgba(0,242,255,0.8)]' : 'w-2 bg-primary/20'}`}
+                className={`h-1 transition-all duration-500 ${isActive ? 'w-8 bg-black' : 'w-2 bg-gray-200'}`}
               />
             );
           })}
@@ -232,7 +222,7 @@ export default function Testimonials() {
 
       {/* Bottom Decorative Line */}
       <div className="mt-20 max-w-screen-2xl mx-auto px-4 md:px-12">
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-100 to-transparent"></div>
       </div>
     </section>
   );

@@ -37,7 +37,7 @@ const WelcomePanelBorder = ({ isHovered }: { isHovered: boolean }) => {
       <defs>
         <linearGradient id="welcome-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="transparent" />
-          <stop offset="50%" stopColor="#ADD8E6" />
+          <stop offset="50%" stopColor="#000000" />
           <stop offset="100%" stopColor="transparent" />
         </linearGradient>
       </defs>
@@ -45,21 +45,20 @@ const WelcomePanelBorder = ({ isHovered }: { isHovered: boolean }) => {
       <path 
         d={pathData}
         fill="none" 
-        stroke="#ADD8E6" 
+        stroke="#000000" 
         strokeWidth="1"
-        className="opacity-20"
+        className="opacity-10"
       />
       {/* Animated beam */}
       <path 
         d={pathData}
         fill="none" 
         stroke="url(#welcome-beam-gradient)" 
-        strokeWidth="2"
+        strokeWidth="1.5"
         pathLength="100"
         strokeDasharray="20 80"
         className={`animate-border-slide-fast ${isHovered ? 'speed-up' : ''}`}
         style={{ 
-          filter: 'drop-shadow(0 0 5px #ADD8E6)',
           animationDuration: isHovered ? '1.5s' : '3s'
         }}
       />
@@ -82,7 +81,7 @@ export default function WelcomePanel() {
       {/* Small Panel Container */}
       <motion.div 
         animate={isHovered ? { scale: 1.02 } : { scale: 1 }}
-        className="relative px-6 py-4 bg-surface/40 backdrop-blur-md border border-[#ADD8E6]/10 overflow-hidden"
+        className="relative px-6 py-4 bg-white/90 backdrop-blur-md border border-gray-100 overflow-hidden"
         style={{ clipPath: 'polygon(0% 10px, 10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%)' }}
       >
         {/* Sliding Neon Border */}
@@ -95,20 +94,17 @@ export default function WelcomePanel() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#ADD8E6]/5 pointer-events-none"
-              style={{
-                boxShadow: 'inset 0 0 20px rgba(173, 216, 230, 0.2)'
-              }}
+              className="absolute inset-0 bg-black/5 pointer-events-none"
             />
           )}
         </AnimatePresence>
 
         {/* Welcome Text */}
         <div className="relative z-10 flex flex-col">
-          <span className="text-[10px] font-black uppercase tracking-[0.4em] leading-none mb-1 neon-glow-lightblue-dual opacity-80">
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] leading-none mb-1 text-gray-400 opacity-80">
             WELCOME TO
           </span>
-          <h2 className="font-headline text-xl md:text-2xl font-black uppercase tracking-tighter leading-none neon-glow-lightblue-dual">
+          <h2 className="font-headline text-xl md:text-2xl font-black uppercase tracking-tighter leading-none text-black">
             CITRIX HOME
           </h2>
         </div>
@@ -118,9 +114,9 @@ export default function WelcomePanel() {
       {isHovered && (
         <motion.div
           layoutId="pulse-ring"
-          className="absolute inset-0 border border-[#ADD8E6]/30 rounded-sm pointer-events-none"
+          className="absolute inset-0 border border-black/10 rounded-sm pointer-events-none"
           initial={{ opacity: 0, scale: 1 }}
-          animate={{ opacity: [0, 0.5, 0], scale: [1, 1.1, 1.2] }}
+          animate={{ opacity: [0, 0.3, 0], scale: [1, 1.1, 1.2] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
       )}

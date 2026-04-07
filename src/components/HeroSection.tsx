@@ -23,7 +23,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
   }, []);
 
   return (
-    <section className="relative w-full h-[70vh] md:h-[90vh] min-h-[500px] md:min-h-[700px] overflow-hidden border-b border-primary/10">
+    <section className="relative w-full h-[70vh] md:h-[90vh] min-h-[500px] md:min-h-[700px] overflow-hidden border-b border-gray-100">
       {/* Slideshow Background */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -37,12 +37,11 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
           <img
             src={heroImages[currentSlide]}
             alt="Premium Gaming Hardware"
-            className="w-full h-full object-cover brightness-[0.35] scale-105"
+            className="w-full h-full object-cover brightness-[0.9] scale-105"
             referrerPolicy="no-referrer"
           />
           {/* Subtle Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/20 to-transparent opacity-90"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,242,255,0.05),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent opacity-90"></div>
         </motion.div>
       </AnimatePresence>
 
@@ -56,10 +55,10 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
         >
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full md:w-auto">
             <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,242,255,0.4)" }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={onStartBuild}
-              className="w-full md:w-auto px-10 py-4 bg-primary text-surface font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
+              className="w-full md:w-auto px-10 py-4 bg-black text-white font-black text-[10px] uppercase tracking-[0.3em] shadow-lg transition-all"
             >
               Start Your Build
             </motion.button>
@@ -67,7 +66,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
               href={techSupportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full md:w-auto px-10 py-4 border border-primary/30 text-primary font-black text-[10px] uppercase tracking-[0.3em] hover:bg-primary/10 transition-all flex items-center justify-center gap-2"
+              className="w-full md:w-auto px-10 py-4 border border-gray-200 text-black font-black text-[10px] uppercase tracking-[0.3em] hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               Technical Support
             </a>
@@ -76,7 +75,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface to-transparent z-10"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-10"></div>
       
       {/* Slide Indicators */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 flex gap-3 z-20">
@@ -84,13 +83,10 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
           <button 
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`h-1 transition-all duration-500 ${i === currentSlide ? 'bg-primary w-12 shadow-[0_0_10px_rgba(0,242,255,0.8)]' : 'bg-primary/20 w-6 hover:bg-primary/40'}`}
+            className={`h-1 transition-all duration-500 ${i === currentSlide ? 'bg-black w-12' : 'bg-gray-200 w-6 hover:bg-gray-400'}`}
           />
         ))}
       </div>
-
-      {/* Subtle Scanline */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]"></div>
     </section>
   );
 }
