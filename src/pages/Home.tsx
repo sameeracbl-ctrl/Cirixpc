@@ -635,7 +635,7 @@ Please confirm availability and final pricing.`;
       </AnimatePresence>
 
       {/* Premium Category Grid */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section id="hardware" className="py-20 bg-white relative overflow-hidden scroll-mt-24">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -705,7 +705,7 @@ Please confirm availability and final pricing.`;
       </section>
 
       {/* Featured Hardware */}
-      <section className="py-24 bg-gray-50">
+      <section id="featured" className="py-24 bg-gray-50 scroll-mt-24">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12">
           <div className="flex items-center justify-between mb-16">
             <h2 className="font-headline text-2xl font-black text-black tracking-widest uppercase">Featured Inventory</h2>

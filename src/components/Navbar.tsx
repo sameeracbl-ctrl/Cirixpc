@@ -185,10 +185,10 @@ export default function Navbar() {
 
           <nav className="hidden lg:flex items-center nav-links ml-auto mr-8">
             <Link to="/">Home</Link>
-            <Link to="/hardware">Hardware</Link>
+            <Link to="/#hardware">Hardware</Link>
+            <Link to="/#featured">Featured</Link>
+            <Link to="/#testimonials">Reviews</Link>
             <Link to="/repairs">Repair</Link>
-            <Link to="/workstations">Workstation</Link>
-            <Link to="/deals">Deals</Link>
             <Link to="/contact">Contact</Link>
           </nav>
 
@@ -267,19 +267,25 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-8">
-                {['HOME', 'HARDWARE', 'REPAIRS', 'WORKSTATIONS', 'DEALS', 'CONTACT'].map((item) => {
-                  const path = item === 'HOME' ? '/' : `/${item.toLowerCase()}`;
-                  const isActive = location.pathname === path;
+                {[
+                  { label: 'HOME', path: '/' },
+                  { label: 'HARDWARE', path: '/#hardware' },
+                  { label: 'FEATURED', path: '/#featured' },
+                  { label: 'REVIEWS', path: '/#testimonials' },
+                  { label: 'REPAIRS', path: '/repairs' },
+                  { label: 'CONTACT', path: '/contact' }
+                ].map((item) => {
+                  const isActive = location.pathname === item.path;
                   return (
                     <Link 
-                      key={item}
-                      to={path} 
+                      key={item.label}
+                      to={item.path} 
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-2xl font-black tracking-[0.2em] font-headline uppercase transition-all duration-300 ${
                         isActive ? 'text-white' : 'text-gray-600 hover:text-white'
                       }`}
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   );
                 })}

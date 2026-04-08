@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SocialSidebar from './components/SocialSidebar';
@@ -15,11 +16,32 @@ import Contact from './pages/Contact';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 
+function ScrollToHash() {
+  const { hash, pathname } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.replace('#', ''));
+      if (element) {
+        // Use a small timeout to ensure the element is rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [hash, pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <CartProvider>
       <SearchProvider>
         <Router>
+          <ScrollToHash />
           <div className="flex flex-col min-h-screen bg-surface text-on-surface">
             <Navbar />
             <SocialSidebar />

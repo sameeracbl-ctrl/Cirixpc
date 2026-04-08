@@ -106,7 +106,8 @@ export default function Testimonials() {
 
   return (
     <section 
-      className="py-24 bg-white relative overflow-hidden border-t border-gray-100 group/section"
+      id="testimonials"
+      className="py-24 bg-white relative overflow-hidden border-t border-gray-100 group/section scroll-mt-24"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import ProductSpecsModal from '../components/ProductSpecsModal';
@@ -65,6 +65,13 @@ export default function ProductGrid() {
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 500000 });
   const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const scrollToGrid = () => {
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const parsePrice = (priceStr: string) => {
     if (!priceStr) return 0;
@@ -175,11 +182,14 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-processors" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Processors</h3>}
-            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
               {Object.keys(usedProcessors).map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    setActiveTab(category);
+                    scrollToGrid();
+                  }}
                   className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
                     activeTab === category
                       ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
@@ -404,11 +414,14 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-motherboards" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Motherboards</h3>}
-            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
               {Object.keys(motherboardInventory).map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    setActiveTab(category);
+                    scrollToGrid();
+                  }}
                   className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
                     activeTab === category
                       ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
@@ -564,11 +577,14 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-ram" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used RAM</h3>}
-            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
               {Object.keys(usedRAM).map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    setActiveTab(category);
+                    scrollToGrid();
+                  }}
                   className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
                     activeTab === category
                       ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
@@ -652,11 +668,14 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-vga" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used VGA</h3>}
-            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
               {Object.keys(vgaInventory).map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    setActiveTab(category);
+                    scrollToGrid();
+                  }}
                   className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
                     activeTab === category
                       ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'
@@ -744,11 +763,14 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-storage" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Storage</h3>}
-            <div className="flex flex-wrap gap-4 border-b border-primary/20 pb-4">
+            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
               {Object.keys(usedStorage).map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    setActiveTab(category);
+                    scrollToGrid();
+                  }}
                   className={`px-8 py-3 font-headline text-sm font-bold uppercase tracking-widest transition-all rounded-sm border ${
                     activeTab === category
                       ? 'bg-primary text-surface border-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]'

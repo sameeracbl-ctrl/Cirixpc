@@ -27,7 +27,7 @@ export default function HardwareCatalog() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-body">
+    <div className="min-h-screen bg-black text-white font-body scroll-mt-24">
       <div className="max-w-screen-2xl mx-auto px-4 md:px-12 py-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 mb-10">
