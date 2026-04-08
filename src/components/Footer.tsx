@@ -7,18 +7,22 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-12 py-20 max-w-screen-2xl mx-auto relative z-10">
         <div className="space-y-8 flex flex-col items-center md:items-start text-center md:text-left">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path 
-                  d="M80 20 C60 5 30 5 15 30 C0 55 5 85 35 95 C55 100 80 90 90 70" 
-                  fill="none" 
-                  stroke="#000000" 
-                  strokeWidth="8" 
-                  strokeLinecap="round"
-                />
-              </svg>
+            <div className="w-10 h-10 flex-shrink-0">
+              <img 
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTI1MCAxMDBDMTY3LjE1NyAxMDAgMTAwIDE2Ny4xNTcgMTAwIDI1MEMxMDAgMzMyLjg0MyAxNjcuMTU3IDQwMCAyNTAgNDAwVjM1MEMxOTQuNzcyIDM1MCAxNTAgMzA1LjIyOCAxNTAgMjUwQzE1MCAxOTQuNzcyIDE5NC43NzIgMTUwIDI1MCAxNTBWMTAwWiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAxMzBIMTgwQzE4MCAxMzAgMTgwIDE1NSAxNTUgMTU1SDUwQzI1IDE1NSAyNSAxMzAgNTAgMTMwWiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik0yMCAyMTBIMTYwQzE2MCAyMTAgMTYwIDIzNSAxMzUgMjM1SDIwQy01IDIzNSAtNSAyMTAgMjAgMjEwWiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAyOTBIMTgwQzE4MCAyOTAgMTgwIDMxNSAxNTUgMzE1SDUwQzI1IDMxNSAyNSAyOTAgNTAgMjkwWiIgZmlsbD0idXJsKCNwYWludDNfbGluZWFyKSIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMTAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iMjUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iNTAiIHkxPSIxNDIuNSIgeDI9IjE4MCIgeTI9IjE0Mi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMjAiIHkxPSIyMjIuNSIgeDI9IjE2MCIgeTI9IjIyMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyIiB4MT0iNTAiIHkxPSIzMDIuNSIgeDI9IjE4MCIgeTI9IjMwMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+" 
+                alt="Citrix Logo" 
+                className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
-            <span className="text-xl font-black tracking-tighter text-black uppercase">CITRIX COMPUTER</span>
+            <div className="flex flex-col leading-none">
+              <span className="text-2xl font-black tracking-[-0.05em] text-black uppercase">
+                CITRIX
+              </span>
+              <span className="text-[8px] font-bold tracking-[0.4em] text-gray-400 uppercase mt-1">
+                COMPUTER
+              </span>
+            </div>
           </div>
           <p className="text-gray-400 text-[10px] font-body uppercase tracking-[0.2em] leading-relaxed border-l-2 border-gray-100 pl-6 max-w-xs md:text-left">
             The pinnacle of high-end computing solutions and professional technical services in Sri Lanka. 
@@ -61,12 +65,27 @@ export default function Footer() {
 
         <div>
           <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em] mb-8">Support Hub</h4>
-          <ul className="space-y-4">
+          <ul className="space-y-4 mb-8">
             <li><Link className="text-[10px] font-bold text-gray-400 hover:text-black uppercase tracking-widest transition-colors" to="/terms">Terms of Service</Link></li>
             <li><Link className="text-[10px] font-bold text-gray-400 hover:text-black uppercase tracking-widest transition-colors" to="/privacy">Privacy Policy</Link></li>
             <li><a className="text-[10px] font-bold text-gray-400 hover:text-black uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">Contact Expert</a></li>
             <li><a className="text-[10px] font-bold text-gray-400 hover:text-black uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">Wholesale Inquiry</a></li>
           </ul>
+          
+          <div className="flex gap-4">
+            <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="social-icon-premium" title="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1KCanXjNAP/" target="_blank" rel="noopener noreferrer" className="social-icon-premium" title="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@sameeraja4" target="_blank" rel="noopener noreferrer" className="social-icon-premium" title="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.53 1.53-.3 2.7-1.67 2.67-3.22.03-5.45 0-10.89.01-16.34z"/></svg>
+            </a>
+            <a href="mailto:computercitrix@gmail.com" className="social-icon-premium" title="Gmail">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.573l8.073-6.08c1.618-1.214 3.927-.059 3.927 1.964z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
