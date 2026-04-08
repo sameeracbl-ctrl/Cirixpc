@@ -19,7 +19,9 @@ import {
   Users, 
   Minus, 
   Plus,
-  ShoppingBag
+  ShoppingBag,
+  MessageCircle,
+  Music
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
@@ -145,63 +147,97 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={scrolled ? 'scrolled' : ''}>
-        <div className="logo-box">
-          <Link to="/" className="flex items-center gap-4 group whitespace-nowrap">
-            <img 
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTI1MCAxMDBDMTY3LjE1NyAxMDAgMTAwIDE2Ny4xNTcgMTAwIDI1MEMxMDAgMzMyLjg0MyAxNjcuMTU3IDQwMCAyNTAgNDAwVjM1MEMxOTQuNzcyIDM1MCAxNTAgMzA1LjIyOCAxNTAgMjUwQzE1MCAxOTQuNzcyIDE5NC43NzIgMTUwIDI1MCAxNTBWMTAwWiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAxMzBIMTgwQzE4MCAxMzAgMTgwIDE1NSAxNTUgMTU1SDUwQzI1IDE1NSAyNSAxMzAgNTAgMTMwWiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik0yMCAyMTBIMTYwQzE2MCAyMTAgMTYwIDIzNSAxMzUgMjM1SDIwQy01IDIzNSAtNSAyMTAgMjAgMjEwWiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAyOTBIMTgwQzE4MCAyOTAgMTgwIDMxNSAxNTUgMzE1SDUwQzI1IDMxNSAyNSAyOTAgNTAgMjkwWiIgZmlsbD0idXJsKCNwYWludDNfbGluZWFyKSIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMTAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iMjUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iNTAiIHkxPSIxNDIuNSIgeDI9IjE4MCIgeTI9IjE0Mi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMjAiIHkxPSIyMjIuNSIgeDI9IjE2MCIgeTI9IjIyMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyIiB4MT0iNTAiIHkxPSIzMDIuNSIgeDI9IjE4MCIgeTI9IjMwMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+" 
-              alt="Citrix Computer" 
-              referrerPolicy="no-referrer"
-            />
-            <div className="flex flex-col leading-none">
-              <span className="text-2xl md:text-3xl font-black tracking-[-0.05em] text-white uppercase">
-                CITRIX
-              </span>
-              <span className="text-[9px] md:text-[10px] font-bold tracking-[0.4em] text-gray-500 uppercase mt-1">
-                COMPUTER
-              </span>
-            </div>
-          </Link>
+      <header className={`${scrolled ? 'scrolled' : ''} flex flex-col md:flex-row items-center justify-between`}>
+        {/* Mobile Social Row - Option B: Quick Links */}
+        <div className="flex md:hidden items-center justify-center gap-8 w-full pb-3 mb-2 border-b border-white/5">
+          <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform">
+            <MessageCircle className="w-5 h-5" />
+          </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-transform">
+            <Music className="w-5 h-5" />
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform">
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-transform">
+            <Mail className="w-5 h-5" />
+          </a>
         </div>
 
-        <nav className="hidden lg:flex items-center nav-links ml-auto mr-12">
-          <Link to="/">Home</Link>
-          <Link to="/hardware">Hardware</Link>
-          <Link to="/repairs">Repair</Link>
-          <Link to="/workstations">Workstation</Link>
-          <Link to="/deals">Deals</Link>
-          <Link to="/contact">Contact</Link>
-        </nav>
+        <div className="flex items-center justify-between w-full">
+          <div className="logo-box">
+            <Link to="/" className="flex items-center gap-2 md:gap-4 group whitespace-nowrap">
+              <img 
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTI1MCAxMDBDMTY3LjE1NyAxMDAgMTAwIDE2Ny4xNTcgMTAwIDI1MEMxMDAgMzMyLjg0MyAxNjcuMTU3IDQwMCAyNTAgNDAwVjM1MEMxOTQuNzcyIDM1MCAxNTAgMzA1LjIyOCAxNTAgMjUwQzE1MCAxOTQuNzcyIDE5NC43NzIgMTUwIDI1MCAxNTBWMTAwWiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAxMzBIMTgwQzE4MCAxMzAgMTgwIDE1NSAxNTUgMTU1SDUwQzI1IDE1NSAyNSAxMzAgNTAgMTMwWiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik0yMCAyMTBIMTYwQzE2MCAyMTAgMTYwIDIzNSAxMzUgMjM1SDIwQy01IDIzNSAtNSAyMTAgMjAgMjEwWiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAyOTBIMTgwQzE4MCAyOTAgMTgwIDMxNSAxNTUgMzE1SDUwQzI1IDMxNSAyNSAyOTAgNTAgMjkwWiIgZmlsbD0idXJsKCNwYWludDNfbGluZWFyKSIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMTAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iMjUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iNTAiIHkxPSIxNDIuNSIgeDI9IjE4MCIgeTI9IjE0Mi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMjAiIHkxPSIyMjIuNSIgeDI9IjE2MCIgeTI9IjIyMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyIiB4MT0iNTAiIHkxPSIzMDIuNSIgeDI9IjE4MCIgeTI9IjMwMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+" 
+                alt="Citrix Computer" 
+                referrerPolicy="no-referrer"
+              />
+              <div className="flex flex-col leading-none">
+                <span className="text-xl md:text-5xl font-black tracking-[-0.05em] text-white uppercase">
+                  CITRIX
+                </span>
+                <span className="text-[7px] md:text-[12px] font-bold tracking-[0.4em] text-gray-500 uppercase mt-1 md:mt-2">
+                  COMPUTER
+                </span>
+              </div>
+            </Link>
+          </div>
 
-        {/* Functional Icons */}
-        <div className="header-icons flex items-center gap-6">
-          <button 
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="lg:hidden"
-          >
-            <Menu className="w-8 h-8" />
-          </button>
-          <button 
-            onClick={() => setIsSearchOpen(true)}
-          >
-            <Search className="w-7 h-7 md:w-8 md:h-8" />
-          </button>
-          <button 
-            onClick={() => setIsUserOpen(true)}
-          >
-            <User className="w-7 h-7 md:w-8 md:h-8" />
-          </button>
-          <button 
-            onClick={() => setIsCartOpen(true)}
-            className="relative"
-          >
-            <ShoppingCart className="w-7 h-7 md:w-8 md:h-8" />
-            {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {itemCount}
-              </span>
-            )}
-          </button>
+          <nav className="hidden lg:flex items-center nav-links ml-auto mr-8">
+            <Link to="/">Home</Link>
+            <Link to="/hardware">Hardware</Link>
+            <Link to="/repairs">Repair</Link>
+            <Link to="/workstations">Workstation</Link>
+            <Link to="/deals">Deals</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
+
+          {/* Integrated Icons Section */}
+          <div className="header-icons flex items-center gap-4 md:gap-8">
+            {/* Social Icons - Desktop Only (Integrated next to Search) */}
+            <div className="hidden md:flex items-center gap-4 xl:gap-6 mr-4 border-r border-white/10 pr-6">
+              <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform">
+                <MessageCircle className="w-6 h-6 xl:w-8 xl:h-8" />
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-transform">
+                <Music className="w-6 h-6 xl:w-8 xl:h-8" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform">
+                <Facebook className="w-6 h-6 xl:w-8 xl:h-8" />
+              </a>
+              <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-transform">
+                <Mail className="w-6 h-6 xl:w-8 xl:h-8" />
+              </a>
+            </div>
+
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+            >
+              <Search className="w-6 h-6 md:w-10 md:h-10" />
+            </button>
+            <button 
+              onClick={() => setIsUserOpen(true)}
+            >
+              <User className="w-6 h-6 md:w-10 md:h-10" />
+            </button>
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="relative"
+            >
+              <ShoppingCart className="w-6 h-6 md:w-10 md:h-10" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center font-bold">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden ml-2"
+            >
+              <Menu className="w-7 h-7" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -214,14 +250,14 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/20 backdrop-blur-md"
+              className="fixed inset-0 z-[1100] bg-black/20 backdrop-blur-md"
             />
             <motion.div 
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-full w-full max-w-xs z-[110] bg-black p-8 flex flex-col shadow-2xl border-r border-white/5"
+              className="fixed top-0 left-0 h-full w-full max-w-xs z-[1200] bg-black p-8 flex flex-col shadow-2xl border-r border-white/5"
             >
               <div className="flex justify-between items-center mb-16">
                 <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase">Navigation</span>
@@ -251,10 +287,11 @@ export default function Navbar() {
 
               <div className="mt-auto pt-12 border-t border-white/5">
                 <p className="text-[9px] font-bold text-gray-600 uppercase tracking-[0.4em] mb-4">Citrix Computer Hub</p>
-                <div className="flex gap-4">
-                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><Facebook className="w-6 h-6" /></a>
-                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><Instagram className="w-6 h-6" /></a>
-                  <a href="#" className="text-gray-500 hover:text-white transition-all hover:scale-110"><MessageSquare className="w-6 h-6" /></a>
+                <div className="flex gap-6">
+                  <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-all"><MessageCircle className="w-6 h-6" /></a>
+                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-all"><Music className="w-6 h-6" /></a>
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-all"><Facebook className="w-6 h-6" /></a>
+                  <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-all"><Mail className="w-6 h-6" /></a>
                 </div>
               </div>
             </motion.div>
@@ -269,13 +306,13 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
           >
             <button 
               onClick={() => setIsSearchOpen(false)}
-              className="absolute top-8 right-8 text-gray-500 hover:text-white transition-all"
+              className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-[#00f2ff] transition-all p-4 z-[10000]"
             >
-              <X className="w-10 h-10" />
+              <X className="w-8 h-8 md:w-10 md:h-10" />
             </button>
             <div className="w-full max-w-3xl">
               <div className="mb-12 text-center">
@@ -336,14 +373,14 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsUserOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/20 backdrop-blur-md"
+              className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md"
             />
             <motion.div 
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[10000] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
             >
               <div className="flex justify-between items-center mb-12 md:mb-16">
                 <div>
@@ -359,7 +396,7 @@ export default function Navbar() {
                     setIsUserOpen(false);
                     if (userView !== 'profile') setUserView('initial');
                   }} 
-                  className="text-gray-500 hover:text-white transition-all"
+                  className="text-white hover:text-[#00f2ff] transition-all p-4"
                 >
                   <X className="w-8 h-8" />
                 </button>
@@ -652,21 +689,21 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsCartOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/20 backdrop-blur-md"
+              className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md"
             />
             <motion.div 
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[110] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[10000] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
             >
               <div className="flex justify-between items-center mb-12 md:mb-16">
                 <div>
                   <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Inventory</span>
                   <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">Your Cart</h2>
                 </div>
-                <button onClick={() => setIsCartOpen(false)} className="text-gray-500 hover:text-white transition-all">
+                <button onClick={() => setIsCartOpen(false)} className="text-white hover:text-[#00f2ff] transition-all p-4">
                   <X className="w-8 h-8" />
                 </button>
               </div>

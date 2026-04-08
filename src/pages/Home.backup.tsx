@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import HeroSection from '../components/HeroSection';
 import WelcomePanel from '../components/WelcomePanel';
 import Testimonials from '../components/Testimonials';
-import PromotionalModal from '../components/PromotionalModal';
 
 const MB_INTEL_USED = ['H61 (3rd)', 'H81', 'H110', 'H110 M.2', 'H310', 'H310 M.2', 'H410 M.2', 'H510 M.2', 'B75', 'B85', 'B150', 'B250', 'B360', 'B460', 'Z97', 'Z170', 'Z270', 'Z370', 'Z390', 'Z490'];
 const MB_RYZEN_USED = ['A320', 'A520', 'B450'];
@@ -810,7 +809,6 @@ Please confirm availability and final pricing.`;
       </section>
 
       <Testimonials />
-      <PromotionalModal />
     </div>
   );
 }
