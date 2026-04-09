@@ -1,805 +1,309 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, ShoppingCart, User, Menu, X, ChevronDown, Mail, Lock, Loader2, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { auth } from '../firebase';
 import { 
-  Search, 
-  User, 
-  ShoppingCart, 
-  Menu, 
-  X, 
-  Facebook, 
-  Instagram, 
-  MessageSquare, 
-  Eye, 
-  EyeOff, 
-  CheckCircle, 
-  Mail, 
-  Wrench, 
-  Bell, 
-  Users, 
-  Minus, 
-  Plus,
-  ShoppingBag,
-  MessageCircle,
-  Music
-} from 'lucide-react';
-import { useCart } from '../context/CartContext';
-import { useSearch } from '../context/SearchContext';
-import SearchSuggestions from './SearchSuggestions';
-import { searchProducts, Product } from '../constants/inventory';
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut,
+  User as FirebaseUser 
+} from 'firebase/auth';
 
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isUserOpen, setIsUserOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { searchQuery, setSearchQuery } = useSearch();
-  const { cart, itemCount, total, updateQuantity, removeFromCart } = useCart();
-  const [cartPulse, setCartPulse] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // Auth State
-  const [userView, setUserView] = useState<'initial' | 'login' | 'signup' | 'profile' | 'success'>('initial');
-  const [currentUser, setCurrentUser] = useState<any>(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    whatsapp: '',
-    password: ''
-  });
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Auth States
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [error, setError] = useState('');
 
+  // Handle Auth State Change
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Handle Scroll Effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const [suggestions, setSuggestions] = useState<Product[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  useEffect(() => {
-    if (searchQuery.trim().length > 1) {
-      const results = searchProducts(searchQuery);
-      setSuggestions(results.slice(0, 8));
-      setShowSuggestions(true);
-    } else {
-      setSuggestions([]);
-      setShowSuggestions(false);
-    }
-  }, [searchQuery]);
+  const menuItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Service', path: '/service' },
+    { name: 'Category', path: '/category' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact Us', path: '/contact' },
+  ];
 
-  const handleSuggestionSelect = (product: Product) => {
-    setSearchQuery(product.model || product.name || '');
-    setShowSuggestions(false);
-    setIsSearchOpen(false);
-    navigate(`/category/all/new`);
-  };
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem('citrix_user');
-    if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
-      setUserView('profile');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (itemCount > 0) {
-      setCartPulse(true);
-      const timer = setTimeout(() => setCartPulse(false), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [itemCount]);
-
-  const handleSignup = (e: FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock Signup
-    const newUser = { ...formData, id: Date.now(), builds: [] };
-    localStorage.setItem('citrix_user', JSON.stringify(newUser));
-    setUserView('success');
-    setTimeout(() => {
-      setCurrentUser(newUser);
-      setUserView('profile');
-    }, 2000);
-  };
-
-  const handleLogin = (e: FormEvent) => {
-    e.preventDefault();
-    const savedUser = localStorage.getItem('citrix_user');
-    if (savedUser) {
-      const user = JSON.parse(savedUser);
-      if (user.email === formData.email && user.password === formData.password) {
-        setCurrentUser(user);
-        setUserView('profile');
+    setIsLoading(true);
+    setError('');
+    try {
+      if (authMode === 'signup') {
+        await createUserWithEmailAndPassword(auth, email, password);
       } else {
-        alert('Invalid credentials (Mock Auth)');
+        await signInWithEmailAndPassword(auth, email, password);
       }
-    } else {
-      alert('No user found. Please create an account.');
+      setActiveTab(null);
+      setEmail('');
+      setPassword('');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleLogout = () => {
-    setCurrentUser(null);
-    setUserView('initial');
-    // We keep the user in localStorage for mock persistence, but "log out" the session
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
-    setIsSearchOpen(false);
-    if (!location.pathname.includes('/category')) {
-      navigate('/category/all/new'); // Redirect to global search results
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (err: any) {
+      console.error("Logout Error:", err.message);
     }
-  };
-
-  const checkoutViaWhatsApp = () => {
-    const cartList = cart.map(item => `• ${item.title} (${item.quantity}x) - ${item.price}`).join('\n');
-    const message = `*CITRIX COMPUTER - NEW ORDER*\n------------------------------------------\n${cartList}\n------------------------------------------\n*TOTAL:* LKR ${total.toLocaleString()}\n------------------------------------------\nPlease confirm availability and payment details.`;
-    window.open(`https://wa.me/94789827123?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
     <>
-      <header className={`${scrolled ? 'scrolled' : ''} flex flex-col md:flex-row items-center justify-between`}>
-        {/* Mobile Social Row - Option B: Quick Links */}
-        <div className="flex md:hidden items-center justify-center gap-8 w-full pb-3 mb-2 border-b border-white/5">
-          <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform">
-            <MessageCircle className="w-5 h-5" />
-          </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-transform">
-            <Music className="w-5 h-5" />
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform">
-            <Facebook className="w-5 h-5" />
-          </a>
-          <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-transform">
-            <Mail className="w-5 h-5" />
-          </a>
-        </div>
-
-        <div className="flex items-center justify-between w-full">
-          <div className="logo-box">
-            <Link to="/" className="flex items-center gap-2 md:gap-4 group whitespace-nowrap">
+      {/* CRITICAL: "fixed top-0 left-0 w-full" 
+          This keeps the navbar pinned to the top while scrolling.
+      */}
+      <header 
+        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
+          scrolled 
+            ? 'bg-[#0a0a0a]/90 backdrop-blur-xl py-2 shadow-2xl border-b border-white/5' 
+            : 'bg-[#0a0a0a] py-4 border-b border-white/5'
+        }`}
+      >
+        <div className="w-full px-4 md:px-10 mx-auto flex items-center justify-between gap-4">
+          
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-3 group shrink-0">
+            <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
               <img 
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTI1MCAxMDBDMTY3LjE1NyAxMDAgMTAwIDE2Ny4xNTcgMTAwIDI1MEMxMDAgMzMyLjg0MyAxNjcuMTU3IDQwMCAyNTAgNDAwVjM1MEMxOTQuNzcyIDM1MCAxNTAgMzA1LjIyOCAxNTAgMjUwQzE1MCAxOTQuNzcyIDE5NC43NzIgMTUwIDI1MCAxNTBWMTAwWiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAxMzBIMTgwQzE4MCAxMzAgMTgwIDE1NSAxNTUgMTU1SDUwQzI1IDE1NSAyNSAxMzAgNTAgMTMwWiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik0yMCAyMTBIMTYwQzE2MCAyMTAgMTYwIDIzNSAxMzUgMjM1SDIwQy01IDIzNSAtNSAyMTAgMjAgMjEwWiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyKSIvPgogIDxwYXRoIGQ9Ik01MCAyOTBIMTgwQzE4MCAyOTAgMTgwIDMxNSAxNTUgMzE1SDUwQzI1IDMxNSAyNSAyOTAgNTAgMjkwWiIgZmlsbD0idXJsKCNwYWludDNfbGluZWFyKSIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMTAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iMjUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iNTAiIHkxPSIxNDIuNSIgeDI9IjE4MCIgeTI9IjE0Mi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMjAiIHkxPSIyMjIuNSIgeDI9IjE2MCIgeTI9IjIyMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyIiB4MT0iNTAiIHkxPSIzMDIuNSIgeDI9IjE4MCIgeTI9IjMwMi41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMDcyRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBGRkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+" 
-                alt="Citrix Computer" 
-                referrerPolicy="no-referrer"
+                src="https://raw.githubusercontent.com/sameeracbl-ctrl/Cirixpc/main/public/citrix-logo.png" 
+                className="w-full h-full object-contain filter drop-shadow-[0_0_10px_#00ccff]"
+                alt="Citrix" 
               />
-              <div className="flex flex-col leading-none">
-                <span className="text-xl md:text-5xl font-black tracking-[-0.05em] text-white uppercase">
-                  CITRIX
-                </span>
-                <span className="text-[7px] md:text-[12px] font-bold tracking-[0.4em] text-gray-500 uppercase mt-1 md:mt-2">
-                  COMPUTER
-                </span>
-              </div>
-            </Link>
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter group-hover:text-[#00ccff]">CITRIX</span>
+              <span className="text-[7px] md:text-[10px] font-bold text-[#00ccff] tracking-[0.3em] uppercase">COMPUTER</span>
+            </div>
+          </Link>
+
+          {/* SEARCH BAR */}
+          <div className="hidden lg:flex flex-1 max-w-md mx-8 relative">
+            <input 
+              type="text" 
+              placeholder="Search components..." 
+              className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-xl py-2.5 pl-5 pr-12 focus:outline-none focus:border-[#00ccff]/50 focus:bg-black transition-all" 
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500" size={18} />
           </div>
 
-          <nav className="hidden lg:flex items-center nav-links ml-auto mr-8">
-            <Link to="/">Home</Link>
-            <Link to="/#hardware">Hardware</Link>
-            <Link to="/#featured">Featured</Link>
-            <Link to="/#testimonials">Reviews</Link>
-            <Link to="/repairs">Repair</Link>
-            <Link to="/contact">Contact</Link>
-          </nav>
-
-          {/* Integrated Icons Section */}
-          <div className="header-icons flex items-center gap-4 md:gap-8">
-            {/* Social Icons - Desktop Only (Integrated next to Search) */}
-            <div className="hidden md:flex items-center gap-4 xl:gap-6 mr-4 border-r border-white/10 pr-6">
-              <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform">
-                <MessageCircle className="w-6 h-6 xl:w-8 xl:h-8" />
-              </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-transform">
-                <Music className="w-6 h-6 xl:w-8 xl:h-8" />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform">
-                <Facebook className="w-6 h-6 xl:w-8 xl:h-8" />
-              </a>
-              <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-transform">
-                <Mail className="w-6 h-6 xl:w-8 xl:h-8" />
-              </a>
-            </div>
-
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-            >
-              <Search className="w-6 h-6 md:w-10 md:h-10" />
-            </button>
-            <button 
-              onClick={() => setIsUserOpen(true)}
-            >
-              <User className="w-6 h-6 md:w-10 md:h-10" />
-            </button>
-            <button 
-              onClick={() => setIsCartOpen(true)}
-              className="relative"
-            >
-              <ShoppingCart className="w-6 h-6 md:w-10 md:h-10" />
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center font-bold">
-                  {itemCount}
-                </span>
-              )}
-            </button>
-            <button 
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden ml-2"
-            >
-              <Menu className="w-7 h-7" />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-[1100] bg-black/20 backdrop-blur-md"
-            />
-            <motion.div 
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-full w-full max-w-xs z-[1200] bg-black p-8 flex flex-col shadow-2xl border-r border-white/5"
-            >
-              <div className="flex justify-between items-center mb-16">
-                <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase">Navigation</span>
-                <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-white transition-all">
-                  <X className="w-8 h-8" />
-                </button>
-              </div>
-
-              <div className="flex flex-col gap-8">
-                {[
-                  { label: 'HOME', path: '/' },
-                  { label: 'HARDWARE', path: '/#hardware' },
-                  { label: 'FEATURED', path: '/#featured' },
-                  { label: 'REVIEWS', path: '/#testimonials' },
-                  { label: 'REPAIRS', path: '/repairs' },
-                  { label: 'CONTACT', path: '/contact' }
-                ].map((item) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <Link 
-                      key={item.label}
-                      to={item.path} 
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-2xl font-black tracking-[0.2em] font-headline uppercase transition-all duration-300 ${
-                        isActive ? 'text-white' : 'text-gray-600 hover:text-white'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="mt-auto pt-12 border-t border-white/5">
-                <p className="text-[9px] font-bold text-gray-600 uppercase tracking-[0.4em] mb-4">Citrix Computer Hub</p>
-                <div className="flex gap-6">
-                  <a href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-all"><MessageCircle className="w-6 h-6" /></a>
-                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00f2ff] hover:scale-110 transition-all"><Music className="w-6 h-6" /></a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-all"><Facebook className="w-6 h-6" /></a>
-                  <a href="mailto:info@citrixcomputer.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-all"><Mail className="w-6 h-6" /></a>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* Search Overlay */}
-      <AnimatePresence>
-        {isSearchOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
-          >
-            <button 
-              onClick={() => setIsSearchOpen(false)}
-              className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-[#00f2ff] transition-all p-4 z-[10000]"
-            >
-              <X className="w-8 h-8 md:w-10 md:h-10" />
-            </button>
-            <div className="w-full max-w-3xl">
-              <div className="mb-12 text-center">
-                <span className="text-gray-500 text-[10px] font-black tracking-[0.5em] uppercase mb-4 block">Search Inventory</span>
-                <h2 className="font-headline text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">Find Your Hardware</h2>
-              </div>
-              <div className="relative">
-                <form onSubmit={handleSearchSubmit} className="relative group">
-                  <div className="relative flex items-center bg-white/5 border border-white/10 p-2 md:p-4 rounded-sm focus-within:border-white transition-all">
-                    <Search className="ml-4 md:ml-6 text-white w-7 h-7 md:w-8 md:h-8" />
-                    <input 
-                      autoFocus
-                      type="text"
-                      placeholder="SEARCH INVENTORY..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      onFocus={() => searchQuery.length > 1 && setShowSuggestions(true)}
-                      className="w-full bg-transparent p-4 md:p-6 text-lg md:text-2xl font-bold text-white placeholder:text-gray-600 focus:outline-none transition-all"
-                    />
-                  </div>
-                </form>
-                
-                <SearchSuggestions 
-                  suggestions={suggestions} 
-                  onSelect={handleSuggestionSelect}
-                  isVisible={showSuggestions}
-                />
-              </div>
-              
-              <div className="mt-12 flex flex-wrap gap-4 justify-center">
-                {['H81', 'RTX 4060', 'RYZEN 5', 'DDR4', 'SSD', 'PSU'].map(tag => (
-                  <button 
-                    key={tag}
-                    onClick={() => {
-                      setSearchQuery(tag);
-                      setIsSearchOpen(false);
-                      if (!location.pathname.includes('/category')) {
-                        navigate('/category/processors/all');
-                      }
-                    }}
-                    className="px-4 md:px-6 py-2 border border-white/10 text-[9px] md:text-[10px] font-bold text-white/40 uppercase tracking-widest hover:border-white hover:text-white transition-all"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* User Drawer (The Foundry Hub) */}
-      <AnimatePresence>
-        {isUserOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsUserOpen(false)}
-              className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md"
-            />
-            <motion.div 
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[10000] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
-            >
-              <div className="flex justify-between items-center mb-12 md:mb-16">
-                <div>
-                  <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">
-                    {userView === 'profile' ? 'Profile' : 'User Access'}
-                  </span>
-                  <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
-                    {userView === 'profile' ? currentUser?.name : 'Login'}
-                  </h2>
+          {/* ACTIONS */}
+          <div className="flex items-center gap-3 md:gap-5">
+            {user ? (
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:flex flex-col items-end leading-none">
+                  <span className="text-[10px] text-neutral-500 font-bold uppercase">Welcome</span>
+                  <span className="text-xs text-white font-black truncate max-w-[100px]">{user.email}</span>
                 </div>
                 <button 
-                  onClick={() => {
-                    setIsUserOpen(false);
-                    if (userView !== 'profile') setUserView('initial');
-                  }} 
-                  className="text-white hover:text-[#00f2ff] transition-all p-4"
+                  onClick={handleLogout}
+                  className="p-2.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                  title="Logout"
                 >
-                  <X className="w-8 h-8" />
+                  <LogOut size={18} />
                 </button>
               </div>
-
-              <div className="space-y-8 flex-grow overflow-y-auto no-scrollbar">
-                <AnimatePresence mode="wait">
-                  {userView === 'initial' && (
-                    <motion.div 
-                      key="initial"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="space-y-4"
-                    >
-                      <button 
-                        onClick={() => setUserView('login')}
-                        className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all"
-                      >
-                        Login to Foundry
-                      </button>
-                      <button 
-                        onClick={() => setUserView('signup')}
-                        className="w-full py-4 border border-white/10 text-gray-500 font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all"
-                      >
-                        Create New Account
-                      </button>
-                    </motion.div>
-                  )}
-
-                  {userView === 'login' && (
-                    <motion.form 
-                      key="login"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      onSubmit={handleLogin}
-                      className="space-y-6"
-                    >
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
-                        <input 
-                          required
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                          placeholder="ENTER EMAIL"
-                        />
-                      </div>
-                      <div className="space-y-2 relative">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Password</label>
-                        <input 
-                          required
-                          type={showPassword ? 'text' : 'password'}
-                          value={formData.password}
-                          onChange={(e) => setFormData({...formData, password: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                          placeholder="ENTER PASSWORD"
-                        />
-                        <button 
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-all"
-                        >
-                          {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                        </button>
-                      </div>
-                      <button type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all">
-                        Initialize Login
-                      </button>
-                      <button 
-                        type="button"
-                        onClick={() => setUserView('initial')}
-                        className="w-full text-[9px] font-black text-gray-500 uppercase tracking-widest hover:text-white transition-colors"
-                      >
-                        Back to Selection
-                      </button>
-                    </motion.form>
-                  )}
-
-                  {userView === 'signup' && (
-                    <motion.form 
-                      key="signup"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      onSubmit={handleSignup}
-                      className="space-y-6"
-                    >
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
-                        <input 
-                          required
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                          placeholder="ENTER FULL NAME"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
-                        <input 
-                          required
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                          placeholder="ENTER EMAIL"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">WhatsApp Number</label>
-                        <div className="relative">
-                          <input 
-                            required
-                            type="tel"
-                            value={formData.whatsapp}
-                            onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-                            className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                            placeholder="+94 7X XXX XXXX"
-                          />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[8px] font-black text-gray-500 uppercase tracking-widest">Verify via WA</span>
-                        </div>
-                      </div>
-                      <div className="space-y-2 relative">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest ml-1">Password</label>
-                        <input 
-                          required
-                          type={showPassword ? 'text' : 'password'}
-                          value={formData.password}
-                          onChange={(e) => setFormData({...formData, password: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 p-4 text-xs font-bold text-white focus:outline-none focus:border-white transition-all rounded-sm"
-                          placeholder="CREATE PASSWORD"
-                        />
-                        <button 
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-all"
-                        >
-                          {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                        </button>
-                      </div>
-                      <button type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-widest text-[10px] hover:bg-white/90 transition-all">
-                        Create Account
-                      </button>
-                      <button 
-                        type="button"
-                        onClick={() => setUserView('initial')}
-                        className="w-full text-[9px] font-black text-gray-500 uppercase tracking-widest hover:text-white transition-colors"
-                      >
-                        Back to Selection
-                      </button>
-                    </motion.form>
-                  )}
-
-                  {userView === 'success' && (
-                    <motion.div 
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="h-full flex flex-col items-center justify-center text-center py-12"
-                    >
-                      <div className="w-24 h-24 rounded-full border-4 border-green-500 flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(34,197,94,0.4)]">
-                        <motion.div 
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: 'spring', damping: 12 }}
-                        >
-                          <CheckCircle className="w-16 h-16 text-green-500" />
-                        </motion.div>
-                      </div>
-                      <h3 className="text-xl font-black text-white uppercase tracking-tighter mb-4 neon-glow-cyan">Account Verified</h3>
-                      <p className="text-[10px] text-accent/60 uppercase tracking-widest leading-relaxed">
-                        Welcome to the Citrix Foundry. <br/>
-                        Initializing your personalized hub...
-                      </p>
-                    </motion.div>
-                  )}
-
-                  {userView === 'profile' && (
-                    <motion.div 
-                      key="profile"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="space-y-8"
-                    >
-                      {/* User Info Card */}
-                      <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
-                        <div className="space-y-6">
-                          <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                              <User className="text-white w-5 h-5" />
-                            </div>
-                            <div>
-                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">Full Identity</span>
-                              <p className="text-sm font-bold text-white uppercase tracking-tight">{currentUser?.name}</p>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                              <Mail className="text-white w-5 h-5" />
-                            </div>
-                            <div>
-                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">Email Protocol</span>
-                              <p className="text-xs font-bold text-white/80">{currentUser?.email}</p>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-[#25D366]/5 border border-[#25D366]/10 flex items-center justify-center">
-                              <MessageSquare className="text-[#25D366] w-5 h-5" />
-                            </div>
-                            <div>
-                              <span className="text-[8px] font-black text-gray-500 uppercase tracking-[0.3em] block mb-1">WhatsApp Link</span>
-                              <p className="text-xs font-bold text-white/80">{currentUser?.whatsapp}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
-                        <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6">My Saved Builds</h3>
-                        <div className="space-y-4">
-                          {currentUser?.builds?.length > 0 ? (
-                            currentUser.builds.map((build: any, idx: number) => (
-                              <div key={idx} className="p-4 border border-white/10 bg-black flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">{build.name}</span>
-                                <span className="text-[9px] font-black text-white">{build.price}</span>
-                              </div>
-                            ))
-                          ) : (
-                            <div className="py-8 text-center border border-dashed border-white/10 opacity-30">
-                              <Wrench className="w-8 h-8 mx-auto mb-2" />
-                              <p className="text-[9px] font-bold uppercase tracking-widest">No Saved Builds Found</p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="space-y-4">
-                        <button className="w-full py-4 border border-white/10 text-gray-500 font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all flex items-center justify-center gap-3">
-                          <Bell className="w-4 h-4" />
-                          Receive Order Updates on WhatsApp
-                        </button>
-                        <button 
-                          onClick={handleLogout}
-                          className="w-full py-4 border border-red-900/30 text-red-500 font-black uppercase tracking-widest text-[10px] hover:bg-red-900/10 transition-all"
-                        >
-                          Logout from Foundry
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <div className="pt-12 border-t border-white/10">
-                  <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6">Official Community</h3>
-                  <p className="text-[11px] text-gray-500 uppercase tracking-widest leading-relaxed mb-8">
-                    Join our verified PC builders community for exclusive stock updates and technical support.
-                  </p>
-                  <a 
-                    href="https://chat.whatsapp.com/your-group-link" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-full py-4 bg-[#25D366] text-white font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:brightness-110 transition-all"
-                  >
-                    <Users className="w-6 h-6" />
-                    Join WhatsApp Community
-                  </a>
+            ) : (
+              <button 
+                onClick={() => setActiveTab('account')}
+                className="flex items-center gap-2 group p-1 pr-3 rounded-full bg-white/5 border border-white/10 hover:border-[#00ccff]/50 transition-all"
+              >
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-[#00ccff] rounded-full flex items-center justify-center text-black shadow-[0_0_15px_rgba(0,204,255,0.4)]">
+                  <User size={20} />
                 </div>
-              </div>
+                <span className="hidden sm:block text-[11px] text-white font-black uppercase italic tracking-tighter">Login</span>
+              </button>
+            )}
 
-              <div className="mt-auto pt-12 border-t border-white/10 text-center">
-                <p className="text-[9px] font-bold text-gray-600 uppercase tracking-[0.4em]">Home of Citrix PC | Established 2014</p>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            <button 
+              onClick={() => setActiveTab('cart')}
+              className="relative p-2.5 md:p-3.5 bg-white/5 border border-white/10 rounded-full hover:border-[#00ccff]/50 transition-all"
+            >
+              <ShoppingCart size={22} className="text-white" />
+              <span className="absolute -top-1 -right-1 bg-[#00ccff] text-black text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
 
-      {/* Shopping Cart Drawer */}
+            <button className="lg:hidden p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* NAVIGATION LINKS */}
+        <nav className="hidden lg:flex items-center justify-center gap-10 mt-3 pb-2 pt-2 border-t border-white/5">
+          {menuItems.map((item) => (
+            <Link key={item.name} to={item.path} className="text-[10px] font-bold text-neutral-500 hover:text-white transition-all uppercase tracking-[0.4em] relative group">
+              {item.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#00ccff] transition-all group-hover:w-full"></span>
+            </Link>
+          ))}
+        </nav>
+      </header>
+
+      {/* IMPORTANT: This spacer prevents the content from being hidden 
+          behind the fixed navbar when the page loads. 
+      */}
+      <div className="h-28 md:h-36 w-full"></div>
+
+      {/* --- ACCOUNT MODAL --- */}
       <AnimatePresence>
-        {isCartOpen && (
-          <>
+        {activeTab === 'account' && (
+          <div className="fixed inset-0 z-[1001] flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsCartOpen(false)}
-              className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md"
+              className="absolute inset-0 bg-black/90 backdrop-blur-md" 
+              onClick={() => setActiveTab(null)}
             />
             <motion.div 
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[10000] bg-black p-6 md:p-12 flex flex-col shadow-2xl border-l border-white/5"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-md bg-[#0a0a0a] border border-white/5 rounded-[2.5rem] p-10 shadow-[0_0_50px_rgba(0,204,255,0.1)] overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-12 md:mb-16">
-                <div>
-                  <span className="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Inventory</span>
-                  <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">Your Cart</h2>
-                </div>
-                <button onClick={() => setIsCartOpen(false)} className="text-white hover:text-[#00f2ff] transition-all p-4">
-                  <X className="w-8 h-8" />
-                </button>
-              </div>
-
-              <div className="flex-grow overflow-y-auto no-scrollbar pr-2 space-y-6">
-                {cart.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center opacity-30">
-                    <span className="material-icons text-8xl mb-6 text-white">shopping_basket</span>
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white">Cart is Empty</p>
+              {/* Subtle Cyan Glow */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00ccff]/5 blur-[120px] rounded-full" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#00ccff]/5 blur-[120px] rounded-full" />
+              
+              <div className="relative z-10">
+                <div className="flex flex-col items-center mb-10">
+                  <div className="w-20 h-20 mb-6 relative">
+                    <img 
+                      src="https://raw.githubusercontent.com/sameeracbl-ctrl/Cirixpc/main/public/citrix-logo.png" 
+                      className="w-full h-full object-contain filter drop-shadow-[0_0_15px_#00ccff]"
+                      alt="Citrix" 
+                    />
                   </div>
-                ) : (
-                  cart.map((item) => (
-                    <div key={item.id} className="flex gap-4 md:gap-6 p-4 bg-white/5 border border-white/10 rounded-sm group hover:border-white/30 transition-all">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-black rounded-sm overflow-hidden border border-white/10">
-                        <img src={item.img} alt={item.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" referrerPolicy="no-referrer" />
-                      </div>
-                      <div className="flex-grow">
-                        <span className="text-[8px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-1 block">{item.category}</span>
-                        <h4 className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-tight mb-3 line-clamp-1">{item.title}</h4>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2 md:gap-3">
-                            <button 
-                              onClick={() => updateQuantity(item.id, -1)}
-                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-all"
-                            >
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="text-xs font-bold text-white">{item.quantity}</span>
-                            <button 
-                              onClick={() => updateQuantity(item.id, 1)}
-                              className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-all"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-[10px] md:text-xs font-black text-white">{item.price}</div>
-                            <button 
-                              onClick={() => removeFromCart(item.id)}
-                              className="text-[8px] font-bold text-red-500/50 hover:text-red-500 uppercase tracking-widest mt-1"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                  <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter mb-2">
+                    {authMode === 'login' ? 'Welcome' : 'Join'} <span className="text-[#00ccff]">{authMode === 'login' ? 'Back' : 'Foundry'}</span>
+                  </h2>
+                  <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.4em]">
+                    {authMode === 'login' ? 'Access your hardware portal' : 'Initialize your account'}
+                  </p>
+                </div>
+
+                <form onSubmit={handleAuth} className="space-y-5">
+                  <div className="relative group">
+                    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-[#00ccff] transition-colors">
+                      <Mail size={20} />
                     </div>
-                  ))
-                )}
-              </div>
-
-              {cart.length > 0 && (
-                <div className="mt-auto pt-12 border-t border-white/10">
-                  <div className="flex justify-between items-center mb-8">
-                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Subtotal Manifest</span>
-                    <span className="text-xl md:text-2xl font-black text-white">LKR {total.toLocaleString()}</span>
+                    <input 
+                      type="email" 
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="EMAIL ADDRESS" 
+                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4.5 pl-14 pr-6 text-white text-sm focus:outline-none focus:border-[#00ccff]/50 focus:bg-white/[0.05] transition-all placeholder:text-neutral-800 font-bold tracking-wider"
+                    />
                   </div>
+                  <div className="relative group">
+                    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-[#00ccff] transition-colors">
+                      <Lock size={20} />
+                    </div>
+                    <input 
+                      type="password" 
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="PASSWORD" 
+                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4.5 pl-14 pr-6 text-white text-sm focus:outline-none focus:border-[#00ccff]/50 focus:bg-white/[0.05] transition-all placeholder:text-neutral-800 font-bold tracking-wider"
+                    />
+                  </div>
+
+                  {error && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-[10px] font-bold uppercase tracking-wider text-center bg-red-500/10 py-2 rounded-lg border border-red-500/20"
+                    >
+                      {error}
+                    </motion.p>
+                  )}
+
                   <button 
-                    onClick={() => {
-                      setIsCartOpen(false);
-                      navigate('/checkout');
-                    }}
-                    className="w-full py-4 md:py-5 bg-white text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] flex items-center justify-center gap-3 hover:bg-white/90 transition-all group"
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full py-5 bg-[#00ccff] text-black rounded-2xl font-black uppercase tracking-[0.2em] hover:bg-[#00ccff]/80 hover:shadow-[0_0_30px_rgba(0,204,255,0.4)] transition-all disabled:opacity-50 flex items-center justify-center gap-3 active:scale-[0.98]"
                   >
-                    <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                    Proceed to Checkout
+                    {isLoading ? <Loader2 className="animate-spin" size={22} /> : (authMode === 'login' ? 'Login' : 'Create Account')}
                   </button>
-                  <p className="text-center mt-6 text-[8px] font-bold text-gray-600 uppercase tracking-[0.2em]">Secure Order Protocol via Citrix WhatsApp</p>
+                </form>
+
+                <div className="mt-8 flex flex-col items-center gap-4">
+                  <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-widest">
+                    {authMode === 'login' ? "New to Citrix?" : "Already a member?"} 
+                    <button 
+                      onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
+                      className="text-[#00ccff] hover:text-white ml-2 transition-colors underline underline-offset-4"
+                    >
+                      {authMode === 'login' ? 'Initialize Account' : 'Access Portal'}
+                    </button>
+                  </p>
+                  <button 
+                    onClick={() => setActiveTab(null)}
+                    className="text-[10px] text-neutral-700 hover:text-white font-bold uppercase tracking-[0.3em] transition-colors"
+                  >
+                    Cancel
+                  </button>
                 </div>
-              )}
+              </div>
             </motion.div>
-          </>
+          </div>
         )}
       </AnimatePresence>
 
-      {/* Floating WhatsApp Group Button */}
-      <motion.a
-        href="https://chat.whatsapp.com/your-group-link"
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.1 }}
-        className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-[50] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] group"
-      >
-        <Users className="w-6 h-6 md:w-8 md:h-8 group-hover:rotate-12 transition-transform" />
-        <div className="absolute left-full ml-4 px-4 py-2 bg-surface-container/80 backdrop-blur-md border border-[#25D366]/30 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap hidden md:block">
-          <span className="text-[10px] font-black text-[#25D366] uppercase tracking-widest">Join PC Builders Group</span>
+      {/* --- CART SIDEBAR (CLOSE LOGIC FIXED) --- */}
+      {activeTab === 'cart' && (
+        <div className="fixed inset-0 z-[1000] flex justify-end">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setActiveTab(null)}></div>
+          <div className="relative w-full max-w-sm bg-[#0a0a0a] border-l border-white/5 h-full p-8 shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="flex items-center justify-between mb-12">
+              <h2 className="text-xl font-black text-white uppercase italic tracking-widest">Shopping <span className="text-[#00ccff]">Cart</span></h2>
+              {/* CLOSE BUTTON */}
+              <button onClick={() => setActiveTab(null)} className="text-white hover:text-red-500 transition-colors">
+                <X size={30} />
+              </button>
+            </div>
+            <div className="flex flex-col items-center justify-center h-[60vh] text-center">
+              <p className="text-neutral-500 font-bold italic">Empty cart.</p>
+            </div>
+          </div>
         </div>
-      </motion.a>
+      )}
     </>
   );
 }

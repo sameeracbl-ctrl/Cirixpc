@@ -134,7 +134,7 @@ Please confirm availability and final pricing.`;
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black relative">
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-neutral-200 font-sans selection:bg-[#00ccff]/30 selection:text-white relative">
       <HeroSection 
         onStartBuild={() => setIsBuilderModalOpen(true)} 
         techSupportUrl={techSupportUrl} 
@@ -149,28 +149,28 @@ Please confirm availability and final pricing.`;
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsBuilderModalOpen(false)}
-              className="absolute inset-0 bg-white/80 backdrop-blur-md"
+              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-3xl bg-white border border-gray-100 p-8 md:p-12 rounded-sm shadow-2xl overflow-hidden"
+              className="relative w-full max-w-3xl bg-[#0a0a0a] border border-white/5 p-8 md:p-12 rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden"
             >
               {/* Decorative Background */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-[#00ccff]"></div>
 
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <span className="text-gray-400 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">PC Configurator</span>
-                  <h2 className="font-headline text-4xl font-black text-black tracking-tighter uppercase">Build Your PC</h2>
+                  <span className="text-neutral-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">PC Configurator</span>
+                  <h2 className="font-headline text-4xl font-black text-white tracking-tighter uppercase">Build Your <span className="text-[#00ccff]">Legacy</span></h2>
                 </div>
                 <button 
                   onClick={() => {
                     setIsBuilderModalOpen(false);
                     setStep(1);
                   }}
-                  className="text-gray-400 hover:text-black transition-colors"
+                  className="text-neutral-500 hover:text-[#00ccff] transition-colors"
                 >
                   <span className="material-icons text-3xl">close</span>
                 </button>
@@ -181,10 +181,10 @@ Please confirm availability and final pricing.`;
                 {[1, 2, 3, 4, 5].map((s) => (
                   <div 
                     key={s}
-                    className={`flex-shrink-0 h-1 transition-all duration-500 ${s <= step ? 'w-12 bg-black' : 'w-8 bg-gray-100'}`}
+                    className={`flex-shrink-0 h-1 transition-all duration-500 ${s <= step ? 'w-12 bg-[#00ccff]' : 'w-8 bg-white/5'}`}
                   />
                 ))}
-                <span className="ml-auto text-[10px] font-black text-gray-400 uppercase tracking-widest">Step {step} of 5</span>
+                <span className="ml-auto text-[10px] font-black text-neutral-500 uppercase tracking-widest">Step {step} of 5</span>
               </div>
 
               <div className="min-h-[400px] max-h-[60vh] overflow-y-auto no-scrollbar pr-2 mb-10">
@@ -200,7 +200,7 @@ Please confirm availability and final pricing.`;
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Processor Section */}
                         <div className="space-y-6">
-                          <h3 className="text-xs font-black text-black uppercase tracking-[0.3em] border-l-2 border-black pl-3">Processor Unit</h3>
+                          <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] border-l-2 border-[#00ccff] pl-3">Processor Unit</h3>
                           
                           <div className="space-y-4">
                             <div className="flex gap-2">
@@ -208,7 +208,7 @@ Please confirm availability and final pricing.`;
                                 <button
                                   key={type}
                                   onClick={() => setBuildConfig({...buildConfig, processorType: type})}
-                                  className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-widest border transition-all ${buildConfig.processorType === type ? 'bg-black text-white border-black' : 'border-gray-100 text-gray-400'}`}
+                                  className={`flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all ${buildConfig.processorType === type ? 'bg-[#00ccff] text-black border-[#00ccff]' : 'border-white/5 text-neutral-500 hover:border-white/10'}`}
                                 >
                                   {type}
                                 </button>
@@ -219,7 +219,7 @@ Please confirm availability and final pricing.`;
                                 <button
                                   key={cond}
                                   onClick={() => setBuildConfig({...buildConfig, processorCondition: cond})}
-                                  className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-widest border transition-all ${buildConfig.processorCondition === cond ? 'bg-black text-white border-black' : 'border-gray-100 text-gray-400'}`}
+                                  className={`flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all ${buildConfig.processorCondition === cond ? 'bg-[#00ccff] text-black border-[#00ccff]' : 'border-white/5 text-neutral-500 hover:border-white/10'}`}
                                 >
                                   {cond}
                                 </button>
@@ -229,23 +229,23 @@ Please confirm availability and final pricing.`;
                               <select 
                                 value={buildConfig.processorModel}
                                 onChange={(e) => setBuildConfig({...buildConfig, processorModel: e.target.value})}
-                                className="w-full bg-white border border-gray-100 p-4 pr-10 text-black font-bold tracking-tight focus:border-black focus:outline-none transition-all rounded-sm appearance-none cursor-pointer"
+                                className="w-full bg-white/[0.03] border border-white/10 p-4 pr-10 text-white font-bold tracking-tight focus:border-[#00ccff]/50 focus:outline-none transition-all rounded-xl appearance-none cursor-pointer"
                               >
                                 {(buildConfig.processorCondition === 'Used' 
                                   ? (buildConfig.processorType === 'Intel' ? PROC_INTEL_USED : PROC_RYZEN_USED)
                                   : (buildConfig.processorType === 'Intel' ? PROC_INTEL_NEW : PROC_RYZEN_NEW)
                                 ).map(opt => (
-                                  <option key={opt} value={opt} className="bg-white text-black">{opt}</option>
+                                  <option key={opt} value={opt} className="bg-[#171717] text-white">{opt}</option>
                                 ))}
                               </select>
-                              <span className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+                              <span className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none">expand_more</span>
                             </div>
                           </div>
                         </div>
 
                         {/* Motherboard Section */}
                         <div className="space-y-6">
-                          <h3 className="text-xs font-black text-black uppercase tracking-[0.3em] border-l-2 border-black pl-3">Motherboard</h3>
+                          <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] border-l-2 border-[#00ccff] pl-3">Motherboard</h3>
                           
                           <div className="space-y-4">
                             <div className="flex gap-2">
@@ -253,7 +253,7 @@ Please confirm availability and final pricing.`;
                                 <button
                                   key={type}
                                   onClick={() => setBuildConfig({...buildConfig, motherboardType: type})}
-                                  className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-widest border transition-all ${buildConfig.motherboardType === type ? 'bg-black text-white border-black' : 'border-gray-100 text-gray-400'}`}
+                                  className={`flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all ${buildConfig.motherboardType === type ? 'bg-[#00ccff] text-black border-[#00ccff]' : 'border-white/5 text-neutral-500 hover:border-white/10'}`}
                                 >
                                   {type}
                                 </button>
@@ -264,7 +264,7 @@ Please confirm availability and final pricing.`;
                                 <button
                                   key={cond}
                                   onClick={() => setBuildConfig({...buildConfig, motherboardCondition: cond})}
-                                  className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-widest border transition-all ${buildConfig.motherboardCondition === cond ? 'bg-black text-white border-black' : 'border-gray-100 text-gray-400'}`}
+                                  className={`flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all ${buildConfig.motherboardCondition === cond ? 'bg-[#00ccff] text-black border-[#00ccff]' : 'border-white/5 text-neutral-500 hover:border-white/10'}`}
                                 >
                                   {cond}
                                 </button>
@@ -274,16 +274,16 @@ Please confirm availability and final pricing.`;
                               <select 
                                 value={buildConfig.motherboardModel}
                                 onChange={(e) => setBuildConfig({...buildConfig, motherboardModel: e.target.value})}
-                                className="w-full bg-white border border-gray-100 p-4 pr-10 text-black font-bold tracking-tight focus:border-black focus:outline-none transition-all rounded-sm appearance-none cursor-pointer"
+                                className="w-full bg-white/[0.03] border border-white/10 p-4 pr-10 text-white font-bold tracking-tight focus:border-[#00ccff]/50 focus:outline-none transition-all rounded-xl appearance-none cursor-pointer"
                               >
                                 {(buildConfig.motherboardCondition === 'Used' 
                                   ? (buildConfig.motherboardType === 'Intel' ? MB_INTEL_USED : MB_RYZEN_USED)
                                   : MB_NEW
                                 ).map(opt => (
-                                  <option key={opt} value={opt} className="bg-white text-black">{opt}</option>
+                                  <option key={opt} value={opt} className="bg-[#171717] text-white">{opt}</option>
                                 ))}
                               </select>
-                              <span className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+                              <span className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none">expand_more</span>
                             </div>
                           </div>
                         </div>
@@ -602,7 +602,7 @@ Please confirm availability and final pricing.`;
                 {step > 1 && (
                   <button 
                     onClick={() => setStep(prev => prev - 1)}
-                    className="flex-1 py-4 border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest hover:bg-gray-50 transition-all"
+                    className="flex-1 py-4 border border-white/10 text-neutral-500 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 rounded-xl transition-all"
                   >
                     Back
                   </button>
@@ -610,7 +610,7 @@ Please confirm availability and final pricing.`;
                 {step < 5 ? (
                   <button 
                     onClick={() => setStep(prev => prev + 1)}
-                    className="flex-[2] bg-black text-white !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-black/90 transition-all"
+                    className="flex-[2] bg-[#00ccff] text-black !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#00ccff]/80 rounded-xl transition-all"
                   >
                     Next Category
                     <span className="material-icons text-lg">arrow_forward</span>
@@ -618,7 +618,7 @@ Please confirm availability and final pricing.`;
                 ) : (
                   <button 
                     onClick={generateQuotation}
-                    className="flex-[2] bg-black text-white !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 group hover:bg-black/90 transition-all"
+                    className="flex-[2] bg-[#00ccff] text-black !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 group hover:bg-[#00ccff]/80 rounded-xl transition-all"
                   >
                     <span className="material-icons text-lg group-hover:scale-110 transition-transform">description</span>
                     Generate Quotation
@@ -626,7 +626,7 @@ Please confirm availability and final pricing.`;
                 )}
               </div>
 
-              <p className="text-center mt-8 text-[9px] font-bold text-gray-300 uppercase tracking-[0.3em]">
+              <p className="text-center mt-8 text-[9px] font-bold text-neutral-600 uppercase tracking-[0.3em]">
                 Citrix Computer | Premium Custom PC Solutions
               </p>
             </motion.div>
@@ -635,7 +635,7 @@ Please confirm availability and final pricing.`;
       </AnimatePresence>
 
       {/* Premium Category Grid */}
-      <section id="hardware" className="py-20 bg-white relative overflow-hidden scroll-mt-24">
+      <section id="hardware" className="py-20 bg-[#0a0a0a] relative overflow-hidden scroll-mt-24">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -644,11 +644,11 @@ Please confirm availability and final pricing.`;
             className="mb-12"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="h-[2px] w-12 bg-black"></div>
-              <span className="text-gray-400 text-[11px] font-black tracking-[0.6em] uppercase block">Hardware Collection</span>
+              <div className="h-[2px] w-12 bg-[#00ccff]"></div>
+              <span className="text-neutral-500 text-[11px] font-black tracking-[0.6em] uppercase block">Hardware Collection</span>
             </div>
-            <h2 className="font-headline text-4xl md:text-6xl font-black text-black tracking-tighter uppercase">
-              Browse <span className="text-gray-200">Categories.</span>
+            <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">
+              Browse <span className="text-neutral-800">Categories.</span>
             </h2>
           </motion.div>
 
@@ -680,22 +680,22 @@ Please confirm availability and final pricing.`;
               >
                 <Link 
                   to={`/category/${cat.slug}`}
-                  className="group relative block aspect-[4/3] md:aspect-square bg-gray-50 border border-gray-100 rounded-sm overflow-hidden transition-all duration-500 hover:border-black hover:shadow-xl"
+                  className="group relative block aspect-[4/3] md:aspect-square bg-neutral-900 border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-[#00ccff]/50 hover:shadow-[0_0_30px_rgba(0,204,255,0.1)]"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 opacity-60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10 opacity-80"></div>
                   <motion.img 
                     src={cat.img} 
                     alt={cat.label}
-                    className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 z-20">
-                    <h3 className="font-headline text-lg md:text-xl font-black text-black uppercase tracking-tighter group-hover:text-black transition-all duration-300">
+                    <h3 className="font-headline text-lg md:text-xl font-black text-white uppercase tracking-tighter group-hover:text-[#00ccff] transition-all duration-300">
                       {cat.label}
                     </h3>
                   </div>
                   <div className="absolute top-0 right-0 p-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="material-symbols-outlined text-black icon-enhanced">arrow_forward</span>
+                    <span className="material-symbols-outlined text-[#00ccff] icon-enhanced">arrow_forward</span>
                   </div>
                 </Link>
               </motion.div>
@@ -705,11 +705,11 @@ Please confirm availability and final pricing.`;
       </section>
 
       {/* Featured Hardware */}
-      <section id="featured" className="py-24 bg-gray-50 scroll-mt-24">
+      <section id="featured" className="py-24 bg-neutral-950 scroll-mt-24">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12">
           <div className="flex items-center justify-between mb-16">
-            <h2 className="font-headline text-2xl font-black text-black tracking-widest uppercase">Featured Inventory</h2>
-            <Link className="text-[10px] font-bold text-black border-b border-gray-200 pb-1 hover:border-black transition-all uppercase tracking-widest" to="/hardware">Access Full Catalog</Link>
+            <h2 className="font-headline text-2xl font-black text-white tracking-widest uppercase">Featured Inventory</h2>
+            <Link className="text-[10px] font-bold text-[#00ccff] border-b border-[#00ccff]/20 pb-1 hover:border-[#00ccff] transition-all uppercase tracking-widest" to="/hardware">Access Full Catalog</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -742,21 +742,21 @@ Please confirm availability and final pricing.`;
                 img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAjONtj8S6rwUS2E42Bm34m1tBeO2GqwqjG_O3--R4QTiktDYByvWF2Jek3I88jFC7BwzWTafZBlfSh940F1MHRXu_B3cXc5H2wwVzZQQrk-ezQqI5QF7yCbF3_MUY1bA6y1TfdPikNV4FOd_Mz91f1aeS1IqlfP3_v0co373wQ2vvb2dBU049Vo3xB0f4eIcDgyLS8focdP03UNAvs31HoP-iWezKGS8Ykr_GpaZiaT5YlnBwPShmDihProhKPAj0rgqTn1wzH'
               },
             ].map((prod, i) => (
-              <div key={i} className="group flex flex-col bg-white rounded-sm overflow-hidden border border-gray-100 hover:border-black transition-all duration-500">
-                <div className="relative aspect-square overflow-hidden bg-gray-50">
-                  <img alt={prod.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src={prod.img} referrerPolicy="no-referrer" />
-                  <div className="absolute top-4 left-4 bg-black text-white text-[8px] font-bold px-2 py-1 rounded-sm uppercase tracking-widest">{prod.tag}</div>
+              <div key={i} className="group flex flex-col bg-neutral-900 rounded-2xl overflow-hidden border border-white/5 hover:border-[#00ccff]/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                <div className="relative aspect-square overflow-hidden bg-neutral-800">
+                  <img alt={prod.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src={prod.img} referrerPolicy="no-referrer" />
+                  <div className="absolute top-4 left-4 bg-[#00ccff] text-black text-[8px] font-black px-2 py-1 rounded-md uppercase tracking-widest">{prod.tag}</div>
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.3em] mb-2">{prod.category}</span>
-                  <h3 className="font-headline font-bold text-sm text-black mb-4 line-clamp-2 uppercase tracking-tight group-hover:text-black transition-colors">{prod.title}</h3>
+                  <span className="text-[8px] font-bold text-neutral-500 uppercase tracking-[0.3em] mb-2">{prod.category}</span>
+                  <h3 className="font-headline font-bold text-sm text-white mb-4 line-clamp-2 uppercase tracking-tight group-hover:text-[#00ccff] transition-colors">{prod.title}</h3>
                   <div className="mt-auto">
-                    <div className="text-xl font-black text-black mb-6">LKR {prod.price.replace('LKR ', '')}</div>
+                    <div className="text-xl font-black text-white mb-6">LKR {prod.price.replace('LKR ', '')}</div>
                     <div className="flex gap-2">
-                      <button className="flex-1 bg-black text-white py-2 flex items-center justify-center hover:bg-black/90 transition-all">
+                      <button className="flex-1 bg-[#00ccff] text-black py-3 rounded-xl flex items-center justify-center hover:bg-[#00ccff]/80 transition-all active:scale-95">
                         <span className="material-icons">add_shopping_cart</span>
                       </button>
-                      <button className="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 rounded-sm hover:border-black hover:text-black transition-all">
+                      <button className="w-12 h-12 flex items-center justify-center border border-white/10 text-neutral-400 rounded-xl hover:border-[#00ccff] hover:text-[#00ccff] transition-all active:scale-95">
                         <span className="material-icons text-lg">chat</span>
                       </button>
                     </div>

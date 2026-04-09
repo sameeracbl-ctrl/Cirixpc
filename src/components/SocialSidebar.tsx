@@ -35,11 +35,11 @@ const socialLinks = [
 
 export default function SocialSidebar() {
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999] hidden md:block">
+    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[90] hidden lg:block">
       <motion.div 
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        className="flex flex-col gap-5 p-4 bg-surface/20 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+        className="flex flex-col gap-5 p-4 bg-[#0a0a0a]/40 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)]"
       >
         {socialLinks.map((link, index) => (
           <motion.a
@@ -62,14 +62,14 @@ export default function SocialSidebar() {
             <motion.div
               animate={{
                 boxShadow: [
-                  `0 0 15px rgba(0, 242, 255, 0.1)`,
-                  `0 0 30px rgba(0, 242, 255, 0.3)`,
-                  `0 0 15px rgba(0, 242, 255, 0.1)`
+                  `0 0 15px rgba(0, 204, 255, 0.05)`,
+                  `0 0 30px rgba(0, 204, 255, 0.15)`,
+                  `0 0 15px rgba(0, 204, 255, 0.05)`
                 ],
                 borderColor: [
-                  'rgba(0, 242, 255, 0.1)',
-                  'rgba(0, 242, 255, 0.3)',
-                  'rgba(0, 242, 255, 0.1)'
+                  'rgba(255, 255, 255, 0.05)',
+                  'rgba(0, 204, 255, 0.15)',
+                  'rgba(255, 255, 255, 0.05)'
                 ]
               }}
               transition={{
@@ -92,9 +92,9 @@ export default function SocialSidebar() {
 
             {/* Icon */}
             <div 
-              className="relative z-10 text-primary/70 group-hover:text-white transition-all duration-500 w-6 h-6 flex items-center justify-center"
+              className="relative z-10 text-white/40 group-hover:text-white transition-all duration-500 w-6 h-6 flex items-center justify-center"
               style={{ 
-                filter: `drop-shadow(0 0 10px rgba(0, 242, 255, 0.4))` 
+                filter: `drop-shadow(0 0 10px rgba(0, 204, 255, 0.2))` 
               }}
             >
               {link.name === 'Facebook' && <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>}
@@ -104,8 +104,8 @@ export default function SocialSidebar() {
             </div>
 
             {/* Tooltip */}
-            <div className="absolute right-full mr-6 px-4 py-2 bg-surface/95 backdrop-blur-xl border border-primary/20 rounded-lg text-[10px] font-black text-primary uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none translate-x-4 group-hover:translate-x-0 shadow-2xl">
-              <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-surface rotate-45 border-r border-t border-primary/20"></div>
+            <div className="absolute right-full mr-6 px-4 py-2 bg-[#171717]/95 backdrop-blur-xl border border-white/10 rounded-lg text-[10px] font-black text-white uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none translate-x-4 group-hover:translate-x-0 shadow-2xl">
+              <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#171717] rotate-45 border-r border-t border-white/10"></div>
               {link.name}
             </div>
           </motion.a>
