@@ -26,6 +26,7 @@ export default function Navbar() {
 
   // Handle Auth State Change
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -55,6 +56,10 @@ export default function Navbar() {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!auth) {
+      setError('Authentication system is currently offline.');
+      return;
+    }
     setIsLoading(true);
     setError('');
     try {
@@ -74,6 +79,7 @@ export default function Navbar() {
   };
 
   const handleLogout = async () => {
+    if (!auth) return;
     try {
       await signOut(auth);
     } catch (err: any) {

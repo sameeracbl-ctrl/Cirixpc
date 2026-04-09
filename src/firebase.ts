@@ -12,6 +12,14 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+// Safety check: Ensure the app doesn't crash if keys are missing
+const isFirebaseConfigValid = !!firebaseConfig.apiKey && !!firebaseConfig.projectId;
+
+if (!isFirebaseConfigValid) {
+  console.warn("Firebase configuration is missing. Authentication and database features will be disabled.");
+}
+
+const app = isFirebaseConfigValid ? initializeApp(firebaseConfig) : null;
+
+export const auth = app ? getAuth(app) : null as any;
+export const db = app ? getFirestore(app) : null as any;
