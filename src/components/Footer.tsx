@@ -7,11 +7,11 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-12 py-20 max-w-screen-2xl mx-auto relative z-10">
         <div className="space-y-8 flex flex-col items-center md:items-start text-center md:text-left">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 flex-shrink-0">
+            <div className="h-[45px] flex-shrink-0">
               <img 
-                src="https://raw.githubusercontent.com/sameeracbl-ctrl/Cirixpc/main/public/citrix-logo.png" 
+                src="/citrix-logo.png" 
                 alt="Citrix Logo" 
-                className="w-full h-full object-contain filter drop-shadow-[0_0_10px_#00ccff]"
+                className="h-full w-auto object-contain filter drop-shadow-[0_0_10px_rgba(0,204,255,0.8)]"
                 referrerPolicy="no-referrer"
               />
             </div>

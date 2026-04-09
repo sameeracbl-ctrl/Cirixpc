@@ -95,94 +95,96 @@ export default function Navbar() {
       <header 
         className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
           scrolled 
-            ? 'bg-[#0a0a0a]/90 backdrop-blur-xl py-2 shadow-2xl border-b border-white/5' 
-            : 'bg-[#0a0a0a] py-4 border-b border-white/5'
+            ? 'bg-[#0a0a0a]/90 backdrop-blur-md py-3 shadow-2xl border-b border-[#00ccff]/30' 
+            : 'bg-[#0a0a0a] py-5 border-b border-white/5'
         }`}
       >
-        <div className="w-full px-4 md:px-10 mx-auto flex items-center justify-between gap-4">
+        <div className="w-full px-4 md:px-12 mx-auto flex items-center justify-between">
           
-          {/* LOGO */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+          {/* BRANDING */}
+          <Link to="/" className="flex items-center gap-4 group shrink-0">
+            <div className="relative h-16 flex items-center justify-center">
               <img 
-                src="https://raw.githubusercontent.com/sameeracbl-ctrl/Cirixpc/main/public/citrix-logo.png" 
-                className="w-full h-full object-contain filter drop-shadow-[0_0_10px_#00ccff]"
+                src="/citrix-logo.png" 
+                className="h-full w-auto object-contain filter drop-shadow-[0_0_10px_rgba(0,204,255,0.7)]"
                 alt="Citrix" 
               />
             </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter group-hover:text-[#00ccff]">CITRIX</span>
-              <span className="text-[7px] md:text-[10px] font-bold text-[#00ccff] tracking-[0.3em] uppercase">COMPUTER</span>
+            <div className="flex items-center gap-2 whitespace-nowrap font-rajdhani">
+              <span className="text-2xl md:text-4xl font-bold text-white uppercase tracking-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">CITRIX</span>
+              <span className="text-2xl md:text-4xl font-bold text-[#00ccff] uppercase tracking-tight drop-shadow-[0_0_12px_rgba(0,204,255,0.6)]">COMPUTER</span>
             </div>
           </Link>
 
-          {/* SEARCH BAR */}
-          <div className="hidden lg:flex flex-1 max-w-md mx-8 relative">
-            <input 
-              type="text" 
-              placeholder="Search components..." 
-              className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-xl py-2.5 pl-5 pr-12 focus:outline-none focus:border-[#00ccff]/50 focus:bg-black transition-all" 
-            />
-            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500" size={18} />
-          </div>
-
-          {/* ACTIONS */}
-          <div className="flex items-center gap-3 md:gap-5">
-            {user ? (
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex flex-col items-end leading-none">
-                  <span className="text-[10px] text-neutral-500 font-bold uppercase">Welcome</span>
-                  <span className="text-xs text-white font-black truncate max-w-[100px]">{user.email}</span>
-                </div>
-                <button 
-                  onClick={handleLogout}
-                  className="p-2.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all"
-                  title="Logout"
+          {/* RIGHT SIDE: NAV + ACTIONS */}
+          <div className="flex items-center gap-8">
+            {/* NAVIGATION LINKS */}
+            <nav className="hidden lg:flex items-center gap-8">
+              {menuItems.map((item) => (
+                <Link 
+                  key={item.name} 
+                  to={item.path} 
+                  className="text-[11px] font-bold text-neutral-500 hover:text-[#00ccff] transition-all uppercase tracking-[0.3em] relative group/link"
                 >
-                  <LogOut size={18} />
-                </button>
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#00ccff] shadow-[0_0_10px_#00ccff] transition-all group-hover/link:w-full"></span>
+                </Link>
+              ))}
+            </nav>
+
+            {/* SEARCH & ACTIONS */}
+            <div className="flex items-center gap-4 md:gap-6">
+              <div className="hidden xl:flex relative group">
+                <input 
+                  type="text" 
+                  placeholder="SEARCH..." 
+                  className="bg-white/5 border border-white/10 text-white text-[10px] font-bold tracking-widest rounded-full py-2 px-5 w-40 focus:w-64 focus:outline-none focus:border-[#00ccff]/50 focus:bg-black transition-all" 
+                />
+                <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-[#00ccff]" size={14} />
               </div>
-            ) : (
-              <button 
-                onClick={() => setActiveTab('account')}
-                className="flex items-center gap-2 group p-1 pr-3 rounded-full bg-white/5 border border-white/10 hover:border-[#00ccff]/50 transition-all"
-              >
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-[#00ccff] rounded-full flex items-center justify-center text-black shadow-[0_0_15px_rgba(0,204,255,0.4)]">
-                  <User size={20} />
+
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={handleLogout}
+                    className="p-2.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                    title="Logout"
+                  >
+                    <LogOut size={18} />
+                  </button>
                 </div>
-                <span className="hidden sm:block text-[11px] text-white font-black uppercase italic tracking-tighter">Login</span>
+              ) : (
+                <button 
+                  onClick={() => setActiveTab('account')}
+                  className="flex items-center gap-2 group p-1 pr-4 rounded-full bg-white/5 border border-white/10 hover:border-[#00ccff]/50 transition-all"
+                >
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-[#00ccff] rounded-full flex items-center justify-center text-black shadow-[0_0_15px_rgba(0,204,255,0.4)]">
+                    <User size={20} />
+                  </div>
+                  <span className="hidden sm:block text-[11px] text-white font-black uppercase tracking-tighter">LOGIN</span>
+                </button>
+              )}
+
+              <button 
+                onClick={() => setActiveTab('cart')}
+                className="relative p-2.5 md:p-3 bg-white/5 border border-white/10 rounded-full hover:border-[#00ccff]/50 transition-all"
+              >
+                <ShoppingCart size={20} className="text-white" />
+                <span className="absolute -top-1 -right-1 bg-[#00ccff] text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
               </button>
-            )}
 
-            <button 
-              onClick={() => setActiveTab('cart')}
-              className="relative p-2.5 md:p-3.5 bg-white/5 border border-white/10 rounded-full hover:border-[#00ccff]/50 transition-all"
-            >
-              <ShoppingCart size={22} className="text-white" />
-              <span className="absolute -top-1 -right-1 bg-[#00ccff] text-black text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
-            </button>
-
-            <button className="lg:hidden p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <button className="lg:hidden p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* NAVIGATION LINKS */}
-        <nav className="hidden lg:flex items-center justify-center gap-10 mt-3 pb-2 pt-2 border-t border-white/5">
-          {menuItems.map((item) => (
-            <Link key={item.name} to={item.path} className="text-[10px] font-bold text-neutral-500 hover:text-white transition-all uppercase tracking-[0.4em] relative group">
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#00ccff] transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
-        </nav>
       </header>
 
       {/* IMPORTANT: This spacer prevents the content from being hidden 
           behind the fixed navbar when the page loads. 
       */}
-      <div className="h-28 md:h-36 w-full"></div>
+      <div className="h-24 md:h-32 w-full"></div>
 
       {/* --- ACCOUNT MODAL --- */}
       <AnimatePresence>
@@ -207,10 +209,10 @@ export default function Navbar() {
               
               <div className="relative z-10">
                 <div className="flex flex-col items-center mb-10">
-                  <div className="w-20 h-20 mb-6 relative">
+                  <div className="h-[45px] mb-6 relative">
                     <img 
-                      src="https://raw.githubusercontent.com/sameeracbl-ctrl/Cirixpc/main/public/citrix-logo.png" 
-                      className="w-full h-full object-contain filter drop-shadow-[0_0_15px_#00ccff]"
+                      src="/citrix-logo.png" 
+                      className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(0,204,255,0.8)]"
                       alt="Citrix" 
                     />
                   </div>
@@ -263,9 +265,15 @@ export default function Navbar() {
                   <button 
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-5 bg-[#00ccff] text-black rounded-2xl font-black uppercase tracking-[0.2em] hover:bg-[#00ccff]/80 hover:shadow-[0_0_30px_rgba(0,204,255,0.4)] transition-all disabled:opacity-50 flex items-center justify-center gap-3 active:scale-[0.98]"
+                    className="w-full py-5 bg-[#00ccff] text-black rounded-2xl font-black uppercase tracking-[0.2em] hover:bg-[#00ccff] hover:shadow-[0_0_40px_rgba(0,204,255,0.6)] transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 active:scale-[0.98] group/btn"
                   >
-                    {isLoading ? <Loader2 className="animate-spin" size={22} /> : (authMode === 'login' ? 'Login' : 'Create Account')}
+                    {isLoading ? <Loader2 className="animate-spin" size={22} /> : (
+                      <>
+                        <span className="group-hover/btn:scale-110 transition-transform duration-300">
+                          {authMode === 'login' ? 'Login' : 'Create Account'}
+                        </span>
+                      </>
+                    )}
                   </button>
                 </form>
 
