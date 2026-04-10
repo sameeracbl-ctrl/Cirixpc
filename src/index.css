@@ -331,3 +331,61 @@ header.scrolled {
     text-align: center;
     color: #fff;
 }
+
+/* Custom Scrollbar for Sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #00ccff;
+}
+
+/* RESPONSIVE LAYOUT FIX - MOBILE ONLY */
+@media (max-width: 767px) {
+  .min-h-screen {
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Center Citrix Computer Header */
+  header .flex-col {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Adjust Login Box & Cards */
+  .max-w-md {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Google Sign-in Full Width */
+  button.flex.items-center.justify-center.gap-3 {
+    width: 100% !important;
+  }
+
+  /* Ensure no horizontal scrolling */
+  body, #root {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative;
+  }
+
+  /* Center Logo Container */
+  .shrink-0.max-md\:mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

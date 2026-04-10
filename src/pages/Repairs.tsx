@@ -1,123 +1,170 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-
-const repairServices = [
-  {
-    title: 'NO POWER REPAIR',
-    desc: "Expert diagnosis and repair for laptops that won't turn on (Power IC & Board-level fixes).",
-    icon: 'power_settings_new',
-    id: 'repair-no-power'
-  },
-  {
-    title: 'DISPLAY & KEYBOARD REPLACEMENT',
-    desc: 'High-quality replacement screens and keyboards for all laptop brands (Dell, HP, ASUS, Acer, etc.).',
-    icon: 'laptop_mac',
-    id: 'repair-display'
-  },
-  {
-    title: 'BATTERY & CHARGING FIXES',
-    desc: 'Genuine battery replacements and charging port (DC Jack) repairs to keep your device mobile.',
-    icon: 'battery_charging_full',
-    id: 'repair-battery'
-  },
-  {
-    title: 'CHIP-LEVEL SERVICING',
-    desc: 'Basic to intermediate motherboard repairs, BIOS flashing, and component-level troubleshooting.',
-    icon: 'memory',
-    id: 'repair-chip'
-  }
-];
+import { Monitor, Laptop, Send, MessageSquare } from 'lucide-react';
 
 export default function Repairs() {
+  const [desktopIssue, setDesktopIssue] = useState('');
+  const [laptopIssue, setLaptopIssue] = useState('');
+
+  const sendWhatsApp = (type: 'Desktop' | 'Laptop', message: string) => {
+    if (!message.trim()) return;
+    
+    const formattedMessage = `Hello Citrix Computer, I have an issue with my ${type}: ${message}`;
+    const encodedText = encodeURIComponent(formattedMessage);
+    window.open(`https://wa.me/94789827123?text=${encodedText}`, '_blank');
+  };
+
   const checkStatus = () => {
     const text = "Hi Citrix Computer, I want to check the status of my repair/get a price for a laptop part.";
     window.open(`https://wa.me/94789827123?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-surface relative overflow-hidden font-body text-on-surface">
-      {/* Background Texture */}
-      <div className="absolute inset-0 cyber-metal opacity-20 pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-surface to-transparent"></div>
-
+    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden font-sans text-neutral-200">
+      {/* Background Texture & Glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,204,255,0.05),transparent_50%)]"></div>
+      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#0a0a0a] to-transparent"></div>
+      
       <div className="max-w-screen-xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
         {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-24"
-          id="repairs-hero"
         >
-          <div className="inline-block px-4 py-1 border border-primary/30 bg-surface/40 backdrop-blur-sm rounded-sm mb-8">
-            <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase">Service Protocol</span>
+          <div className="inline-block px-4 py-1 border border-[#00ccff]/30 bg-[#00ccff]/5 backdrop-blur-sm rounded-full mb-8">
+            <span className="text-[#00ccff] text-[10px] font-black tracking-[0.5em] uppercase">Service Protocol v5.0</span>
           </div>
-          <h1 className="font-headline text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-6 neon-glow-cyan leading-none">
-            ADVANCED LAPTOP & <br/>
-            <span className="text-primary/40">MOTHERBOARD REPAIR.</span>
+          <h1 className="font-headline text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-6 leading-none">
+            PROFESSIONAL <br/>
+            <span className="text-[#00ccff] drop-shadow-[0_0_15px_rgba(0,204,255,0.5)]">REPAIR SOLUTIONS.</span>
           </h1>
-          <p className="text-primary/60 max-w-2xl mx-auto font-body leading-relaxed uppercase text-xs tracking-widest">
-            FAST, RELIABLE SOLUTIONS FOR ALL YOUR TECH ISSUES.
+          <p className="text-neutral-500 max-w-2xl mx-auto font-bold leading-relaxed uppercase text-xs tracking-[0.3em]">
+            Expert diagnostics and hardware restoration for your high-performance machines.
           </p>
         </motion.div>
 
-        {/* Repair Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24" id="repairs-grid">
-          {repairServices.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative p-8 bg-surface-container-low border border-primary/20 hover:border-primary/50 rounded-sm transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,242,255,0.1)] overflow-hidden"
-              id={service.id}
-            >
-              {/* Scanline Effect */}
-              <div className="scanline opacity-10 group-hover:opacity-30"></div>
-              
-              <div className="relative z-10">
-                <div className="mb-6 p-3 bg-primary/10 rounded-sm inline-block group-hover:neon-glow-cyan transition-all">
-                  <span className="material-icons text-3xl text-primary">{service.icon}</span>
-                </div>
-                <h3 className="text-xl font-black font-headline tracking-tight text-white mb-4 group-hover:text-primary transition-colors uppercase">
-                  {service.title}
-                </h3>
-                <p className="text-outline text-sm leading-relaxed uppercase tracking-wider">
-                  {service.desc}
-                </p>
+        {/* Service Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+          {/* Desktop Service Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className="group relative p-8 md:p-10 bg-white/5 border border-white/10 hover:border-[#00ccff]/50 rounded-[2.5rem] transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,204,255,0.15)] backdrop-blur-xl overflow-hidden"
+          >
+            <div className="relative z-10">
+              <div className="mb-8 w-16 h-16 bg-[#00ccff]/10 border border-[#00ccff]/20 rounded-2xl flex items-center justify-center group-hover:bg-[#00ccff]/20 transition-all duration-500">
+                <Monitor className="text-[#00ccff]" size={32} />
               </div>
+              
+              <h3 className="text-3xl font-black font-headline tracking-tighter text-white mb-2 uppercase">
+                Desktop <span className="text-[#00ccff]">Service</span>
+              </h3>
+              <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mb-8">
+                Workstations, Gaming Rigs & Servers
+              </p>
 
-              {/* Decorative Corner */}
-              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-primary/0 group-hover:border-primary/40 transition-all duration-500"></div>
-            </motion.div>
-          ))}
+              <div className="space-y-6">
+                <div className="relative">
+                  <textarea 
+                    value={desktopIssue}
+                    onChange={(e) => setDesktopIssue(e.target.value)}
+                    placeholder="DESCRIBE YOUR DESKTOP ISSUE..."
+                    className="w-full h-32 bg-black/40 border border-white/10 rounded-2xl p-5 text-white text-sm font-medium placeholder:text-neutral-700 focus:outline-none focus:border-[#00ccff]/50 focus:ring-1 focus:ring-[#00ccff]/20 transition-all resize-none"
+                  />
+                </div>
+
+                <button 
+                  onClick={() => sendWhatsApp('Desktop', desktopIssue)}
+                  disabled={!desktopIssue.trim()}
+                  className="w-full group/btn relative flex items-center justify-center gap-3 px-8 py-4 bg-[#00ccff] text-black font-black uppercase tracking-widest text-xs rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-[0_0_30px_rgba(0,204,255,0.6)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#00ccff] disabled:hover:shadow-none"
+                >
+                  <MessageSquare size={18} />
+                  Send via WhatsApp
+                  <Send size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00ccff]/5 blur-[100px] rounded-full group-hover:bg-[#00ccff]/10 transition-colors" />
+          </motion.div>
+
+          {/* Laptop Service Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="group relative p-8 md:p-10 bg-white/5 border border-white/10 hover:border-[#00ccff]/50 rounded-[2.5rem] transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,204,255,0.15)] backdrop-blur-xl overflow-hidden"
+          >
+            <div className="relative z-10">
+              <div className="mb-8 w-16 h-16 bg-[#00ccff]/10 border border-[#00ccff]/20 rounded-2xl flex items-center justify-center group-hover:bg-[#00ccff]/20 transition-all duration-500">
+                <Laptop className="text-[#00ccff]" size={32} />
+              </div>
+              
+              <h3 className="text-3xl font-black font-headline tracking-tighter text-white mb-2 uppercase">
+                Laptop <span className="text-[#00ccff]">Service</span>
+              </h3>
+              <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mb-8">
+                Notebooks, Ultrabooks & MacBooks
+              </p>
+
+              <div className="space-y-6">
+                <div className="relative">
+                  <textarea 
+                    value={laptopIssue}
+                    onChange={(e) => setLaptopIssue(e.target.value)}
+                    placeholder="DESCRIBE YOUR LAPTOP ISSUE..."
+                    className="w-full h-32 bg-black/40 border border-white/10 rounded-2xl p-5 text-white text-sm font-medium placeholder:text-neutral-700 focus:outline-none focus:border-[#00ccff]/50 focus:ring-1 focus:ring-[#00ccff]/20 transition-all resize-none"
+                  />
+                </div>
+
+                <button 
+                  onClick={() => sendWhatsApp('Laptop', laptopIssue)}
+                  disabled={!laptopIssue.trim()}
+                  className="w-full group/btn relative flex items-center justify-center gap-3 px-8 py-4 bg-[#00ccff] text-black font-black uppercase tracking-widest text-xs rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-[0_0_30px_rgba(0,204,255,0.6)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#00ccff] disabled:hover:shadow-none"
+                >
+                  <MessageSquare size={18} />
+                  Send via WhatsApp
+                  <Send size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00ccff]/5 blur-[100px] rounded-full group-hover:bg-[#00ccff]/10 transition-colors" />
+          </motion.div>
         </div>
 
-        {/* Action Section */}
+        {/* Status Section */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-col items-center justify-center p-12 bg-surface-container-high/40 backdrop-blur-xl border border-primary/30 rounded-sm text-center relative overflow-hidden"
-          id="repairs-action"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative p-12 bg-white/5 border border-white/10 rounded-[3rem] text-center overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00ccff]/5 to-transparent"></div>
           
           <h2 className="text-3xl font-black font-headline tracking-tighter text-white mb-8 uppercase relative z-10">
-            Need an urgent <span className="text-primary">Repair Status?</span>
+            Already have a device with us? <br/>
+            <span className="text-[#00ccff]">Check Repair Status</span>
           </h2>
           
           <button 
             onClick={checkStatus}
-            className="group relative flex items-center gap-4 px-10 py-5 bg-primary text-surface font-black uppercase tracking-[0.2em] text-xs hover:bg-white transition-all duration-500 shadow-[0_0_20px_rgba(0,242,255,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.6)] rounded-sm"
-            id="btn-check-status"
+            className="group relative inline-flex items-center gap-4 px-12 py-5 bg-white text-black font-black uppercase tracking-[0.2em] text-[10px] hover:bg-[#00ccff] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(0,204,255,0.4)] rounded-2xl"
           >
-            Check Repair Status
+            Check Status Now
             <span className="material-icons text-sm group-hover:translate-x-2 transition-transform">arrow_forward</span>
           </button>
 
-          <div className="mt-12 flex items-center gap-3 text-primary/40" id="experience-badge">
-            <span className="material-icons text-sm">verified</span>
-            <span className="text-[10px] font-black tracking-[0.3em] uppercase">
-              OVER 10 YEARS OF TECHNICAL EXPERTISE IN ELECTRONICS
+          <div className="mt-12 flex items-center justify-center gap-3 text-neutral-600">
+            <div className="h-[1px] w-12 bg-white/10"></div>
+            <span className="text-[9px] font-black tracking-[0.4em] uppercase">
+              10+ YEARS OF TECHNICAL EXCELLENCE
             </span>
+            <div className="h-[1px] w-12 bg-white/10"></div>
           </div>
         </motion.div>
       </div>

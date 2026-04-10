@@ -66,6 +66,7 @@ export default function Footer() {
         <div>
           <h4 className="text-[10px] font-black text-white uppercase tracking-[0.4em] mb-8">Support Hub</h4>
           <ul className="space-y-4 mb-8">
+            <li><Link className="text-[10px] font-bold text-neutral-500 hover:text-[#00ccff] uppercase tracking-widest transition-colors" to="/payments">How to Order & Pay</Link></li>
             <li><Link className="text-[10px] font-bold text-neutral-500 hover:text-[#00ccff] uppercase tracking-widest transition-colors" to="/terms">Terms of Service</Link></li>
             <li><Link className="text-[10px] font-bold text-neutral-500 hover:text-[#00ccff] uppercase tracking-widest transition-colors" to="/privacy">Privacy Policy</Link></li>
             <li><a className="text-[10px] font-bold text-neutral-500 hover:text-[#00ccff] uppercase tracking-widest transition-colors" href="https://wa.me/94789827123" target="_blank" rel="noopener noreferrer">Contact Expert</a></li>

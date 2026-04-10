@@ -1,15 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Replace these with your actual Firebase project credentials using environment variables
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyBXr84pa6scptkqIGryfny5xfF0rX2FPiI",
+  authDomain: "ranga-15943.firebaseapp.com",
+  projectId: "ranga-15943",
+  storageBucket: "ranga-15943.firebasestorage.app",
+  messagingSenderId: "60660475132",
+  appId: "1:60660475132:web:3d4e924da83804fc056379",
+  measurementId: "G-ZQ04CWVYP5"
 };
 
 // Safety check: Ensure the app doesn't crash if keys are missing
@@ -23,3 +24,4 @@ const app = isFirebaseConfigValid ? initializeApp(firebaseConfig) : null;
 
 export const auth = app ? getAuth(app) : null as any;
 export const db = app ? getFirestore(app) : null as any;
+export const googleProvider = new GoogleAuthProvider();

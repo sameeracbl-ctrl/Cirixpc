@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { Monitor, Laptop } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import Testimonials from '../components/Testimonials';
 
@@ -700,6 +701,84 @@ Please confirm availability and final pricing.`;
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-24 bg-[#0a0a0a] relative overflow-hidden scroll-mt-24">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-[2px] w-12 bg-[#00ccff]"></div>
+              <span className="text-neutral-500 text-[11px] font-black tracking-[0.6em] uppercase block">Technical Support</span>
+            </div>
+            <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">
+              Expert <span className="text-neutral-800">Services.</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Desktop Service Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="group relative p-8 md:p-12 bg-white/5 border border-white/10 hover:border-[#00ccff]/50 rounded-[3rem] transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,204,255,0.1)] backdrop-blur-xl overflow-hidden"
+            >
+              <div className="relative z-10">
+                <div className="mb-8 w-16 h-16 bg-[#00ccff]/10 border border-[#00ccff]/20 rounded-2xl flex items-center justify-center group-hover:bg-[#00ccff]/20 transition-all duration-500">
+                  <Monitor className="text-[#00ccff]" size={32} />
+                </div>
+                <h3 className="text-3xl font-black font-headline tracking-tighter text-white mb-4 uppercase">
+                  Desktop <span className="text-[#00ccff]">Service</span>
+                </h3>
+                <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mb-10 leading-relaxed">
+                  Professional diagnostics and hardware restoration for workstations and gaming rigs.
+                </p>
+                <Link 
+                  to="/repairs"
+                  className="inline-flex items-center gap-3 text-[10px] font-black text-[#00ccff] uppercase tracking-[0.3em] group/link"
+                >
+                  Request Service
+                  <span className="material-icons text-sm group-hover/link:translate-x-2 transition-transform">arrow_forward</span>
+                </Link>
+              </div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00ccff]/5 blur-[100px] rounded-full" />
+            </motion.div>
+
+            {/* Laptop Service Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="group relative p-8 md:p-12 bg-white/5 border border-white/10 hover:border-[#00ccff]/50 rounded-[3rem] transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,204,255,0.1)] backdrop-blur-xl overflow-hidden"
+            >
+              <div className="relative z-10">
+                <div className="mb-8 w-16 h-16 bg-[#00ccff]/10 border border-[#00ccff]/20 rounded-2xl flex items-center justify-center group-hover:bg-[#00ccff]/20 transition-all duration-500">
+                  <Laptop className="text-[#00ccff]" size={32} />
+                </div>
+                <h3 className="text-3xl font-black font-headline tracking-tighter text-white mb-4 uppercase">
+                  Laptop <span className="text-[#00ccff]">Service</span>
+                </h3>
+                <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mb-10 leading-relaxed">
+                  Advanced chip-level repairs and component replacements for all laptop brands.
+                </p>
+                <Link 
+                  to="/repairs"
+                  className="inline-flex items-center gap-3 text-[10px] font-black text-[#00ccff] uppercase tracking-[0.3em] group/link"
+                >
+                  Request Service
+                  <span className="material-icons text-sm group-hover/link:translate-x-2 transition-transform">arrow_forward</span>
+                </Link>
+              </div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00ccff]/5 blur-[100px] rounded-full" />
+            </motion.div>
           </div>
         </div>
       </section>
