@@ -115,7 +115,7 @@ export default function Testimonials() {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-12 mb-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 mb-16 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export default function Testimonials() {
       </div>
 
       {/* Slider Container */}
-      <div className="relative max-w-screen-2xl mx-auto px-4 md:px-12">
+      <div className="relative max-w-7xl mx-auto px-4">
         {/* Navigation Arrows - Appear on Hover */}
         <div className={`absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
           <button 
@@ -222,7 +222,7 @@ export default function Testimonials() {
       </div>
 
       {/* Bottom Decorative Line */}
-      <div className="mt-20 max-w-screen-2xl mx-auto px-4 md:px-12">
+      <div className="mt-20 max-w-7xl mx-auto px-4">
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
       </div>
     </section>

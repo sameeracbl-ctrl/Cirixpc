@@ -269,7 +269,7 @@ export default function CategorySidebar({ isMobile, onClose }: CategorySidebarPr
   return (
     <aside className={`${
       isMobile 
-        ? 'w-full h-full bg-[#0a0a0a] flex flex-col' 
+        ? 'w-full h-full bg-[#0a0a0a] flex flex-col sidebar active category-sidebar' 
         : 'w-72 h-[calc(100vh-96px)] md:h-[calc(100vh-128px)] bg-[#0a0a0a] border-r border-white/5 flex flex-col sticky top-24 md:top-32 z-40'
     }`}>
       <div className="p-6 border-b border-white/5 flex items-center justify-between">

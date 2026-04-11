@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] border-t border-white/5 w-full mt-auto relative overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-12 py-20 max-w-screen-2xl mx-auto relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 py-20 max-w-7xl mx-auto relative z-10">
         <div className="space-y-8 flex flex-col items-center md:items-start text-center md:text-left">
           <div className="flex items-center gap-3">
             <div className="h-[45px] flex-shrink-0">
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5 py-12 px-4 md:px-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+      <div className="border-t border-white/5 py-12 px-4 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
         <p className="text-[9px] font-bold text-neutral-700 uppercase tracking-[0.4em]">© 2024 Citrix Computer. All Rights Reserved. Designed for Performance.</p>
         <div className="flex gap-6">
           <img alt="Visa" className="h-4 opacity-20 grayscale hover:opacity-100 hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEjN4sxGv-bzmIyCpgbeGpf5BFWKlU_QTQcfWRDTmqwXsJRwYlW-azTi8ifqPAWcwwHuxK-veauYi9J3IDh8zTYsevtPLXIiX7u5J_-jAGhkCFpU2I7bNSOIhANZTXCU2BysEF7JPWoma9hqev-aERzal9-82_XQX6QAGWGHTQYxLiOyBl4N7sjT5x1j-qfjkyFrZk-DQxhm0PFqt9aWuV9b7gjq81kcNZB15PStns3rqUlOoSqnXdtZvKNXVkkB1O83t8drAF" referrerPolicy="no-referrer" />

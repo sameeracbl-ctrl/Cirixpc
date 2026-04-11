@@ -135,7 +135,7 @@ Please confirm availability and final pricing.`;
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-neutral-200 font-sans selection:bg-[#00ccff]/30 selection:text-white relative">
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-neutral-200 font-sans selection:bg-[#00ccff]/30 selection:text-white relative main-content w-full overflow-x-hidden">
       <HeroSection 
         onStartBuild={() => setIsBuilderModalOpen(true)} 
         techSupportUrl={techSupportUrl} 
@@ -144,27 +144,27 @@ Please confirm availability and final pricing.`;
       {/* PC Builder Modal */}
       <AnimatePresence>
         {isBuilderModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+          <div className="fixed inset-0 z-[2000] flex items-start md:items-center justify-center p-2 md:p-8 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsBuilderModalOpen(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+              className="fixed inset-0 bg-black/90 backdrop-blur-xl"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-3xl bg-[#0a0a0a] border border-white/5 p-8 md:p-12 rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden"
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-3xl bg-[#0a0a0a] border border-white/10 p-5 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden my-4 md:my-0"
             >
               {/* Decorative Background */}
               <div className="absolute top-0 left-0 w-full h-1 bg-[#00ccff]"></div>
 
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <span className="text-neutral-500 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">PC Configurator</span>
-                  <h2 className="font-headline text-4xl font-black text-white tracking-tighter uppercase">Build Your <span className="text-[#00ccff]">Legacy</span></h2>
+                  <span className="text-neutral-500 text-[8px] md:text-[10px] font-black tracking-[0.4em] uppercase mb-1 md:mb-2 block">PC Configurator</span>
+                  <h2 className="font-headline text-2xl md:text-4xl font-black text-white tracking-tighter uppercase">Build Your <span className="text-[#00ccff]">Legacy</span></h2>
                 </div>
                 <button 
                   onClick={() => {
@@ -188,7 +188,7 @@ Please confirm availability and final pricing.`;
                 <span className="ml-auto text-[10px] font-black text-neutral-500 uppercase tracking-widest">Step {step} of 5</span>
               </div>
 
-              <div className="min-h-[400px] max-h-[60vh] overflow-y-auto no-scrollbar pr-2 mb-10">
+              <div className="min-h-[300px] md:min-h-[400px] max-h-[70vh] md:max-h-[60vh] overflow-y-auto no-scrollbar pr-1 md:pr-2 mb-6 md:mb-10">
                 <AnimatePresence mode="wait">
                   {step === 1 && (
                     <motion.div
@@ -599,11 +599,11 @@ Please confirm availability and final pricing.`;
                 </AnimatePresence>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4">
                 {step > 1 && (
                   <button 
                     onClick={() => setStep(prev => prev - 1)}
-                    className="flex-1 py-4 border border-white/10 text-neutral-500 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 rounded-xl transition-all"
+                    className="w-full md:flex-1 py-3 md:py-4 border border-white/10 text-neutral-500 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 rounded-xl transition-all"
                   >
                     Back
                   </button>
@@ -611,7 +611,7 @@ Please confirm availability and final pricing.`;
                 {step < 5 ? (
                   <button 
                     onClick={() => setStep(prev => prev + 1)}
-                    className="flex-[2] bg-[#00ccff] text-black !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#00ccff]/80 rounded-xl transition-all"
+                    className="w-full md:flex-[2] bg-[#00ccff] text-black py-3 md:py-4 text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#00ccff]/80 rounded-xl transition-all"
                   >
                     Next Category
                     <span className="material-icons text-lg">arrow_forward</span>
@@ -619,7 +619,7 @@ Please confirm availability and final pricing.`;
                 ) : (
                   <button 
                     onClick={generateQuotation}
-                    className="flex-[2] bg-[#00ccff] text-black !py-4 !text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 group hover:bg-[#00ccff]/80 rounded-xl transition-all"
+                    className="w-full md:flex-[2] bg-[#00ccff] text-black py-3 md:py-4 text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 group hover:bg-[#00ccff]/80 rounded-xl transition-all"
                   >
                     <span className="material-icons text-lg group-hover:scale-110 transition-transform">description</span>
                     Generate Quotation
@@ -636,24 +636,46 @@ Please confirm availability and final pricing.`;
       </AnimatePresence>
 
       {/* Premium Category Grid */}
-      <section id="hardware" className="py-20 bg-[#0a0a0a] relative overflow-hidden scroll-mt-24">
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
+      <section id="hardware" className="py-20 bg-[#0a0a0a] relative overflow-hidden scroll-mt-24 hardware-foundry-section">
+        <div className="max-w-7xl mx-auto px-4 relative z-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-12 pl-4 md:pl-0"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="h-[2px] w-12 bg-[#00ccff]"></div>
               <span className="text-neutral-500 text-[11px] font-black tracking-[0.6em] uppercase block">Hardware Collection</span>
             </div>
-            <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">
+            <h2 className="font-headline text-3xl md:text-6xl font-black text-white tracking-tighter uppercase">
               Browse <span className="text-neutral-800">Categories.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Mobile Horizontal Category List */}
+          <div className="md:hidden flex flex-nowrap overflow-x-auto no-scrollbar gap-3 mb-16 pb-4 px-4 -mx-4">
+            {[
+              { label: 'Processors', slug: 'processors' },
+              { label: 'Motherboards', slug: 'motherboards' },
+              { label: 'RAM', slug: 'ram' },
+              { label: 'Storage', slug: 'storage' },
+              { label: 'VGA', slug: 'vga' },
+              { label: 'PSU', slug: 'psu' },
+              { label: 'Casing', slug: 'casings' },
+              { label: 'Laptops', slug: 'laptops' },
+            ].map((cat) => (
+              <Link 
+                key={cat.slug} 
+                to={`/category/${cat.slug}`}
+                className="whitespace-nowrap px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-neutral-400 hover:text-[#00ccff] hover:border-[#00ccff]/30 transition-all"
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { label: 'Processors', slug: 'processors', img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80&w=600' },
               { label: 'Motherboards', slug: 'motherboards', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600' },
@@ -681,13 +703,13 @@ Please confirm availability and final pricing.`;
               >
                 <Link 
                   to={`/category/${cat.slug}`}
-                  className="group relative block aspect-[4/3] md:aspect-square bg-neutral-900 border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-[#00ccff]/50 hover:shadow-[0_0_30px_rgba(0,204,255,0.1)]"
+                  className="group relative block w-full aspect-[4/3] md:aspect-square bg-neutral-900 border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-[#00ccff]/50 hover:shadow-[0_0_30px_rgba(0,204,255,0.1)]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10 opacity-80"></div>
                   <motion.img 
                     src={cat.img} 
                     alt={cat.label}
-                    className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-auto min-h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 z-20">
@@ -707,7 +729,7 @@ Please confirm availability and final pricing.`;
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-[#0a0a0a] relative overflow-hidden scroll-mt-24">
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-12 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 relative z-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -718,7 +740,7 @@ Please confirm availability and final pricing.`;
               <div className="h-[2px] w-12 bg-[#00ccff]"></div>
               <span className="text-neutral-500 text-[11px] font-black tracking-[0.6em] uppercase block">Technical Support</span>
             </div>
-            <h2 className="font-headline text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">
+            <h2 className="font-headline text-3xl md:text-6xl font-black text-white tracking-tighter uppercase">
               Expert <span className="text-neutral-800">Services.</span>
             </h2>
           </motion.div>
@@ -784,13 +806,13 @@ Please confirm availability and final pricing.`;
       </section>
 
       {/* Featured Hardware */}
-      <section id="featured" className="py-24 bg-neutral-950 scroll-mt-24">
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-12">
+      <section id="featured" className="py-24 bg-neutral-950 scroll-mt-24 featured-inventory">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
-            <h2 className="font-headline text-2xl font-black text-white tracking-widest uppercase">Featured Inventory</h2>
+            <h2 className="font-headline text-xl md:text-2xl font-black text-white tracking-widest uppercase">Featured Inventory</h2>
             <Link className="text-[10px] font-bold text-[#00ccff] border-b border-[#00ccff]/20 pb-1 hover:border-[#00ccff] transition-all uppercase tracking-widest" to="/hardware">Access Full Catalog</Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 product-grid">
             {[
               {
                 tag: 'In Stock',
@@ -821,9 +843,9 @@ Please confirm availability and final pricing.`;
                 img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAjONtj8S6rwUS2E42Bm34m1tBeO2GqwqjG_O3--R4QTiktDYByvWF2Jek3I88jFC7BwzWTafZBlfSh940F1MHRXu_B3cXc5H2wwVzZQQrk-ezQqI5QF7yCbF3_MUY1bA6y1TfdPikNV4FOd_Mz91f1aeS1IqlfP3_v0co373wQ2vvb2dBU049Vo3xB0f4eIcDgyLS8focdP03UNAvs31HoP-iWezKGS8Ykr_GpaZiaT5YlnBwPShmDihProhKPAj0rgqTn1wzH'
               },
             ].map((prod, i) => (
-              <div key={i} className="group flex flex-col bg-neutral-900 rounded-2xl overflow-hidden border border-white/5 hover:border-[#00ccff]/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+              <div key={i} className="group flex flex-col w-full bg-neutral-900 rounded-2xl overflow-hidden border border-white/5 hover:border-[#00ccff]/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] product-card">
                 <div className="relative aspect-square overflow-hidden bg-neutral-800">
-                  <img alt={prod.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src={prod.img} referrerPolicy="no-referrer" />
+                  <img alt={prod.title} className="w-full h-auto min-h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src={prod.img} referrerPolicy="no-referrer" />
                   <div className="absolute top-4 left-4 bg-[#00ccff] text-black text-[8px] font-black px-2 py-1 rounded-md uppercase tracking-widest">{prod.tag}</div>
                 </div>
                 <div className="p-6 flex flex-col flex-grow">

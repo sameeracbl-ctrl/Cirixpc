@@ -169,7 +169,7 @@ export default function CategorySelection() {
       <div className="absolute inset-0 cyber-metal opacity-20 pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-surface to-transparent"></div>
       
-      <div className="max-w-screen-xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-20 relative z-10">
         <motion.button 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -188,7 +188,7 @@ export default function CategorySelection() {
           <div className="inline-block px-4 py-1 border border-primary/30 bg-surface/40 backdrop-blur-sm rounded-sm mb-6 md:mb-8">
             <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase">Category Protocol</span>
           </div>
-          <h1 className="font-headline text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase mb-6 md:mb-8 neon-glow-cyan leading-[0.9]">
+          <h1 className="font-headline text-3xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase mb-6 md:mb-8 neon-glow-cyan leading-[0.9]">
             {category.title} <br/>
             <span className="text-primary/20">SELECTION.</span>
           </h1>
@@ -197,7 +197,7 @@ export default function CategorySelection() {
           </p>
         </motion.div>
 
-        <div className={`grid grid-cols-1 ${category.subCategories ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-8 md:gap-12`}>
+        <div className={`grid grid-cols-1 ${category.subCategories ? 'sm:grid-cols-2 md:grid-cols-3' : 'sm:grid-cols-2'} gap-6 md:gap-12`}>
           {category.subCategories ? (
             category.subCategories.map((sub, idx) => (
               <motion.div
@@ -208,28 +208,28 @@ export default function CategorySelection() {
               >
                 <Link 
                   to={`/category/${slug}/${sub.slug}`}
-                  className="group relative block h-[400px] cyber-metal rounded-sm border border-primary/30 hover:neon-border-cyan transition-all duration-700 overflow-hidden perspective-1000"
+                  className="group relative block h-[200px] md:h-[400px] cyber-metal rounded-sm border border-primary/30 hover:neon-border-cyan transition-all duration-700 overflow-hidden perspective-1000"
                 >
                   <div className="scanline"></div>
                   <div className="absolute top-12 left-0 led-strip opacity-20 group-hover:opacity-80 transition-opacity"></div>
                   
                   <motion.div 
                     whileHover={{ scale: 1.05, rotateY: 5 }}
-                    className="w-full h-full p-8 flex flex-col justify-between relative z-10"
+                    className="w-full h-full p-6 md:p-8 flex flex-col justify-between relative z-10"
                   >
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     
                     <div>
-                      <div className="inline-block px-4 py-2 border border-primary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-6 shadow-[0_0_15px_rgba(0,242,255,0.2)]">
-                        <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase neon-glow-cyan">Selection Mode</span>
+                      <div className="inline-block px-3 py-1 border border-primary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-3 md:mb-6 shadow-[0_0_15px_rgba(0,242,255,0.2)]">
+                        <span className="text-primary text-[8px] md:text-[10px] font-black tracking-[0.5em] uppercase neon-glow-cyan">Selection Mode</span>
                       </div>
-                      <h2 className="font-headline text-4xl font-black text-white uppercase tracking-tighter group-hover:text-primary transition-colors mb-4 leading-none">{sub.label}</h2>
-                      <p className="text-primary/40 text-[10px] font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">{sub.description}</p>
+                      <h2 className="font-headline text-2xl md:text-4xl font-black text-white uppercase tracking-tighter group-hover:text-primary transition-colors mb-2 md:mb-4 leading-none">{sub.label}</h2>
+                      <p className="text-primary/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">{sub.description}</p>
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-primary/20 pt-6">
-                      <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em]">Initialize</span>
-                      <span className="material-icons text-primary group-hover:translate-x-4 transition-transform text-3xl">{sub.icon}</span>
+                    <div className="flex items-center justify-between border-t border-primary/20 pt-4 md:pt-6">
+                      <span className="text-[9px] md:text-[10px] font-black text-primary uppercase tracking-[0.5em]">Initialize</span>
+                      <span className="material-icons text-primary group-hover:translate-x-4 transition-transform text-2xl md:text-3xl">{sub.icon}</span>
                     </div>
                   </motion.div>
 
@@ -237,7 +237,7 @@ export default function CategorySelection() {
                     <img 
                       src={category.img} 
                       alt={sub.label} 
-                      className="w-[300px] h-[300px] object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                      className="w-48 md:w-64 lg:w-80 h-auto object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
                   </div>
@@ -254,7 +254,7 @@ export default function CategorySelection() {
               >
                 <Link 
                   to={`/category/${slug}/new`}
-                  className="group relative block h-[400px] md:h-[500px] cyber-metal rounded-sm border border-primary/30 hover:neon-border-cyan transition-all duration-700 overflow-hidden perspective-1000"
+                  className="group relative block h-[240px] md:h-[500px] cyber-metal rounded-sm border border-primary/30 hover:neon-border-cyan transition-all duration-700 overflow-hidden perspective-1000"
                 >
                   {/* Scanline Effect */}
                   <div className="scanline"></div>
@@ -265,21 +265,21 @@ export default function CategorySelection() {
 
                   <motion.div 
                     whileHover={{ scale: 1.05, rotateY: 5 }}
-                    className="w-full h-full p-8 md:p-16 flex flex-col justify-between relative z-10"
+                    className="w-full h-full p-6 md:p-16 flex flex-col justify-between relative z-10"
                   >
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     
                     <div>
-                      <div className="inline-block px-4 md:px-6 py-2 border border-primary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-6 md:mb-8 shadow-[0_0_15px_rgba(0,242,255,0.2)]">
+                      <div className="inline-block px-4 md:px-6 py-2 border border-primary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-4 md:mb-8 shadow-[0_0_15px_rgba(0,242,255,0.2)]">
                         <span className="text-primary text-[9px] md:text-[11px] font-black tracking-[0.5em] uppercase neon-glow-cyan">Factory Sealed</span>
                       </div>
-                      <h2 className="font-headline text-4xl md:text-6xl font-black text-white uppercase tracking-tighter group-hover:text-primary transition-colors mb-4 md:mb-6 leading-none">Brand New</h2>
-                      <p className="text-primary/40 text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">Latest generation hardware with full manufacturer warranty and verified serials.</p>
+                      <h2 className="font-headline text-3xl md:text-6xl font-black text-white uppercase tracking-tighter group-hover:text-primary transition-colors mb-2 md:mb-6 leading-none">Brand New</h2>
+                      <p className="text-primary/40 text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">Latest generation hardware with full manufacturer warranty.</p>
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-primary/20 pt-6 md:pt-8">
+                    <div className="flex items-center justify-between border-t border-primary/20 pt-4 md:pt-8">
                       <span className="text-[10px] md:text-[12px] font-black text-primary uppercase tracking-[0.5em]">Initialize New</span>
-                      <span className="material-icons text-primary group-hover:translate-x-4 transition-transform text-3xl md:text-4xl">arrow_forward</span>
+                      <span className="material-icons text-primary group-hover:translate-x-4 transition-transform text-2xl md:text-4xl">arrow_forward</span>
                     </div>
                   </motion.div>
 
@@ -288,7 +288,7 @@ export default function CategorySelection() {
                     <img 
                       src={category.img} 
                       alt={category.title} 
-                      className="w-[400px] md:w-[600px] h-[400px] md:h-[600px] object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                      className="w-64 md:w-[500px] lg:w-[600px] h-auto object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
                   </div>
@@ -303,7 +303,7 @@ export default function CategorySelection() {
               >
                 <Link 
                   to={`/category/${slug}/used`}
-                  className="group relative block h-[400px] md:h-[500px] cyber-metal rounded-sm border border-secondary/30 hover:neon-border-blue transition-all duration-700 overflow-hidden perspective-1000"
+                  className="group relative block h-[240px] md:h-[500px] cyber-metal rounded-sm border border-secondary/30 hover:neon-border-blue transition-all duration-700 overflow-hidden perspective-1000"
                 >
                   {/* Scanline Effect */}
                   <div className="scanline"></div>
@@ -314,21 +314,21 @@ export default function CategorySelection() {
 
                   <motion.div 
                     whileHover={{ scale: 1.05, rotateY: -5 }}
-                    className="w-full h-full p-8 md:p-16 flex flex-col justify-between relative z-10"
+                    className="w-full h-full p-6 md:p-16 flex flex-col justify-between relative z-10"
                   >
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
                     <div>
-                      <div className="inline-block px-4 md:px-6 py-2 border border-secondary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-6 md:mb-8 shadow-[0_0_15px_rgba(0,123,255,0.2)]">
+                      <div className="inline-block px-4 md:px-6 py-2 border border-secondary/50 bg-surface/90 backdrop-blur-xl rounded-sm mb-4 md:mb-8 shadow-[0_0_15px_rgba(0,123,255,0.2)]">
                         <span className="text-secondary text-[9px] md:text-[11px] font-black tracking-[0.5em] uppercase">Certified Value</span>
                       </div>
-                      <h2 className="font-headline text-4xl md:text-6xl font-black text-white uppercase tracking-tighter group-hover:text-secondary transition-colors mb-4 md:mb-6 leading-none">Used Gear</h2>
+                      <h2 className="font-headline text-3xl md:text-6xl font-black text-white uppercase tracking-tighter group-hover:text-secondary transition-colors mb-2 md:mb-6 leading-none">Used Gear</h2>
                       <p className="text-secondary/40 text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">Rigorous 48-point testing ensures every circuit meets industrial standards.</p>
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-secondary/20 pt-6 md:pt-8">
+                    <div className="flex items-center justify-between border-t border-secondary/20 pt-4 md:pt-8">
                       <span className="text-[10px] md:text-[12px] font-black text-secondary uppercase tracking-[0.5em]">Initialize Used</span>
-                      <span className="material-icons text-secondary group-hover:translate-x-4 transition-transform text-3xl md:text-4xl">history</span>
+                      <span className="material-icons text-secondary group-hover:translate-x-4 transition-transform text-2xl md:text-4xl">history</span>
                     </div>
                   </motion.div>
 
@@ -337,7 +337,7 @@ export default function CategorySelection() {
                     <img 
                       src={category.img} 
                       alt={category.title} 
-                      className="w-[400px] md:w-[600px] h-[400px] md:h-[600px] object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                      className="w-64 md:w-[500px] lg:w-[600px] h-auto object-contain grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
                   </div>

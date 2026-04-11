@@ -20,7 +20,7 @@ export default function Payments() {
 
   return (
     <div className="min-h-screen bg-black pt-32 pb-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -156,7 +156,7 @@ export default function Payments() {
             </h2>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-white/30 bg-[#0a0a0a] shadow-2xl">
+          <div className="hidden md:block overflow-x-auto rounded-2xl border border-white/30 bg-[#0a0a0a] shadow-2xl bank-details-table">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-white/5 border-b border-white/10">
@@ -186,6 +186,34 @@ export default function Payments() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Bank Cards */}
+          <div className="md:hidden space-y-4">
+            {bankDetails.map((bank, idx) => (
+              <div key={idx} className="bg-[#0a0a0a] border border-white/30 p-6 rounded-2xl space-y-4 shadow-xl">
+                <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+                  <div className="w-10 h-10 rounded bg-[#00f2ff]/10 flex items-center justify-center">
+                    <Landmark size={20} className="text-[#00f2ff]" />
+                  </div>
+                  <span className="text-[#ffffff] font-black uppercase text-sm tracking-widest">{bank.bank}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-[9px] font-black text-[#ffb347] uppercase tracking-widest block mb-1">Account Name</span>
+                    <p className="text-[#87cefa] text-xs font-bold uppercase">{bank.accountName}</p>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-black text-[#ffb347] uppercase tracking-widest block mb-1">Branch</span>
+                    <p className="text-[#ffffff] text-xs font-black uppercase">{bank.branch}</p>
+                  </div>
+                </div>
+                <div>
+                  <span className="text-[9px] font-black text-[#ffb347] uppercase tracking-widest block mb-1">Account Number</span>
+                  <p className="text-[#00f2ff] font-mono font-bold text-lg tracking-widest">{bank.accountNumber}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
 

@@ -155,7 +155,7 @@ html {
 .hero-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     background: #0a0a0a;
 }
@@ -199,9 +199,9 @@ html {
 header {
     display: flex;
     padding: 15px 20px;
-    background: transparent;
+    background: #0a0a0a;
     transition: all 0.4s ease-in-out;
-    position: fixed;
+    position: sticky;
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -210,6 +210,8 @@ header {
 @media (min-width: 1024px) {
     header {
         padding: 25px 80px;
+        position: fixed;
+        background: transparent;
     }
 }
 
@@ -350,77 +352,38 @@ header.scrolled {
   background: #00ccff;
 }
 
-/* RESPONSIVE LAYOUT FIX - MOBILE ONLY */
-@media (max-width: 767px) {
-  .min-h-screen {
-    width: 100% !important;
-    overflow-x: hidden !important;
-  }
+/* Global Responsive Reset */
+html, body {
+  max-width: 100vw !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative;
+}
 
-  /* Center Citrix Computer Header */
-  header .flex-col {
-    align-items: center !important;
-    text-align: center !important;
-  }
+#root {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
 
-  /* Adjust Login Box & Cards */
-  .max-w-md {
+/* Responsive Utilities */
+@media screen and (max-width: 1024px) {
+  /* Ensure all containers respect screen width */
+  .container, [class*="max-w-"] {
     max-width: 100% !important;
-    width: 100% !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
-  /* Google Sign-in Full Width */
-  button.flex.items-center.justify-center.gap-3 {
-    width: 100% !important;
-  }
-
-  /* Ensure no horizontal scrolling */
-  body, #root {
-    overflow-x: hidden !important;
-    width: 100% !important;
-    position: relative;
-  }
-
-  /* Center Logo Container */
-  .shrink-0.max-md\:mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
-
-/* ==========================================
-   MOBILE VIEW ONLY (768px ට වඩා අඩු ෆෝන් වලට)
-   ========================================== */
-@media screen and (max-width: 768px) {
-
-  /* 1. පේජ් එක හිර නොවී පල්ලෙහාට Scroll වෙන්න */
-  html, body {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-  }
-
-  /* 2. Hardware Foundry (Categories) පේළියට ගන්න */
-  .category-list, [class*="category-list"] {
-    display: flex !important;
-    overflow-x: auto !important;
-    gap: 10px !important;
-    padding: 10px !important;
-  }
-
-  /* 3. මොබයිල් එකේදී අකුරු වල සයිස් එක මෙතනින් වෙනස් කරන්න පුළුවන් */
+  /* Slider text scaling */
   h1 {
-    font-size: 20px !important;
-    color: #00f2ff !important; /* Citrix Cyan */
+    font-size: clamp(2rem, 10vw, 4rem) !important;
+    line-height: 1.1 !important;
   }
-
-  /* 4. මොබයිල් එකේදී බඩු (Products) 2 බැගින් පෙන්වන්න */
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
 }
-/* ==========================================
-   මෙතනින් පල්ලෙහාට මොකුත් ලියන්න එපා
-   ========================================== */
+
+/* Small Screens Optimization */
+@media screen and (max-width: 480px) {
+  .grid, [class*="grid-cols-"] {
+    gap: 8px !important;
+  }
+}

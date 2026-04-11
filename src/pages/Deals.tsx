@@ -53,7 +53,7 @@ export default function Deals() {
       {/* Background Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,242,255,0.05),transparent_70%)] pointer-events-none"></div>
       
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-20 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function Deals() {
           <div className="inline-block px-4 py-1 border border-primary/30 bg-surface/40 backdrop-blur-sm rounded-sm mb-8">
             <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase">Foundry Drops Protocol</span>
           </div>
-          <h1 className="font-headline text-6xl md:text-9xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
+          <h1 className="font-headline text-4xl md:text-9xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
             FOUNDRY <span className="text-primary/20">DROPS.</span>
           </h1>
           <p className="text-primary/60 max-w-2xl font-body leading-relaxed uppercase text-xs tracking-widest border-l-2 border-primary/30 pl-6">
@@ -71,7 +71,7 @@ export default function Deals() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {deals.map((deal, i) => (
             <motion.div
               key={deal.id}
@@ -147,7 +147,7 @@ export default function Deals() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,242,255,0.1),transparent_70%)]"></div>
           <div className="relative z-10">
-            <h2 className="font-headline text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8">
+            <h2 className="font-headline text-3xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8">
               NEVER MISS A <span className="text-primary">DROP.</span>
             </h2>
             <p className="text-primary/60 max-w-2xl mx-auto font-body uppercase text-xs tracking-widest mb-12 leading-relaxed">

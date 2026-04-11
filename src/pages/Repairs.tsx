@@ -25,7 +25,7 @@ export default function Repairs() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,204,255,0.05),transparent_50%)]"></div>
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#0a0a0a] to-transparent"></div>
       
-      <div className="max-w-screen-xl mx-auto px-4 md:px-12 pt-32 pb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-20 relative z-10">
         {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -64,8 +64,8 @@ const Checkout: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-surface pt-24 pb-12 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-surface pt-24 pb-12 px-4">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="flex items-center gap-3 mb-4">

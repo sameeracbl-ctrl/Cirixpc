@@ -27,8 +27,8 @@ export default function HardwareCatalog() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-body scroll-mt-24">
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-12 py-6">
+    <div className="min-h-screen bg-black text-white font-body scroll-mt-24 main-content">
+      <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 mb-10">
           <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -43,24 +43,23 @@ export default function HardwareCatalog() {
           <aside className="w-full lg:w-64 flex-shrink-0">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xl font-black font-headline tracking-tighter uppercase">Intel Chipsets</h2>
-              <button className="lg:hidden material-icons">filter_list</button>
+              <button className="lg:hidden material-icons text-gray-500">filter_list</button>
             </div>
-            <ul className="space-y-1">
+            <div className="flex lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 lg:overflow-x-visible no-scrollbar">
               {intelSeries.map((series, i) => (
-                <li key={i}>
-                  <button 
-                    onClick={() => setActiveChipset(series.name)}
-                    className={`w-full text-left px-4 py-3 rounded-sm text-sm font-bold tracking-tight transition-all border-l-2 ${
-                      activeChipset === series.name 
-                        ? 'bg-white/10 text-white border-white shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
-                        : 'border-transparent hover:bg-white/5 text-gray-500 hover:text-white'
-                    }`}
-                  >
-                    {series.name}
-                  </button>
-                </li>
+                <button 
+                  key={i}
+                  onClick={() => setActiveChipset(series.name)}
+                  className={`whitespace-nowrap lg:whitespace-normal text-left px-4 py-3 rounded-sm text-sm font-bold tracking-tight transition-all border-l-2 flex-shrink-0 lg:flex-shrink-1 ${
+                    activeChipset === series.name 
+                      ? 'bg-white/10 text-white border-white shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
+                      : 'border-transparent hover:bg-white/5 text-gray-500 hover:text-white'
+                  }`}
+                >
+                  {series.name}
+                </button>
               ))}
-            </ul>
+            </div>
           </aside>
 
           {/* Main Content */}
@@ -70,7 +69,7 @@ export default function HardwareCatalog() {
                 <button className="flex items-center justify-center bg-white/5 w-10 h-10 rounded-sm text-white hover:bg-white/10 transition-all border border-white/10">
                   <span className="material-icons text-sm">filter_alt</span>
                 </button>
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Showing 12 Results</span>
+                <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest">Showing 12 Results</span>
               </div>
               <div className="flex items-center gap-2">
                 <button className="w-10 h-10 flex items-center justify-center bg-white text-black rounded-sm shadow-[0_0_15px_rgba(255,255,255,0.3)] border border-white/40">
@@ -85,13 +84,13 @@ export default function HardwareCatalog() {
             {/* Featured Product */}
             <motion.div 
               layout
-              className="bg-white/5 rounded-2xl overflow-hidden mb-12 flex flex-col md:flex-row shadow-2xl border border-white/10 relative"
+              className="bg-white/5 rounded-2xl overflow-hidden mb-12 flex flex-col lg:flex-row shadow-2xl border border-white/10 relative"
             >
-              <div className="w-full md:w-1/2 p-12 flex flex-col justify-center relative z-10">
+              <div className="w-full lg:w-1/2 p-6 md:p-12 flex flex-col justify-center relative z-10 order-2 lg:order-1">
                 <span className="text-gray-500 font-bold tracking-[0.3em] text-[10px] uppercase mb-4">PREMIUM PERFORMANCE</span>
-                <h3 className="text-5xl font-black font-headline tracking-tighter mb-6 leading-none">{activeChipset} <br/><span className="text-gray-600">Foundry Edition</span></h3>
+                <h3 className="text-3xl md:text-5xl font-black font-headline tracking-tighter mb-6 leading-none">{activeChipset} <br/><span className="text-gray-600">Foundry Edition</span></h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-10 max-w-sm">Engineered for high-performance computing. Featuring optimized thermal solutions and extreme overclocking stability.</p>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <button 
                     onClick={() => addToCart({
                       id: `featured-${activeChipset}`,
@@ -100,27 +99,27 @@ export default function HardwareCatalog() {
                       img: currentChipset.img || "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
                       category: 'Intel Chipsets'
                     })}
-                    className="bg-white text-black px-8 py-4 rounded-sm font-bold tracking-tight flex items-center gap-3 hover:opacity-90 transition-all shadow-lg shadow-white/10"
+                    className="bg-white text-black px-6 py-4 rounded-sm font-bold tracking-tight flex items-center justify-center gap-3 hover:opacity-90 transition-all shadow-lg shadow-white/10 text-sm"
                   >
                     Add to Cart
-                    <span className="material-icons">add_shopping_cart</span>
+                    <span className="material-icons text-lg">add_shopping_cart</span>
                   </button>
                   <button 
                     onClick={() => whatsappQuote(activeChipset)}
-                    className="bg-[#25D366] text-white px-8 py-4 rounded-sm font-bold tracking-tight flex items-center gap-3 hover:opacity-90 transition-all shadow-lg shadow-emerald-900/20"
+                    className="bg-[#25D366] text-white px-6 py-4 rounded-sm font-bold tracking-tight flex items-center justify-center gap-3 hover:opacity-90 transition-all shadow-lg shadow-emerald-900/20 text-sm"
                   >
                     WhatsApp for Price
-                    <span className="material-icons">chat</span>
+                    <span className="material-icons text-lg">chat</span>
                   </button>
                   <button 
                     onClick={() => setShowSpecs(true)}
-                    className="w-14 h-14 flex items-center justify-center border border-white/20 rounded-sm hover:bg-white/10 transition-all text-white"
+                    className="hidden sm:flex w-14 h-14 items-center justify-center border border-white/20 rounded-sm hover:bg-white/10 transition-all text-white"
                   >
                     <span className="material-icons">info</span>
                   </button>
                 </div>
               </div>
-              <div className="w-full md:w-1/2 relative bg-white/5 overflow-hidden">
+              <div className="w-full lg:w-1/2 relative bg-white/5 overflow-hidden h-64 md:h-80 lg:h-auto order-1 lg:order-2">
                 <AnimatePresence mode="wait">
                   <motion.img 
                     key={activeChipset}
@@ -134,13 +133,13 @@ export default function HardwareCatalog() {
                     referrerPolicy="no-referrer" 
                   />
                 </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black via-transparent to-transparent"></div>
               </div>
             </motion.div>
 
             {/* Legacy Inventory Grid */}
             <h4 className="text-xs font-bold text-gray-500 uppercase tracking-[0.4em] mb-8">Legacy Inventory</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 product-grid">
               {[
                 { name: "H410M-K", chipset: "H410", price: "18,500" },
                 { name: "B460M-A", chipset: "B460", price: "24,500" },
@@ -152,7 +151,7 @@ export default function HardwareCatalog() {
                 <motion.div 
                   key={i} 
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group relative overflow-hidden"
+                  className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group relative overflow-hidden product-card"
                 >
                   <div className="flex justify-between items-start mb-6">
                     <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{item.chipset} Chipset</span>
@@ -184,7 +183,7 @@ export default function HardwareCatalog() {
       {/* Quick Specs Modal */}
       <AnimatePresence>
         {showSpecs && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectionProps) {
   return (
-    <div className="hero-container">
+    <div className="hero-container hero-banner min-h-[calc(100vh-80px)] md:h-screen">
       {/* SLIDESHOW ENGINE */}
       <div className="slideshow">
         <div className="slide"></div>
@@ -33,7 +33,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
           >
             Premium Hardware Foundry
           </motion.span>
-          <h1 className="font-headline text-6xl md:text-9xl font-black text-white uppercase tracking-tighter leading-[0.85] mb-10">
+          <h1 className="font-headline text-3xl sm:text-4xl md:text-9xl font-black text-white uppercase tracking-tighter leading-[0.85] mb-10">
             Build Your <br/>
             <span className="text-neutral-700">Legacy.</span>
           </h1>
@@ -41,12 +41,12 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
             Custom engineered workstations and gaming rigs. <br className="hidden md:block"/>
             Performance without compromise.
           </p>
-          <div className="flex flex-col md:flex-row gap-6 justify-center w-full md:w-auto">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center w-full md:w-auto">
             <motion.button 
               whileHover={{ scale: 1.05, backgroundColor: '#00ccff', color: '#000' }}
               whileTap={{ scale: 0.95 }}
               onClick={onStartBuild}
-              className="px-12 py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.05)] transition-all"
+              className="w-full md:w-auto px-12 py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.05)] transition-all"
             >
               Start Your Build
             </motion.button>
@@ -54,7 +54,7 @@ export default function HeroSection({ onStartBuild, techSupportUrl }: HeroSectio
               href={techSupportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-12 py-5 border border-white/10 text-white font-black text-[11px] uppercase tracking-[0.4em] rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+              className="w-full md:w-auto px-12 py-5 border border-white/10 text-white font-black text-[11px] uppercase tracking-[0.4em] rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-2"
             >
               Technical Support
             </a>

@@ -55,7 +55,7 @@ export default function App() {
             <Router>
               <ScrollToHash />
               <div className="flex flex-col min-h-screen bg-surface text-on-surface w-full overflow-x-hidden">
-                <Navbar />
+                <Navbar onOpenCategories={() => setIsCategoryDrawerOpen(true)} />
                 <div className="flex flex-grow relative w-full overflow-x-hidden">
                   {/* Vertical Mega Menu Sidebar (Desktop) */}
                   <div className="hidden lg:block shrink-0">
@@ -66,7 +66,7 @@ export default function App() {
                   <div className="lg:hidden">
                     <button
                       onClick={() => setIsCategoryDrawerOpen(true)}
-                      className="fixed top-24 left-4 z-[100] w-12 h-12 bg-[#00ccff] text-black rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,204,255,0.4)] hover:scale-110 active:scale-95 transition-all"
+                      className="fixed top-28 left-4 z-[1000] w-12 h-12 bg-[#00ccff] text-black rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,204,255,0.4)] hover:scale-110 active:scale-95 transition-all"
                       aria-label="Open Categories"
                     >
                       <Filter size={20} />
@@ -87,7 +87,7 @@ export default function App() {
                             animate={{ x: 0 }}
                             exit={{ x: '-100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-[#0a0a0a] z-[1002] shadow-2xl"
+                            className="fixed inset-y-0 left-0 w-full md:w-80 bg-[#0a0a0a] z-[1002] shadow-2xl sidebar active"
                           >
                             <CategorySidebar isMobile onClose={() => setIsCategoryDrawerOpen(false)} />
                           </motion.div>

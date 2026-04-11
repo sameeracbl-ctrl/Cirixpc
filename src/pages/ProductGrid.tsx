@@ -182,7 +182,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-processors" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Processors</h3>}
-            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
+            <div ref={gridRef} className="flex flex-nowrap overflow-x-auto no-scrollbar gap-2 md:gap-4 border-b border-primary/20 pb-4 scroll-mt-32 -mx-4 px-4 md:mx-0 md:px-0">
               {Object.keys(usedProcessors).map((category) => (
                 <button
                   key={category}
@@ -208,7 +208,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid"
               >
                 {filteredUsed.map((item: any, i: number) => (
                   <motion.div
@@ -217,16 +217,16 @@ export default function ProductGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Processors' })}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
-                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
+                    <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15_rgba(0,242,255,0.1)] p-4">
                       {item.img ? (
                         <img 
                           src={item.img} 
                           alt={item.model} 
-                          className="w-full h-full object-contain neon-bloom"
+                          className="w-full h-auto min-h-full object-contain neon-bloom"
                           referrerPolicy="no-referrer"
                         />
                       ) : (
@@ -336,7 +336,7 @@ export default function ProductGrid() {
                 return (
                   <div key={category}>
                     <h3 className={`font-headline text-2xl font-black text-${brandColor} mb-8 uppercase tracking-widest ${neonGlow}`}>{category}</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid">
                       {filteredItems.map((item: any, i: number) => (
                         <motion.div
                           key={item.model}
@@ -344,7 +344,7 @@ export default function ProductGrid() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: (catIdx * 0.1) + (i * 0.05) }}
                           onClick={() => setSelectedProduct({ ...item, condition: 'new', category: 'Processors' })}
-                          className={`group bg-surface-container border border-${brandColor}/10 ${neonBorder} transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer`}
+                          className={`group bg-surface-container border border-${brandColor}/10 ${neonBorder} transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card`}
                         >
                           <ConditionBadge condition="new" />
                           {item.warranty && (
@@ -355,7 +355,7 @@ export default function ProductGrid() {
                           {(item as any).outOfStock && <OutOfStockOverlay />}
                           <div className={`w-full h-48 bg-surface rounded-t-sm border-b border-${brandColor}/20 flex items-center justify-center ${neonBorder} transition-all overflow-hidden p-4`}>
                             {item.img ? (
-                              <img src={item.img} alt={item.model} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                              <img src={item.img} alt={item.model} className="w-full h-auto min-h-full object-contain" referrerPolicy="no-referrer" />
                             ) : (
                               <span className={`material-icons text-6xl text-${brandColor} ${neonGlow}`}>memory</span>
                             )}
@@ -414,7 +414,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-motherboards" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Motherboards</h3>}
-            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
+            <div ref={gridRef} className="flex flex-nowrap overflow-x-auto no-scrollbar gap-2 md:gap-4 border-b border-primary/20 pb-4 scroll-mt-32 -mx-4 px-4 md:mx-0 md:px-0">
               {Object.keys(motherboardInventory).map((category) => (
                 <button
                   key={category}
@@ -440,7 +440,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid"
               >
                 {filteredUsed.map((item: any, i: number) => (
                   <motion.div
@@ -449,7 +449,7 @@ export default function ProductGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Motherboards' })}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                   >
                     <ConditionBadge condition="used" />
                     {item.outOfStock && <OutOfStockOverlay />}
@@ -457,7 +457,7 @@ export default function ProductGrid() {
                       <img 
                         src={item.img} 
                         alt={item.name} 
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                        className="w-full h-auto min-h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                         style={{ 
                           mixBlendMode: 'screen', 
                           filter: 'contrast(120%) brightness(110%) drop-shadow(0 0 15px rgba(0, 242, 255, 0.4))' 
@@ -518,7 +518,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-laptops" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Laptops</h3>}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 product-grid">
               {filteredLaptops.map((gen, i) => (
                 <motion.div
                   key={gen.label}
@@ -526,7 +526,7 @@ export default function ProductGrid() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   onClick={() => setSelectedProduct({ ...gen, condition: 'used', category: 'Laptops' })}
-                  className="group bg-surface-container border border-primary/10 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                  className="group bg-surface-container border border-primary/10 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                 >
                   <ConditionBadge condition="used" />
                   <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
@@ -577,7 +577,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-ram" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used RAM</h3>}
-            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
+            <div ref={gridRef} className="flex flex-nowrap overflow-x-auto no-scrollbar gap-2 md:gap-4 border-b border-primary/20 pb-4 scroll-mt-32 -mx-4 px-4 md:mx-0 md:px-0">
               {Object.keys(usedRAM).map((category) => (
                 <button
                   key={category}
@@ -603,7 +603,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid"
               >
                 {filteredRAM.map((item: any, i: number) => (
                   <motion.div
@@ -612,7 +612,7 @@ export default function ProductGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'RAM' })}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
@@ -668,7 +668,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-vga" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used VGA</h3>}
-            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
+            <div ref={gridRef} className="flex flex-nowrap overflow-x-auto no-scrollbar gap-2 md:gap-4 border-b border-primary/20 pb-4 scroll-mt-32 -mx-4 px-4 md:mx-0 md:px-0">
               {Object.keys(vgaInventory).map((category) => (
                 <button
                   key={category}
@@ -694,7 +694,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid"
               >
                 {filteredVGA.map((item: any, i: number) => (
                   <motion.div
@@ -703,7 +703,7 @@ export default function ProductGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'VGA' })}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
@@ -763,7 +763,7 @@ export default function ProductGrid() {
         sections.push(
           <div key="used-storage" className="space-y-12">
             {filter === 'all' && <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">Certified Used Storage</h3>}
-            <div ref={gridRef} className="flex flex-wrap gap-4 border-b border-primary/20 pb-4 scroll-mt-32">
+            <div ref={gridRef} className="flex flex-nowrap overflow-x-auto no-scrollbar gap-2 md:gap-4 border-b border-primary/20 pb-4 scroll-mt-32 -mx-4 px-4 md:mx-0 md:px-0">
               {Object.keys(usedStorage).map((category) => (
                 <button
                   key={category}
@@ -789,7 +789,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 product-grid"
               >
                 {filteredStorage.map((item: any, i: number) => (
                   <motion.div
@@ -798,7 +798,7 @@ export default function ProductGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => setSelectedProduct({ ...item, condition: 'used', category: 'Storage' })}
-                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer"
+                    className="group bg-surface-container border border-primary/20 hover:neon-border-cyan transition-all rounded-sm flex flex-col relative overflow-hidden cursor-pointer product-card"
                   >
                     <ConditionBadge condition="used" />
                     {(item as any).outOfStock && <OutOfStockOverlay />}
@@ -895,7 +895,7 @@ export default function ProductGrid() {
                     <ConditionBadge condition={filter} />
                     <div className="w-full h-48 bg-surface rounded-t-sm border-b border-primary/30 flex items-center justify-center group-hover:neon-border-cyan transition-all shadow-[inset_0_0_15px_rgba(0,242,255,0.1)] p-4">
                       {item.img ? (
-                        <img src={item.img} alt={item.model} className="w-full h-full object-contain neon-bloom" referrerPolicy="no-referrer" />
+                        <img src={item.img} alt={item.model} className="w-full h-auto min-h-full object-contain neon-bloom" referrerPolicy="no-referrer" />
                       ) : (
                         <span className="material-icons text-6xl text-primary neon-glow-cyan">{item.icon || 'inventory_2'}</span>
                       )}
@@ -960,7 +960,7 @@ export default function ProductGrid() {
           <h3 className="font-headline text-xl font-black text-primary mb-8 uppercase tracking-widest neon-glow-cyan">
             {searchQuery ? `Search Results for "${searchQuery}"` : 'All Components'}
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.map((item: any, i: number) => (
               <motion.div
                 key={item.model || item.name}
@@ -1042,8 +1042,8 @@ export default function ProductGrid() {
   };
 
   return (
-    <div className="min-h-screen bg-surface py-20 px-4 md:px-12">
-      <div className="max-w-screen-2xl mx-auto">
+    <div className="min-h-screen bg-surface py-20 px-4 main-content">
+      <div className="max-w-7xl mx-auto">
         <motion.button 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -1060,7 +1060,7 @@ export default function ProductGrid() {
           className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
           <div>
-            <h1 className={`font-headline text-5xl md:text-7xl font-black text-${brandColor} tracking-tighter uppercase mb-6 ${neonGlow}`}>
+            <h1 className={`font-headline text-3xl md:text-7xl font-black text-${brandColor} tracking-tighter uppercase mb-6 ${neonGlow}`}>
               {filter === 'all' ? 'Complete' : (filter === 'used' ? 'Certified' : 'Brand New')} <br/>
               <span className="text-white opacity-20">{slug}</span>
             </h1>

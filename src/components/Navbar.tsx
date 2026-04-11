@@ -4,7 +4,11 @@ import { Search, ShoppingCart, User, Menu, X, ChevronDown, Mail, Lock, Loader2, 
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../context/AuthContext';
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenCategories?: () => void;
+}
+
+export default function Navbar({ onOpenCategories }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
@@ -40,7 +44,7 @@ export default function Navbar() {
   const menuItems = [
     { name: 'Home', path: '/' },
     { name: 'Service', path: '/repairs' },
-    { name: 'Category', path: '/category' },
+    { name: 'Category', onClick: onOpenCategories },
     { name: 'About Us', onClick: () => setIsAboutModalOpen(true) },
     { name: 'Contact Us', path: '/contact' },
   ];
@@ -57,28 +61,28 @@ export default function Navbar() {
   return (
     <>
       <header 
-        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-[1001] transition-all duration-500 ${
           scrolled 
             ? 'bg-[#0a0a0a]/90 backdrop-blur-md py-3 shadow-2xl border-b border-[#00ccff]/30' 
             : 'bg-[#0a0a0a] py-5 border-b border-white/5'
         }`}
       >
-        <div className="w-full px-4 md:px-12 mx-auto flex items-center justify-between max-md:flex-col max-md:gap-4">
-          <Link to="/" className="flex items-center gap-4 group shrink-0 max-md:mx-auto">
-            <div className="relative h-16 flex items-center justify-center">
+        <div className="w-full px-4 md:px-12 mx-auto flex items-center justify-between gap-2 md:gap-4">
+          <Link to="/" className="flex items-center gap-2 md:gap-4 group shrink-0">
+            <div className="relative h-10 md:h-16 flex items-center justify-center">
               <img 
                 src="/citrix-logo.png" 
                 className="h-full w-auto object-contain filter drop-shadow-[0_0_10px_rgba(0,204,255,0.7)]"
                 alt="Citrix" 
               />
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap font-rajdhani">
-              <span className="text-2xl md:text-4xl font-bold text-white uppercase tracking-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">CITRIX</span>
-              <span className="text-2xl md:text-4xl font-bold text-[#00ccff] uppercase tracking-tight drop-shadow-[0_0_12px_rgba(0,204,255,0.6)]">COMPUTER</span>
+            <div className="flex items-center gap-1 md:gap-2 whitespace-nowrap font-rajdhani">
+              <span className="text-base md:text-4xl font-bold text-white uppercase tracking-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">CITRIX</span>
+              <span className="text-base md:text-4xl font-bold text-[#00ccff] uppercase tracking-tight drop-shadow-[0_0_12px_rgba(0,204,255,0.6)]">COMPUTER</span>
             </div>
           </Link>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-2 md:gap-8">
             <nav className="hidden lg:flex items-center gap-8">
               {menuItems.map((item) => (
                 item.onClick ? (
@@ -103,8 +107,8 @@ export default function Navbar() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-4 md:gap-6">
-              <div className="hidden xl:flex relative group">
+            <div className="flex items-center gap-2 md:gap-6">
+              <div className="hidden xl:flex relative group search-container">
                 <input 
                   type="text" 
                   placeholder="SEARCH..." 
@@ -114,13 +118,13 @@ export default function Navbar() {
               </div>
 
               {user ? (
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-3 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-[#00ccff]/30">
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="flex items-center gap-2 md:gap-3 px-2 md:px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
+                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full overflow-hidden border border-[#00ccff]/30">
                       {user.photoURL ? (
                         <img src={user.photoURL} alt={user.displayName || 'User'} className="w-full h-full object-cover" />
                       ) : (
-                        <div className="w-full h-full bg-[#00ccff] flex items-center justify-center text-black font-black text-xs">
+                        <div className="w-full h-full bg-[#00ccff] flex items-center justify-center text-black font-black text-[8px] md:text-xs">
                           {user.displayName?.charAt(0) || user.email?.charAt(0) || 'U'}
                         </div>
                       )}
@@ -132,19 +136,19 @@ export default function Navbar() {
                   </div>
                   <button 
                     onClick={handleLogout}
-                    className="p-2.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all group"
+                    className="p-2 md:p-2.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all group"
                     title="Logout"
                   >
-                    <LogOut size={18} className="group-hover:scale-110 transition-transform" />
+                    <LogOut size={16} className="md:size-[18px] group-hover:scale-110 transition-transform" />
                   </button>
                 </div>
               ) : (
                 <Link 
                   to="/login"
-                  className="flex items-center gap-2 group p-1 pr-4 rounded-full bg-white/5 border border-white/10 hover:border-[#00ccff]/50 transition-all"
+                  className="flex items-center gap-2 group p-1 pr-2 md:pr-4 rounded-full bg-white/5 border border-white/10 hover:border-[#00ccff]/50 transition-all"
                 >
-                  <div className="w-8 h-8 md:w-10 md:h-10 bg-[#00ccff] rounded-full flex items-center justify-center text-black shadow-[0_0_15px_rgba(0,204,255,0.4)]">
-                    <User size={20} />
+                  <div className="w-7 h-7 md:w-10 md:h-10 bg-[#00ccff] rounded-full flex items-center justify-center text-black shadow-[0_0_15px_rgba(0,204,255,0.4)]">
+                    <User className="w-4 h-4 md:w-5 md:h-5" />
                   </div>
                   <span className="hidden sm:block text-[11px] text-white font-black uppercase tracking-tighter">LOGIN</span>
                 </Link>
@@ -152,21 +156,21 @@ export default function Navbar() {
 
               <button 
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2.5 md:p-3 bg-white/5 border border-white/10 rounded-full hover:border-[#00ccff]/50 transition-all"
+                className="relative p-2 md:p-3 bg-white/5 border border-white/10 rounded-full hover:border-[#00ccff]/50 transition-all"
               >
-                <ShoppingCart size={20} className="text-white" />
-                <span className="absolute -top-1 -right-1 bg-[#00ccff] text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                <ShoppingCart className="w-[18px] h-[18px] md:w-5 md:h-5 text-white" />
+                <span className="absolute -top-1 -right-1 bg-[#00ccff] text-black text-[8px] md:text-[9px] font-black w-3.5 h-3.5 md:w-4 md:h-4 rounded-full flex items-center justify-center">0</span>
               </button>
 
-              <button className="lg:hidden p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <button className="lg:hidden p-1.5 text-white bg-white/5 border border-white/10 rounded-full" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="h-24 md:h-32 w-full"></div>
+      <div className="h-20 md:h-32 w-full"></div>
 
       <AnimatePresence>
         {isMenuOpen && (
@@ -174,9 +178,9 @@ export default function Navbar() {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 z-[1000] bg-[#0a0a0a] flex flex-col p-8 pt-24 lg:hidden"
+            className="fixed inset-0 z-[1000] bg-[#0a0a0a] flex flex-col p-8 pt-28 lg:hidden"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-8">
               {menuItems.map((item) => (
                 item.onClick ? (
                   <button 
@@ -185,18 +189,20 @@ export default function Navbar() {
                       item.onClick!();
                       setIsMenuOpen(false);
                     }}
-                    className="text-2xl font-bold text-white uppercase tracking-widest text-left"
+                    className="text-3xl font-black text-white uppercase tracking-[0.2em] text-left flex items-center justify-between group"
                   >
                     {item.name}
+                    <ChevronDown size={24} className="text-[#00ccff] -rotate-90 group-hover:translate-x-2 transition-transform" />
                   </button>
                 ) : (
                   <Link 
                     key={item.name} 
                     to={item.path!} 
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-2xl font-bold text-white uppercase tracking-widest"
+                    className="text-3xl font-black text-white uppercase tracking-[0.2em] flex items-center justify-between group"
                   >
                     {item.name}
+                    <ChevronDown size={24} className="text-[#00ccff] -rotate-90 group-hover:translate-x-2 transition-transform" />
                   </Link>
                 )
               ))}
