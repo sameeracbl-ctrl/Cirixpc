@@ -389,3 +389,38 @@ header.scrolled {
     margin-right: auto !important;
   }
 }
+
+/* ==========================================
+   MOBILE VIEW ONLY (768px ට වඩා අඩු ෆෝන් වලට)
+   ========================================== */
+@media screen and (max-width: 768px) {
+
+  /* 1. පේජ් එක හිර නොවී පල්ලෙහාට Scroll වෙන්න */
+  html, body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 2. Hardware Foundry (Categories) පේළියට ගන්න */
+  .category-list, [class*="category-list"] {
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+
+  /* 3. මොබයිල් එකේදී අකුරු වල සයිස් එක මෙතනින් වෙනස් කරන්න පුළුවන් */
+  h1 {
+    font-size: 20px !important;
+    color: #00f2ff !important; /* Citrix Cyan */
+  }
+
+  /* 4. මොබයිල් එකේදී බඩු (Products) 2 බැගින් පෙන්වන්න */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+}
+/* ==========================================
+   මෙතනින් පල්ලෙහාට මොකුත් ලියන්න එපා
+   ========================================== */
